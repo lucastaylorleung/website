@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R9BH82HKW4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-R9BH82HKW4', {
+        'send_page_view': true
+      });
+
+      // Custom function to track clicks easily
+      function trackClick(label) {
+        gtag('event', 'click', {
+          'event_category': 'Engagement',
+          'event_label': label
+        });
+      }
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucas Leung | Marketing Leader Portfolio</title>
@@ -70,9 +89,9 @@
 <body>
 
 <nav>
-    <a href="#experience">Experience</a>
-    <a href="#impact">Impact</a>
-    <a href="#contact">Contact</a>
+    <a href="#experience" onclick="trackClick('Nav: Experience')">Experience</a>
+    <a href="#impact" onclick="trackClick('Nav: Impact')">Impact</a>
+    <a href="#contact" onclick="trackClick('Nav: Contact')">Contact</a>
 </nav>
 
 <header>
@@ -90,8 +109,8 @@
             <div class="company">FreshBooks</div>
             <div class="role">Sr. Manager, Expansion Marketing</div>
             <ul>
-                <li>Strategic lead for global expansion activities.</li>
-                <li>Partnered with Marketing Ops to decrease deployment bottlenecks, significantly improving deliverability.</li>
+                <li>Strategic lead for global expansion activities focusing on bookkeeping and plan upgrades.</li>
+                <li>Partnered with Marketing Ops to decrease deployment bottlenecks, improving deliverability.</li>
                 <li>Established a prioritized customer base calendar to optimize communication frequency and relevance.</li>
             </ul>
         </div>
@@ -101,32 +120,32 @@
             <div class="company">FreshBooks</div>
             <div class="role">Marketing Manager, Base Management</div>
             <ul>
-                <li>Managed high-volume customer expansion strategies to minimize downgrades and churn.</li>
-                <li>Achieved a 490% increase in leads and 250% increase in closed-won opportunities via targeted webinars.</li>
-                <li>Standardized reporting with a post-campaign analysis playbook, improving efficiency by 50%.</li>
-                <li>Drove a 30% incremental increase in leads through revamped email and in-app targeting.</li>
+                <li>Managed customer retention strategies to minimize downgrades and churn.</li>
+                <li>Achieved 490% increase in leads and 250% increase in closed-won opportunities via targeted webinars.</li>
+                <li>Standardized reporting via post-campaign playbooks, improving efficiency by 50%.</li>
+                <li>Drove 30% incremental increase in leads through revamped email and in-app targeting.</li>
             </ul>
         </div>
 
         <div class="card">
             <span class="date-tag">2024 — 2025</span>
             <div class="company">Geotab</div>
-            <div class="role">Segment Campaign Manager</div>
+            <div class="role">Segment Campaign Manager (Altitude SaaS)</div>
             <ul>
-                <li>Led demand generation for the Altitude SaaS segment, exceeding revenue targets by 30%+.</li>
+                <li>Exceeded revenue targets by 30%+ through demand generation for the Altitude SaaS segment.</li>
                 <li>Scaled lead growth by 250% YoY through strategic multi-channel campaigns.</li>
-                <li>Implemented Salesforce enhancements that improved CRM data integrity by 20%.</li>
+                <li>Improved CRM data integrity by 20% through Salesforce structural updates.</li>
             </ul>
         </div>
 
         <div class="card">
             <span class="date-tag">2016 — 2024</span>
             <div class="company">TELUS</div>
-            <div class="role">Sales & Marketing</div>
+            <div class="role">Marketing & Product Management (Progressive Roles)</div>
             <ul>
-                <li><strong>GTM Acquisition:</strong> Hit 120% of sales targets for SmartHome Security portfolios.</li>
-                <li><strong>Retention Lead:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
-                <li><strong>Team Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
+                <li><strong>GTM Acquisition:</strong> Hit 120% of sales targets for SmartHome Security.</li>
+                <li><strong>Retention:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
+                <li><strong>Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
             </ul>
         </div>
     </section>
@@ -157,8 +176,8 @@
         <h2>Let's Connect</h2>
         <p>I specialize in building sustainable growth through lifecycle and expansion marketing.</p>
         <div style="margin-top: 2rem;">
-            <p>Email: <strong><a href="mailto:lucas@lucasleung.me" style="color: var(--primary); text-decoration: none;">lucas@lucasleung.me</a></strong></p>
-            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank" style="color: var(--primary); text-decoration: none;">lucasmarkleung</a></strong></p>
+            <p>Email: <strong><a href="mailto:lucas@lucasleung.me" onclick="trackClick('Contact: Email')" style="color: var(--primary); text-decoration: none;">lucas@lucasleung.me</a></strong></p>
+            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank" onclick="trackClick('Contact: LinkedIn')" style="color: var(--primary); text-decoration: none;">lucasmarkleung</a></strong></p>
         </div>
     </section>
 </div>
