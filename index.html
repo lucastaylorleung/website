@@ -8,101 +8,63 @@
     <style>
         :root {
             --primary: #2563eb;
-            --secondary: #64748b;
             --dark: #0f172a;
             --light: #f8fafc;
             --white: #ffffff;
+            --accent: #60a5fa;
         }
         
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            color: #334155; 
-            margin: 0; 
-            background: var(--light); 
-            scroll-behavior: smooth;
-        }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); scroll-behavior: smooth; }
 
-        /* Header & Profile Image */
-        header { 
-            background: var(--dark); 
-            color: white; 
-            padding: 5rem 2rem; 
-            text-align: center; 
-        }
+        header { background: var(--dark); color: white; padding: 5rem 2rem; text-align: center; }
         
         .profile-img {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary);
-            margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            background: #fff; /* Placeholder background */
+            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
+            border: 4px solid var(--primary); margin-bottom: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3); background: #fff;
         }
 
-        h1 { font-size: 2.5rem; margin: 0; letter-spacing: -1px; }
-        
-        /* Navigation */
         nav { 
-            background: rgba(255, 255, 255, 0.95); 
-            border-bottom: 1px solid #e2e8f0; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000; 
-            text-align: center; 
-            padding: 1rem; 
+            background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #e2e8f0; 
+            position: sticky; top: 0; z-index: 1000; text-align: center; padding: 1rem; 
             backdrop-filter: blur(8px);
         }
         nav a { margin: 0 15px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
         nav a:hover { color: var(--primary); }
 
-        .container { max-width: 1000px; margin: auto; padding: 2rem; }
+        .container { max-width: 900px; margin: auto; padding: 2rem; }
 
-        section { padding: 4rem 0; border-bottom: 1px solid #e2e8f0; }
+        section { padding: 4rem 0; }
         h2 { color: var(--dark); font-size: 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
-        /* Experience Cards */
         .card { 
-            background: var(--white); 
-            padding: 2.5rem; 
-            border-radius: 16px; 
-            border: 1px solid #e2e8f0; 
-            margin-bottom: 2rem; 
-            transition: all 0.3s ease; 
+            background: var(--white); padding: 2.2rem; border-radius: 16px; 
+            border: 1px solid #e2e8f0; margin-bottom: 2rem; position: relative;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
         
-        .company { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; }
-        .role { font-size: 1.5rem; margin: 0.5rem 0; color: var(--dark); font-weight: 700; }
-        
-        /* Impact Grid */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
-        .stat-card { 
-            background: var(--dark); 
-            color: white; 
-            padding: 2rem; 
-            border-radius: 12px; 
-            text-align: center; 
+        .date-tag { 
+            position: absolute; top: 2.2rem; right: 2.2rem; 
+            font-weight: 600; font-size: 0.85rem; color: var(--primary);
+            background: #eff6ff; padding: 4px 12px; border-radius: 6px;
         }
-        .stat-card strong { font-size: 2.2rem; display: block; color: #60a5fa; margin-bottom: 0.5rem; }
-        .stat-card span { font-size: 0.85rem; opacity: 0.8; }
 
-        .skills-tag { 
-            display: inline-block; 
-            background: #e0e7ff; 
-            color: #4338ca; 
-            padding: 6px 14px; 
-            border-radius: 20px; 
-            font-size: 0.8rem; 
-            margin: 4px; 
-            font-weight: 600; 
-        }
+        .company { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 4px; }
+        .role { font-size: 1.4rem; margin: 0; color: var(--dark); font-weight: 700; max-width: 70%; }
+        
+        ul { margin-top: 1.5rem; padding-left: 1.2rem; }
+        li { margin-bottom: 0.8rem; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .stat-card { background: var(--dark); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; }
+        .stat-card strong { font-size: 2rem; display: block; color: var(--accent); }
+        .stat-card span { font-size: 0.8rem; opacity: 0.8; }
 
         footer { text-align: center; padding: 4rem; background: var(--dark); color: #94a3b8; font-size: 0.9rem; }
         
-        a { color: var(--primary); text-decoration: none; }
+        @media (max-width: 768px) {
+            .date-tag { position: static; display: inline-block; margin-top: 10px; }
+            .role { max-width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -116,13 +78,7 @@
 <header>
     <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img">
     <h1>Lucas Leung</h1>
-    <p style="font-size: 1.2rem; opacity: 0.9; margin-top: 10px;">Lifecycle & Expansion Marketing Leader</p>
-    <div style="margin-top: 25px;">
-        <span class="skills-tag">B2B SaaS</span>
-        <span class="skills-tag">Retention Strategy</span>
-        <span class="skills-tag">Demand Generation</span>
-        <span class="skills-tag">GTM Execution</span>
-    </div>
+    <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 10px;">Lifecycle & Expansion Marketing Leader | Vancouver, BC</p>
 </header>
 
 <div class="container">
@@ -130,71 +86,85 @@
         <h2>Professional Experience</h2>
         
         <div class="card">
+            <span class="date-tag">2023 — Present</span>
             <div class="company">FreshBooks</div>
             <div class="role">Sr. Manager, Expansion Marketing</div>
-            <p>Driving global revenue through strategic base management and lifecycle optimization.</p>
             <ul>
-                <li><strong>Revenue Growth:</strong> Achieved a 250% increase in closed-won opportunities via webinar funnels.</li>
-                <li><strong>Lead Gen:</strong> Revamped full-funnel campaigns driving a 490% increase in leads.</li>
-                <li><strong>Operations:</strong> Standardized reporting with playbooks, increasing efficiency by 50%.</li>
+                <li>Strategic lead for global expansion activities.</li>
+                <li>Partnered with Marketing Ops to decrease deployment bottlenecks, significantly improving deliverability.</li>
+                <li>Established a prioritized customer base calendar to optimize communication frequency and relevance.</li>
             </ul>
         </div>
 
         <div class="card">
+            <span class="date-tag">2022 — 2023</span>
+            <div class="company">FreshBooks</div>
+            <div class="role">Marketing Manager, Base Management</div>
+            <ul>
+                <li>Managed high-volume customer expansion strategies to minimize downgrades and churn.</li>
+                <li>Achieved a 490% increase in leads and 250% increase in closed-won opportunities via targeted webinars.</li>
+                <li>Standardized reporting with a post-campaign analysis playbook, improving efficiency by 50%.</li>
+                <li>Drove a 30% incremental increase in leads through revamped email and in-app targeting.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <span class="date-tag">2021 — 2022</span>
             <div class="company">Geotab</div>
-            <div class="role">Segment Campaign Manager</div>
+            <div class="role">Segment Campaign Manager (Altitude SaaS)</div>
             <ul>
-                <li>Led demand gen for Altitude SaaS, hitting 130%+ of revenue targets.</li>
-                <li>Managed $300K budget resulting in 250% YoY lead growth.</li>
-                <li>Improved CRM data integrity by 20% through Salesforce structural updates.</li>
+                <li>Led demand generation for the Altitude SaaS segment, exceeding revenue targets by 30%+.</li>
+                <li>Scaled lead growth by 250% YoY through strategic multi-channel campaigns.</li>
+                <li>Implemented Salesforce enhancements that improved CRM data integrity by 20%.</li>
             </ul>
         </div>
 
         <div class="card">
+            <span class="date-tag">2016 — 2021</span>
             <div class="company">TELUS</div>
-            <div class="role">Marketing & Product Management</div>
+            <div class="role">Marketing & Product Management (Progressive Roles)</div>
             <ul>
-                <li>Hit 120% of sales targets for SmartHome Security GTM acquisition.</li>
-                <li>Designed customer journeys improving wireless retention conversion by 10%.</li>
-                <li>Led and coached a team of 17 to improve customer save rates by 10%.</li>
+                <li><strong>GTM Acquisition:</strong> Hit 120% of sales targets for SmartHome Security portfolios.</li>
+                <li><strong>Retention Lead:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
+                <li><strong>Team Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
             </ul>
         </div>
     </section>
 
     <section id="impact">
-        <h2>Measurable Results</h2>
+        <h2>Key Performance Metrics</h2>
         <div class="grid">
             <div class="stat-card">
                 <strong>+490%</strong>
-                <span>Leads Generated (FreshBooks)</span>
+                <span>Lead Growth (Webinars)</span>
             </div>
             <div class="stat-card">
                 <strong>130%</strong>
-                <span>Revenue Target (Geotab)</span>
+                <span>Revenue Target Attainment</span>
+            </div>
+            <div class="stat-card">
+                <strong>+250%</strong>
+                <span>Closed-Won Opportunities</span>
             </div>
             <div class="stat-card">
                 <strong>120%</strong>
-                <span>Sales Goal (TELUS)</span>
-            </div>
-            <div class="stat-card">
-                <strong>2.5x</strong>
-                <span>Closed-Won Rate</span>
+                <span>Sales Performance (GTM)</span>
             </div>
         </div>
     </section>
 
     <section id="contact" style="text-align: center;">
-        <h2>Let's Work Together</h2>
-        <p>Currently based in Vancouver, BC. Specialized in scaling customer lifecycles.</p>
+        <h2>Let's Connect</h2>
+        <p>I specialize in building sustainable growth through lifecycle and expansion marketing.</p>
         <div style="margin-top: 2rem;">
-            <p>Email: <strong><a href="mailto:lucas@lucasleung.me">lucas@lucasleung.me</a></strong></p>
-            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank">/lucasmarkleung</a></strong></p>
+            <p>Email: <strong><a href="mailto:lucas@lucasleung.me" style="color: var(--primary); text-decoration: none;">lucas@lucasleung.me</a></strong></p>
+            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank" style="color: var(--primary); text-decoration: none;">/lucasmarkleung</a></strong></p>
         </div>
     </section>
 </div>
 
 <footer>
-    <p>&copy; 2026 Lucas Leung.</p>
+    <p>&copy; 2026 Lucas Leung | Built for GitHub Pages</p>
 </footer>
 
 </body>
