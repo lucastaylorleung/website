@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work Examples | Lucas Leung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; --dark: #0f172a; --light: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); }
+        
+        nav { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; text-align: center; padding: 1rem; backdrop-filter: blur(8px); }
+        nav a { margin: 0 15px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
+        
+        header { background: var(--dark); color: white; padding: 3rem 2rem; text-align: center; }
+        .container { max-width: 1000px; margin: auto; padding: 2rem; }
+        
+        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+        .work-card { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; }
+        .work-image { background: #e2e8f0; height: 250px; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; }
+        .work-content { padding: 1.5rem; }
+        .tag { background: #eff6ff; color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        
+        h2 { color: var(--dark); margin-top: 1rem; }
+        .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+        
+        @media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
+    </style>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  // This tells GA4 that this is a unique page view
+  gtag('config', 'G-QKH2WFG8WC', {
+    'send_page_view': true
+  });
+
+  // Keep your custom click tracking function consistent
+  function trackClick(label) {
+    gtag('event', 'click', {
+      'event_category': 'Engagement',
+      'event_label': label
+    });
+  }
+</script>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="work.html" style="color: var(--primary);">Work Examples</a>
+</nav>
+
+<header>
+    <h1>Strategic Projects</h1>
+    <p>A deep dive into lifecycle mapping and campaign execution.</p>
+</header>
+
+<div class="container">
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
+
+    <div class="work-grid">
+        <div class="work-card">
+            <div class="work-image">
+                <img src="journey-map.png" alt="Customer Journey Map" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="work-content">
+                <span class="tag">Strategy</span>
+                <h2>Expansion Journey Mapping</h2>
+                <p>Designed a multi-touchpoint roadmap for bookkeeping trial users, identifying 3 key drop-off points and implementing automated interventions.</p>
+            </div>
+        </div>
+
+        <div class="work-card">
+            <div class="work-image">
+                <img src="email-design.png" alt="Email Development" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div class="work-content">
+                <span class="tag">Development</span>
+                <h2>Modular Email Architecture</h2>
+                <p>Developed a responsive HTML template system for FreshBooks, reducing campaign build time by 40% and ensuring 100% Dark Mode compatibility.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
