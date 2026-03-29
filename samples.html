@@ -17,43 +17,61 @@
         
         .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
         .work-card { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; }
-        .work-image { background: #e2e8f0; height: 250px; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; }
+        .work-image { background: #e2e8f0; height: 250px; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; overflow: hidden; }
+        .work-image img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform 0.2s ease; }
+        .work-image img:hover { transform: scale(1.03); }
         .work-content { padding: 1.5rem; }
         .tag { background: #eff6ff; color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
         
         h2 { color: var(--dark); margin-top: 1rem; }
         .back-btn { display: inline-block; margin-bottom: 2rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+
+        /* Lightbox */
+        .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-overlay img { max-width: 90vw; max-height: 90vh; border-radius: 8px; object-fit: contain; box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
+        .lightbox-close { position: fixed; top: 1.25rem; right: 1.5rem; color: white; font-size: 2rem; font-weight: 700; cursor: pointer; line-height: 1; user-select: none; }
+        .lightbox-close:hover { opacity: 0.7; }
         
         @media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
     </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QKH2WFG8WC', { 'send_page_view': true });
 
-  // This tells GA4 that this is a unique page view
-  gtag('config', 'G-QKH2WFG8WC', {
-    'send_page_view': true
-  });
+        function trackClick(label) {
+            gtag('event', 'click', {
+                'event_category': 'Engagement',
+                'event_label': label
+            });
+        }
 
-  // Keep your custom click tracking function consistent
-  function trackClick(label) {
-    gtag('event', 'click', {
-      'event_category': 'Engagement',
-      'event_label': label
-    });
-  }
-</script>
+        function openLightbox(src) {
+            document.getElementById('lightbox-img').src = src;
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
 </head>
 <body>
 
 <nav>
     <a href="index.html">Home</a>
     <a href="index.html#experience" onclick="trackClick('Nav: Experience')">Experience</a>
-    <a href="samples.html" onclick="trackClick('Nav: Work')">Work Examples</a>     <a href="#impact" onclick="trackClick('Nav: Impact')">Impact</a>
-    <a href="index.html#skills" onclick="trackClick('Nav: Skills')">Skills</a>
-    <a href="index.html#contact" onclick="trackClick('Nav: Contact')">Contact</a>
+    <a href="samples.html" onclick="trackClick('Nav: Work')">Work Examples</a>
+    <a href="#impact" onclick="trackClick('Nav: Impact')">Impact</a>
+    <a href="index.html#skills" onclick="trackClick('Nav: Skills')">Skills</a>
+    <a href="index.html#contact" onclick="trackClick('Nav: Contact')">Contact</a>
 </nav>
 
 <header>
@@ -67,7 +85,8 @@
     <div class="work-grid">
         <div class="work-card">
             <div class="work-image">
-                <img src="Journey Mapping V2.png" alt="Customer Journey Map" style="width:100%; height:100%; object-fit:cover;">
+                <img src="Journey Mapping V2.png" alt="Customer Journey Map"
+                     onclick="openLightbox('Journey Mapping V2.png'); trackClick('Lightbox: Journey Map')">
             </div>
             <div class="work-content">
                 <span class="tag">Strategy</span>
@@ -78,7 +97,8 @@
 
         <div class="work-card">
             <div class="work-image">
-                <img src="email-design.png" alt="Email Development" style="width:100%; height:100%; object-fit:cover;">
+                <img src="email-design.png" alt="Email Development"
+                     onclick="openLightbox('email-design.png'); trackClick('Lightbox: Email Design')">
             </div>
             <div class="work-content">
                 <span class="tag">Development</span>
@@ -87,6 +107,12 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+    <img id="lightbox-img" src="" alt="Expanded view" onclick="event.stopPropagation()">
 </div>
 
 </body>
