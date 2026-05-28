@@ -17,7 +17,19 @@
         .container { max-width: 1000px; margin: auto; padding: 2rem; }
         
         .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-        .work-card { background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; }
+        
+        /* WORK CARD WITH SMOOTH BOUNCE TRANSITION */
+        .work-card { 
+            background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        
+        /* WORK CARD HOVER STATE */
+        .work-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+        }
+        
         .work-image { background: #e2e8f0; height: 250px; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; overflow: hidden; }
         .work-image img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform 0.2s ease; }
         .work-image img:hover { transform: scale(1.03); }
@@ -110,10 +122,10 @@
 </head>
 <body>
 
+<!-- Global Nav Element (Populated by nav.html) -->
 <nav id="global-nav"></nav>
 
 <script>
-    // Dynamically fetch and insert the shared navigation file
     fetch('nav.html')
         .then(response => response.text())
         .then(data => {
@@ -121,7 +133,6 @@
         })
         .catch(error => console.error('Error loading navigation:', error));
 </script>
-</nav>
 
 <header>
     <h1>Strategic Projects</h1>
