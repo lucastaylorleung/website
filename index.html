@@ -108,15 +108,17 @@
 </head>
 <body>
 
-<nav>
-    <a href="#summary" onclick="trackClick('Nav: Summary')">Summary</a>
-    <a href="#experience" onclick="trackClick('Nav: Experience')">Experience</a>
-    <a href="samples.html" onclick="trackClick('Nav: Work')">Work Examples</a>
-    <a href="#impact" onclick="trackClick('Nav: Impact')">Impact</a>
-    <a href="#skills" onclick="trackClick('Nav: Skills')">Skills</a>
-    <a href="#talents" onclick="trackClick('Nav: Talents')">Top Talents</a>
-    <a href="#contact" onclick="trackClick('Nav: Contact')">Contact</a>
-</nav>
+<nav id="global-nav"></nav>
+
+<script>
+    // Dynamically fetch and insert the shared navigation file
+    fetch('nav.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('global-nav').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading navigation:', error));
+</script>
 
 <header>
     <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img">
