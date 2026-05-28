@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucas Leung | Marketing Leader Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
@@ -31,7 +31,7 @@
             --light: #f8fafc;
             --white: #ffffff;
             --accent: #60a5fa;
-            --plum: #6366f1; /* Added complementary branding color for Plum insights */
+            --plum: #6366f1;
         }
         
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); scroll-behavior: smooth; }
@@ -57,9 +57,17 @@
         section { padding: 4rem 0; }
         h2 { color: var(--dark); font-size: 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
+        /* BASE CARD WITH SMOOTH BOUNCE TRANSITION */
         .card { 
             background: var(--white); padding: 2.2rem; border-radius: 16px; 
             border: 1px solid #e2e8f0; margin-bottom: 2rem; position: relative;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        
+        /* CARD BOUNCE HOVER STATE */
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
         }
         
         .date-tag { 
@@ -77,11 +85,22 @@
         li { margin-bottom: 0.8rem; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        .stat-card { background: var(--dark); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; }
+        
+        /* METRIC STAT CARD WITH SMOOTH BOUNCE TRANSITION */
+        .stat-card { 
+            background: var(--dark); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+        
+        /* STAT CARD HOVER STATE */
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
         .stat-card strong { font-size: 2rem; display: block; color: var(--accent); }
         .stat-card span { font-size: 0.8rem; opacity: 0.8; }
 
-        /* Custom Button Styling for External Links */
         .btn {
             display: inline-block;
             background: var(--primary);
@@ -108,10 +127,10 @@
 </head>
 <body>
 
+<!-- Global Nav Element (Populated by nav.html) -->
 <nav id="global-nav"></nav>
 
 <script>
-    // Dynamically fetch and insert the shared navigation file
     fetch('nav.html')
         .then(response => response.text())
         .then(data => {
@@ -119,7 +138,6 @@
         })
         .catch(error => console.error('Error loading navigation:', error));
 </script>
-    </nav>
 
 <header>
     <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img">
