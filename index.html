@@ -23,7 +23,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lucas Leung | Marketing Leader Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
@@ -31,6 +31,7 @@
             --light: #f8fafc;
             --white: #ffffff;
             --accent: #60a5fa;
+            --plum: #6366f1; /* Added complementary branding color for Plum insights */
         }
         
         body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); scroll-behavior: smooth; }
@@ -80,6 +81,23 @@
         .stat-card strong { font-size: 2rem; display: block; color: var(--accent); }
         .stat-card span { font-size: 0.8rem; opacity: 0.8; }
 
+        /* Custom Button Styling for External Links */
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            transition: background 0.2s ease;
+        }
+        .btn:hover {
+            background: #1d4ed8;
+        }
+
         footer { text-align: center; padding: 4rem; background: var(--dark); color: #94a3b8; font-size: 0.9rem; }
         
         @media (max-width: 768px) {
@@ -91,14 +109,13 @@
 <body>
 
 <nav>
-    <nav>
     <a href="#summary" onclick="trackClick('Nav: Summary')">Summary</a>
     <a href="#experience" onclick="trackClick('Nav: Experience')">Experience</a>
     <a href="samples.html" onclick="trackClick('Nav: Work')">Work Examples</a>
     <a href="#impact" onclick="trackClick('Nav: Impact')">Impact</a>
     <a href="#skills" onclick="trackClick('Nav: Skills')">Skills</a>
+    <a href="#talents" onclick="trackClick('Nav: Talents')">Top Talents</a>
     <a href="#contact" onclick="trackClick('Nav: Contact')">Contact</a>
-</nav>
 </nav>
 
 <header>
@@ -185,6 +202,7 @@
             </div>
         </div>
     </section>
+    
     <section id="skills">
         <h2>Strategic & Technical Skills</h2>
         <div class="card" style="padding-bottom: 1rem;">
@@ -219,6 +237,30 @@
                         <li>Project Management</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="talents">
+        <h2>Leadership Style & Top Talents</h2>
+        <div class="card">
+            <div class="company" style="color: var(--plum);">Psychometric Insights via Plum</div>
+            <div class="role" style="max-width: 100%; margin-bottom: 1rem;">Core Soft Skills & Workplace Strengths</div>
+            <p>Data-driven marketing relies on cross-functional alignment and human psychology. According to my verified Plum profile, my driving workplace talents center around execution, alignment, and collaborative leadership:</p>
+            
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem; gap: 1rem;">
+                <div style="background: var(--light); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--plum);">
+                    <strong style="color: var(--dark); display: block; margin-bottom: 4px;">Teamwork</strong>
+                    <span style="font-size: 0.9rem; opacity: 0.85;">Championing collaborative spaces, respecting diverse perspectives, and driving cross-departmental alignment.</span>
+                </div>
+                <div style="background: var(--light); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--plum);">
+                    <strong style="color: var(--dark); display: block; margin-bottom: 4px;">Execution & Speed</strong>
+                    <span style="font-size: 0.9rem; opacity: 0.85;">Setting strict operating rhythms, managing resources dynamically, and prioritizing impact over process.</span>
+                </div>
+            </div>
+            
+            <div style="margin-top: 1.5rem; text-align: center;">
+                <a href="https://secure.plum.io/en/p/2Ss_ZK7FVRiWw9YOiENRVQ" target="_blank" rel="noopener" class="btn" style="background: var(--plum);" onclick="trackClick('View Plum Profile')">View My Full Plum Profile</a>
             </div>
         </div>
     </section>
