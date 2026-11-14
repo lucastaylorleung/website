@@ -1,164 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-QKH2WFG8WC', {
-        'send_page_view': true
-      });
-
-      function trackClick(label) {
-        gtag('event', 'click', {
-          'event_category': 'Engagement',
-          'event_label': label
-        });
-      }
-    </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work Samples &amp; Architecture | Lucas Leung</title>
+    <title>Work Examples | Lucas Leung</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #2563eb;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --white: #ffffff;
-            --accent: #60a5fa;
-            --plum: #6366f1;
-        }
-        
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); scroll-behavior: smooth; }
+        :root { --primary: #2563eb; --dark: #0f172a; --light: #f8fafc; --white: #ffffff; }
+        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); }
 
-        header { background: var(--dark); color: white; padding: 4.5rem 2rem; text-align: center; }
-        header h1 { margin: 0; font-size: 2.2rem; }
-        header p { font-size: 1.1rem; opacity: 0.9; margin: 10px auto 0; max-width: 650px; }
-
-        nav { 
-            background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #e2e8f0; 
-            position: sticky; top: 0; z-index: 1000; text-align: center; padding: 1rem; 
-            backdrop-filter: blur(8px);
-        }
+        nav { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 1000; text-align: center; padding: 1rem; backdrop-filter: blur(8px); }
         nav a { margin: 0 15px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
         nav a:hover { color: var(--primary); }
 
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
+        header { background: var(--dark); color: white; padding: 3rem 2rem; text-align: center; }
+        .container { max-width: 1000px; margin: auto; padding: 2rem; }
 
-        section { padding: 3rem 0; }
-        h2 { color: var(--dark); font-size: 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
+        .work-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
 
-        .card { 
-            background: var(--white); padding: 2.2rem; border-radius: 16px; 
-            border: 1px solid #e2e8f0; margin-bottom: 2.5rem; position: relative;
+        /* WORK CARD WITH SMOOTH BOUNCE TRANSITION */
+        .work-card { 
+            background: white; border-radius: 16px; border: 1px solid #e2e8f0; overflow: hidden; display: flex; flex-direction: column; 
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
-        
-        .card:hover {
+
+        /* WORK CARD HOVER STATE */
+        .work-card:hover { 
             transform: translateY(-6px);
             box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
         }
 
-        .company { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 4px; }
-        .role { font-size: 1.4rem; margin: 0; color: var(--dark); font-weight: 700; }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: background 0.2s ease;
-        }
-        .btn:hover {
-            background: #1d4ed8;
-        }
-
-        /* PORTFOLIO WORK SAMPLE PREVIEW FRAME */
-        .preview-frame {
-            width: 100%;
-            height: 460px;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            margin-top: 1.2rem;
-            background: #fafafb;
-        }
-
-        /* DEMO VIDEO SHOWCASE GRID & 16:9 WRAPPER */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-        }
-        .video-item {
-            background: var(--light);
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 1rem;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background: var(--dark);
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .video-title {
-            font-weight: 700;
-            color: var(--dark);
-            font-size: 1rem;
-            margin: 0.85rem 0 0.25rem;
-        }
-        .video-desc {
-            font-size: 0.88rem;
-            color: #475569;
-            margin: 0;
-            line-height: 1.45;
-        }
-
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0.8rem;
-        }
-        .skill-pill {
-            font-size: 0.78rem;
-            font-weight: 600;
-            background: #eff6ff;
-            color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 999px;
-        }
-
-        footer { text-align: center; padding: 4rem; background: var(--dark); color: #94a3b8; font-size: 0.9rem; }
+        .work-image { background: #e2e8f0; height: 250px; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: 600; overflow: hidden; position: relative; }
+        .work-image img { width: 100%; height: 100%; object-fit: cover; cursor: zoom-in; transition: transform 0.2s ease; }
+        .work-image img:hover { transform: scale(1.03); }
         
-        @media (max-width: 768px) {
-            .preview-frame { height: 340px; }
-            .video-grid { grid-template-columns: 1fr; }
+        /* EMBEDDED HTML MAP THUMBNAIL PREVIEW */
+        .work-image iframe.map-thumb { width: 200%; height: 200%; border: 0; transform: scale(0.5); transform-origin: 0 0; pointer-events: none; position: absolute; top: 0; left: 0; background: #fafafb; }
+        .work-image.clickable { cursor: zoom-in; }
+        .work-image.clickable::after {
+            content: "Click to expand";
+            position: absolute; bottom: 10px; right: 10px;
+            background: rgba(15, 23, 42, 0.8); color: white;
+            font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 6px;
+            opacity: 0; transition: opacity 0.2s ease;
         }
+        .work-image.clickable:hover::after { opacity: 1; }
+
+        /* 16:9 VIDEO EMBED IN CARD */
+        .work-video { position: relative; width: 100%; height: 250px; background: var(--dark); overflow: hidden; }
+        .work-video iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .work-content { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+        .work-content p { flex: 1; }
+        .tag { background: #eff6ff; color: var(--primary); padding: 4px 10px; border-radius: 4px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; align-self: flex-start; }
+
+        .card-actions { display: flex; gap: 12px; margin-top: 0.75rem; flex-wrap: wrap; }
+        .action-link { font-size: 0.85rem; font-weight: 600; color: var(--primary); text-decoration: none; cursor: pointer; background: none; border: none; padding: 0; font-family: inherit; }
+        .action-link:hover { text-decoration: underline; }
+
+        h2 { color: var(--dark); margin-top: 1rem; margin-bottom: 0.5rem; }
+        .section-heading { color: var(--dark); font-size: 1.5rem; margin-top: 3rem; margin-bottom: 0.5rem; border-left: 4px solid var(--primary); padding-left: 0.85rem; }
+        .back-btn { display: inline-block; margin-bottom: 1rem; color: var(--primary); text-decoration: none; font-weight: 600; }
+
+        /* Lightbox */
+        .lightbox-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; }
+        .lightbox-overlay.active { display: flex; }
+        .lightbox-inner { position: relative; width: 92vw; max-width: 1120px; height: 88vh; display: flex; flex-direction: column; align-items: center; }
+        .lightbox-inner img { max-width: 100%; max-height: 100%; border-radius: 8px; object-fit: contain; box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
+        .lightbox-inner iframe { width: 100%; height: 100%; border: none; border-radius: 8px; box-shadow: 0 25px 60px rgba(0,0,0,0.5); background: white; }
+        .lightbox-close { position: fixed; top: 1.25rem; right: 1.5rem; color: white; font-size: 2rem; font-weight: 700; cursor: pointer; line-height: 1; user-select: none; }
+        .lightbox-close:hover { opacity: 0.7; }
+
+        /* Slideshow controls */
+        .slideshow-controls { display: none; align-items: center; gap: 1rem; margin-top: 1rem; color: white; font-size: 0.9rem; font-weight: 600; }
+        .slideshow-controls.visible { display: flex; }
+        .slide-btn { background: rgba(255,255,255,0.15); border: none; color: white; font-size: 1.4rem; width: 2.5rem; height: 2.5rem; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+        .slide-btn:hover { background: rgba(255,255,255,0.3); }
+        .slide-btn:disabled { opacity: 0.3; cursor: default; }
+
+        /* FOOTER STYLES */
+        footer { 
+            text-align: center; 
+            padding: 4rem 2rem; 
+            background: var(--dark); 
+            color: #94a3b8; 
+            font-size: 0.9rem; 
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
     </style>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-QKH2WFG8WC', { 'send_page_view': true });
+
+        function trackClick(label) {
+            gtag('event', 'click', {
+                'event_category': 'Engagement',
+                'event_label': label
+            });
+        }
+
+        let slideFiles = [];
+        let slideIndex = 0;
+
+        function openLightbox(src) {
+            slideFiles = [];
+            slideIndex = 0;
+            const isHTML = src.toLowerCase().endsWith('.html');
+            document.getElementById('lightbox-content').innerHTML = isHTML
+                ? `<iframe src="${src}" title="Interactive Journey Map"></iframe>`
+                : `<img src="${src}" alt="Expanded view">`;
+            document.getElementById('slideshow-controls').classList.remove('visible');
+            document.getElementById('lightbox').classList.add('active');
+        }
+
+        function openSlideshow(files, label) {
+            slideFiles = files;
+            slideIndex = 0;
+            renderSlide();
+            document.getElementById('slideshow-controls').classList.add('visible');
+            document.getElementById('lightbox').classList.add('active');
+            trackClick(label);
+        }
+
+        function renderSlide() {
+            const file = slideFiles[slideIndex];
+            const isPDF = file.toLowerCase().endsWith('.pdf');
+            const content = isPDF
+                ? `<iframe src="${file}" title="Slide ${slideIndex + 1}"></iframe>`
+                : `<img src="${file}" alt="Slide ${slideIndex + 1}">`;
+            document.getElementById('lightbox-content').innerHTML = content;
+            document.getElementById('slide-label').textContent = `${slideIndex + 1} / ${slideFiles.length}`;
+            document.getElementById('btn-prev').disabled = slideIndex === 0;
+            document.getElementById('btn-next').disabled = slideIndex === slideFiles.length - 1;
+        }
+
+        function changeSlide(dir) {
+            slideIndex = Math.max(0, Math.min(slideFiles.length - 1, slideIndex + dir));
+            renderSlide();
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.getElementById('lightbox-content').innerHTML = '';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+    </script>
 </head>
 <body>
 
+<!-- Global Nav Element (Populated by nav.html) -->
 <nav id="global-nav"></nav>
 
 <script>
@@ -171,88 +171,113 @@
 </script>
 
 <header>
-    <h1>Work Samples &amp; Lifecycle Architecture</h1>
-    <p>Selected examples of multi-persona onboarding journeys, CRM routing logic, and product activation walkthroughs.</p>
+    <h1>Strategic Projects</h1>
+    <p>A deep dive into lifecycle mapping, campaign execution, and product enablement.</p>
 </header>
 
 <div class="container">
-    <section id="samples">
-        <!-- SAMPLE 01: JOURNEY SWIMLANES -->
-        <div class="card" id="journey-map">
-            <div class="company">Sample 01 • Multi-Persona Onboarding Architecture</div>
-            <div class="role">60-Day Reverse Trial &amp; Freemium Onboarding Map</div>
-            <p style="margin-top: 0.8rem;">End-to-end lifecycle map spanning Day 1 activation, Day 30 reverse-trial downgrade transition, and Day 60 upsell across five distinct user personas (Solo Users, Team Admins, Invited Members, Freemium Users, and Enterprise Accounts). Designed to eliminate duplicate sequence enrollment and align messaging with account billing states.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Reverse Trial Logic</span>
-                <span class="skill-pill">Persona Segmentation</span>
-                <span class="skill-pill">PLG &amp; Sales-Assist</span>
-                <span class="skill-pill">A/B Testing</span>
-            </div>
-            <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
-            <div style="text-align: right;">
-                <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Interactive Map Full Screen &#8599;</a>
-            </div>
-        </div>
+    <a href="index.html" class="back-btn">← Back to Portfolio</a>
 
-        <!-- SAMPLE 02: CONTACT ROUTING -->
-        <div class="card" id="routing-logic">
-            <div class="company">Sample 02 • CRM Entry &amp; Branching Logic</div>
-            <div class="role">Dynamic Contact Routing &amp; Enrollment Flowchart</div>
-            <p style="margin-top: 0.8rem;">Decision-tree architecture governing how new signups, invited collaborators, and inbound demo requests enter and transition between lifecycle tracks based on signup intent, domain enrichment (company size), seat count, and mid-trial team expansion triggers.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Lead Enrichment Routing</span>
-                <span class="skill-pill">Dynamic State Transitions</span>
-                <span class="skill-pill">PLG-to-Sales Handoff</span>
-                <span class="skill-pill">RevOps Alignment</span>
+    <h2 class="section-heading" style="margin-top: 1rem;">Lifecycle Architecture &amp; Campaign Systems</h2>
+    <div class="work-grid">
+        <!-- NEW SAMPLE 1: 60-DAY REVERSE TRIAL SWIMLANES -->
+        <div class="work-card">
+            <div class="work-image clickable" onclick="openLightbox('journey-swimlanes.html'); trackClick('Lightbox: Reverse Trial Swimlanes')">
+                <iframe class="map-thumb" src="journey-swimlanes.html" title="60-Day Reverse Trial Onboarding Map Preview" tabindex="-1"></iframe>
             </div>
-            <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
-            <div style="text-align: right;">
-                <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Flowchart Full Screen &#8599;</a>
-            </div>
-        </div>
-
-        <!-- SAMPLE 03: PRODUCT DEMO VIDEOS -->
-        <div class="card" id="demo-videos">
-            <div class="company">Sample 03 • Product Marketing &amp; Video Enablement</div>
-            <div class="role">Product Demo Videos &amp; Persona Walkthroughs</div>
-            <p style="margin-top: 0.8rem;">Scripted, recorded, and produced product walkthroughs embedded into lifecycle onboarding tracks to accelerate Day 1–3 activation, showcase dynamic features, and tailor value propositions to specific buyer personas.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Product Storytelling</span>
-                <span class="skill-pill">Trial Activation</span>
-                <span class="skill-pill">Persona Messaging</span>
-                <span class="skill-pill">Self-Serve Enablement</span>
-            </div>
-
-            <div class="video-grid">
-                <!-- VIDEO 1: FULL PRODUCT WALKTHROUGH -->
-                <div class="video-item">
-                    <div class="video-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1mbOLiHgTDMhVGAzCjBP9RDXmUBwH-QxX/preview" title="Full Product & Team Onboarding Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-title">End-to-End Product &amp; Team Setup Walkthrough</div>
-                    <p class="video-desc">Full onboarding tour covering workspace setup, dynamic fill-in fields, inline search recall, bulk spreadsheet imports, and team member role provisioning.</p>
-                </div>
-
-                <!-- VIDEO 2: RECRUITING PERSONA DEMO -->
-                <div class="video-item">
-                    <div class="video-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1n7arNYq-6KWR_JfKElr1sUoLkEJAaNJ_/preview" title="Recruiting Persona Onboarding Demo" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-title">Persona-Tailored Onboarding: Recruiting Workflows</div>
-                    <p class="video-desc">Role-specific activation video demonstrating personalized candidate outreach, calendar slot formatting, conditional logic, and shared team libraries.</p>
+            <div class="work-content">
+                <span class="tag">Lifecycle Architecture</span>
+                <h2>60-Day Reverse-Trial Onboarding Map</h2>
+                <p>Built a multi-persona lifecycle map spanning Day 1 activation, Day 30 reverse-trial downgrade transition, and Day 60 upsell across five user tracks (Solo, Team Admin, Invited Member, Freemium, and Enterprise).</p>
+                <div class="card-actions">
+                    <button class="action-link" onclick="openLightbox('journey-swimlanes.html'); trackClick('Lightbox: Reverse Trial Swimlanes')">Expand Interactive Map</button>
+                    <a class="action-link" href="journey-swimlanes.html" target="_blank" rel="noopener" onclick="trackClick('New Tab: Reverse Trial Swimlanes')">Open Full Screen &#8599;</a>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="contact" style="text-align: center;">
-        <h2>Let's Connect</h2>
-        <p>I specialize in building sustainable growth through lifecycle and expansion marketing.</p>
-        <div style="margin-top: 2rem;">
-            <p>Email: <strong><a href="mailto:lucas@lucasleung.me" onclick="trackClick('Contact: Email')" style="color: var(--primary); text-decoration: none;">lucas@lucasleung.me</a></strong></p>
-            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank" onclick="trackClick('Contact: LinkedIn')" style="color: var(--primary); text-decoration: none;">lucasmarkleung</a></strong></p>
+        <!-- NEW SAMPLE 2: CONTACT ROUTING FLOWCHART -->
+        <div class="work-card">
+            <div class="work-image clickable" onclick="openLightbox('journey-routing.html'); trackClick('Lightbox: Contact Routing Flowchart')">
+                <iframe class="map-thumb" src="journey-routing.html" title="Dynamic Contact Routing Flowchart Preview" tabindex="-1"></iframe>
+            </div>
+            <div class="work-content">
+                <span class="tag">CRM &amp; RevOps Logic</span>
+                <h2>Dynamic Contact Entry &amp; Routing Flowchart</h2>
+                <p>Architected the decision-tree logic governing how signups, invited collaborators, and inbound demo requests enter and transition across sequences based on signup intent, firmographic enrichment, and seat count.</p>
+                <div class="card-actions">
+                    <button class="action-link" onclick="openLightbox('journey-routing.html'); trackClick('Lightbox: Contact Routing Flowchart')">Expand Flowchart</button>
+                    <a class="action-link" href="journey-routing.html" target="_blank" rel="noopener" onclick="trackClick('New Tab: Contact Routing Flowchart')">Open Full Screen &#8599;</a>
+                </div>
+            </div>
         </div>
-    </section>
+
+        <!-- ORIGINAL SAMPLE 1: ADOPTION JOURNEY MAPPING -->
+        <div class="work-card">
+            <div class="work-image">
+                <img src="Journey Mapping V2.png" alt="Customer Journey Map"
+                     onclick="openLightbox('Journey Mapping V2.png'); trackClick('Lightbox: Journey Map')">
+            </div>
+            <div class="work-content">
+                <span class="tag">Strategy</span>
+                <h2>Adoption Journey Mapping</h2>
+                <p>Designed a multi-touchpoint roadmap to convert trial users, identifying 3 key drop-off points and implementing automated interventions.</p>
+            </div>
+        </div>
+
+        <!-- ORIGINAL SAMPLE 2: MODULAR EMAIL ARCHITECTURE -->
+        <div class="work-card">
+            <div class="work-image">
+                <img src="email-design.png" alt="Email Development"
+                     onclick="openSlideshow(['Email 1.pdf','Email 2.pdf'], 'Slideshow: Email Design')">
+            </div>
+            <div class="work-content">
+                <span class="tag">Development</span>
+                <h2>Modular Email Architecture</h2>
+                <p>Developed a responsive HTML template system for FreshBooks, reducing campaign build time by 40% and ensuring 100% Dark Mode compatibility.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="section-heading">Product Demo Videos &amp; Enablement</h2>
+    <div class="work-grid">
+        <!-- DEMO VIDEO 1 -->
+        <div class="work-card">
+            <div class="work-video">
+                <iframe src="https://drive.google.com/file/d/1mbOLiHgTDMhVGAzCjBP9RDXmUBwH-QxX/preview" title="End-to-End Product & Team Setup Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            <div class="work-content">
+                <span class="tag">Product Marketing</span>
+                <h2>End-to-End Product &amp; Team Walkthrough</h2>
+                <p>Scripted and produced a full onboarding walkthrough covering workspace setup, dynamic fill-in fields, inline search recall, bulk spreadsheet imports, and team member role provisioning.</p>
+            </div>
+        </div>
+
+        <!-- DEMO VIDEO 2 -->
+        <div class="work-card">
+            <div class="work-video">
+                <iframe src="https://drive.google.com/file/d/1n7arNYq-6KWR_JfKElr1sUoLkEJAaNJ_/preview" title="Persona-Tailored Onboarding: Recruiting Workflows" allow="autoplay; fullscreen" allowfullscreen></iframe>
+            </div>
+            <div class="work-content">
+                <span class="tag">Lifecycle Video</span>
+                <h2>Persona-Tailored Demo: Recruiting Workflows</h2>
+                <p>Created a role-specific activation video embedded in onboarding sequences to showcase personalized candidate outreach, calendar slot formatting, conditional logic, and shared team libraries.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox()">
+    <span class="lightbox-close" onclick="closeLightbox()">&#x2715;</span>
+    <div class="lightbox-inner" onclick="event.stopPropagation()">
+        <div id="lightbox-content" style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;"></div>
+        <div class="slideshow-controls" id="slideshow-controls">
+            <button class="slide-btn" id="btn-prev" onclick="changeSlide(-1)">&#8592;</button>
+            <span id="slide-label">1 / 2</span>
+            <button class="slide-btn" id="btn-next" onclick="changeSlide(1)">&#8594;</button>
+        </div>
+    </div>
 </div>
 
 <footer>
@@ -261,6 +286,6 @@
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
 </footer>
-    
+
 </body>
 </html>
