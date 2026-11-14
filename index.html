@@ -72,21 +72,23 @@
             --shadow-card: 0 12px 24px rgba(15, 23, 42, 0.07);
         }
 
-        [data-theme="dark"] {
-            --primary: #3b82f6;
-            --primary-hover: #60a5fa;
-            --bg: #090d16;
-            --surface: #111827;
-            --surface-subtle: #1e293b;
-            --text-main: #cbd5e1;
-            --text-heading: #f8fafc;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-            --nav-bg: rgba(15, 23, 42, 0.9);
-            --pill-bg: rgba(59, 130, 246, 0.14);
-            --pill-text: #93c5fd;
-            --pill-border: rgba(59, 130, 246, 0.3);
-            --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.35);
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary: #3b82f6;
+                --primary-hover: #60a5fa;
+                --bg: #090d16;
+                --surface: #111827;
+                --surface-subtle: #1e293b;
+                --text-main: #cbd5e1;
+                --text-heading: #f8fafc;
+                --text-muted: #94a3b8;
+                --border: #1e293b;
+                --nav-bg: rgba(15, 23, 42, 0.9);
+                --pill-bg: rgba(59, 130, 246, 0.14);
+                --pill-text: #93c5fd;
+                --pill-border: rgba(59, 130, 246, 0.3);
+                --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.35);
+            }
         }
         
         body {
@@ -96,10 +98,9 @@
             margin: 0;
             background: var(--bg);
             scroll-behavior: smooth;
-            transition: background-color 0.25s ease, color 0.25s ease;
         }
 
-        /* STICKY NAV BAR & THEME TOGGLE */
+        /* STICKY NAV BAR */
         .nav-shell {
             background: var(--nav-bg);
             border-bottom: 1px solid var(--border);
@@ -110,15 +111,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 1rem;
-            padding: 0.75rem 1.25rem;
+            padding: 0.85rem 1.25rem;
         }
         nav {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             align-items: center;
-            gap: 0.25rem 1.15rem;
+            gap: 0.25rem 1.35rem;
         }
         nav a {
             text-decoration: none;
@@ -129,27 +129,6 @@
             transition: color 0.2s ease;
         }
         nav a:hover { color: var(--primary); }
-
-        .theme-toggle {
-            background: var(--surface-subtle);
-            color: var(--text-heading);
-            border: 1px solid var(--border);
-            border-radius: 999px;
-            padding: 0.38rem 0.75rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            font-family: inherit;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
-        }
-        .theme-toggle:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
 
         /* HERO SECTION WITH RADIAL GRADIENT & ABOVE-THE-FOLD KPIs */
         header {
@@ -284,7 +263,7 @@
             border: 1px solid var(--border);
             margin-bottom: 1.35rem;
             position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.25s ease, border-color 0.25s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .card:hover {
             transform: translateY(-4px);
@@ -485,10 +464,6 @@
         <a href="samples.html" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
         <a href="/#contact" onclick="trackClick('Nav: Contact')">Contact</a>
     </nav>
-    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
-        <span id="theme-icon">🌙</span>
-        <span id="theme-label">Dark</span>
-    </button>
 </div>
 
 <script>
@@ -505,37 +480,6 @@
             })
             .catch(() => {});
     }
-
-    (function initTheme() {
-        const root = document.documentElement;
-        const btn = document.getElementById('theme-toggle');
-        const icon = document.getElementById('theme-icon');
-        const label = document.getElementById('theme-label');
-        const saved = localStorage.getItem('portfolio-theme');
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        const initial = saved || (prefersDark ? 'dark' : 'light');
-
-        function applyTheme(mode) {
-            if (mode === 'dark') {
-                root.setAttribute('data-theme', 'dark');
-                icon.textContent = '☀️';
-                label.textContent = 'Light';
-            } else {
-                root.removeAttribute('data-theme');
-                icon.textContent = '🌙';
-                label.textContent = 'Dark';
-            }
-        }
-
-        applyTheme(initial);
-
-        btn.addEventListener('click', () => {
-            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            localStorage.setItem('portfolio-theme', next);
-            applyTheme(next);
-            trackClick('Theme: ' + next);
-        });
-    })();
 </script>
 
 <header id="impact">
