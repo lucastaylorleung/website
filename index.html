@@ -122,6 +122,48 @@
             background: #fafafb;
         }
 
+        /* DEMO VIDEO SHOWCASE GRID & 16:9 WRAPPER */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .video-item {
+            background: var(--light);
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--dark);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-title {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1rem;
+            margin: 0.85rem 0 0.25rem;
+        }
+        .video-desc {
+            font-size: 0.88rem;
+            color: #475569;
+            margin: 0;
+            line-height: 1.45;
+        }
+
         .tag-row {
             display: flex;
             flex-wrap: wrap;
@@ -143,6 +185,7 @@
             .date-tag { position: static; display: inline-block; margin-top: 10px; }
             .role { max-width: 100%; }
             .preview-frame { height: 340px; }
+            .video-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -237,8 +280,9 @@
     </section>
 
     <section id="work-samples">
-        <h2>Lifecycle Architecture & Journey Samples</h2>
+        <h2>Work Samples & Architecture</h2>
 
+        <!-- SAMPLE 01: JOURNEY SWIMLANES -->
         <div class="card">
             <div class="company">Sample 01 • Multi-Persona Onboarding Architecture</div>
             <div class="role" style="max-width: 100%;">60-Day Reverse Trial & Freemium Onboarding Map</div>
@@ -255,6 +299,7 @@
             </div>
         </div>
 
+        <!-- SAMPLE 02: CONTACT ROUTING -->
         <div class="card">
             <div class="company">Sample 02 • CRM Entry & Branching Logic</div>
             <div class="role" style="max-width: 100%;">Dynamic Contact Routing & Enrollment Flowchart</div>
@@ -268,6 +313,39 @@
             <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
             <div style="text-align: right;">
                 <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Flowchart Full Screen ↗</a>
+            </div>
+        </div>
+
+        <!-- SAMPLE 03: PRODUCT DEMO VIDEOS -->
+        <div class="card" id="demo-videos">
+            <div class="company">Sample 03 • Product Marketing & Video Enablement</div>
+            <div class="role" style="max-width: 100%;">Product Demo Videos & Persona Walkthroughs</div>
+            <p style="margin-top: 0.8rem;">Scripted, recorded, and produced product walkthroughs embedded into lifecycle onboarding tracks to accelerate Day 1–3 activation, showcase dynamic features, and tailor value propositions to specific buyer personas.</p>
+            <div class="tag-row">
+                <span class="skill-pill">Product Storytelling</span>
+                <span class="skill-pill">Trial Activation</span>
+                <span class="skill-pill">Persona Messaging</span>
+                <span class="skill-pill">Self-Serve Enablement</span>
+            </div>
+
+            <div class="video-grid">
+                <!-- VIDEO 1: FULL PRODUCT WALKTHROUGH -->
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1mbOLiHgTDMhVGAzCjBP9RDXmUBwH-QxX/preview" title="Full Product & Team Onboarding Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">End-to-End Product & Team Setup Walkthrough</div>
+                    <p class="video-desc">Full onboarding tour covering workspace setup, dynamic fill-in fields, inline search recall, bulk spreadsheet imports, and team member role provisioning.</p>
+                </div>
+
+                <!-- VIDEO 2: RECRUITING PERSONA DEMO -->
+                <div class="video-item">
+                    <div class="video-wrapper">
+                        <iframe src="https://drive.google.com/file/d/1n7arNYq-6KWR_JfKElr1sUoLkEJAaNJ_/preview" title="Recruiting Persona Onboarding Demo" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-title">Persona-Tailored Onboarding: Recruiting Workflows</div>
+                    <p class="video-desc">Role-specific activation video demonstrating personalized candidate outreach, calendar slot formatting, conditional logic, and shared team libraries.</p>
+                </div>
             </div>
         </div>
     </section>
