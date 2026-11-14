@@ -11,7 +11,6 @@
         'send_page_view': true
       });
 
-      // Custom function to track clicks easily
       function trackClick(label) {
         gtag('event', 'click', {
           'event_category': 'Engagement',
@@ -57,14 +56,12 @@
         section { padding: 4rem 0; }
         h2 { color: var(--dark); font-size: 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
 
-        /* BASE CARD WITH SMOOTH BOUNCE TRANSITION */
         .card { 
             background: var(--white); padding: 2.2rem; border-radius: 16px; 
             border: 1px solid #e2e8f0; margin-bottom: 2rem; position: relative;
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
         
-        /* CARD BOUNCE HOVER STATE */
         .card:hover {
             transform: translateY(-6px);
             box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
@@ -86,13 +83,11 @@
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
         
-        /* METRIC STAT CARD WITH SMOOTH BOUNCE TRANSITION */
         .stat-card { 
             background: var(--dark); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; 
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
         }
         
-        /* STAT CARD HOVER STATE */
         .stat-card:hover {
             transform: translateY(-4px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -117,17 +112,42 @@
             background: #1d4ed8;
         }
 
+        /* PORTFOLIO WORK SAMPLE PREVIEW FRAME */
+        .preview-frame {
+            width: 100%;
+            height: 440px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            margin-top: 1.2rem;
+            background: #fafafb;
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 0.8rem;
+        }
+        .skill-pill {
+            font-size: 0.78rem;
+            font-weight: 600;
+            background: #eff6ff;
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 999px;
+        }
+
         footer { text-align: center; padding: 4rem; background: var(--dark); color: #94a3b8; font-size: 0.9rem; }
         
         @media (max-width: 768px) {
             .date-tag { position: static; display: inline-block; margin-top: 10px; }
             .role { max-width: 100%; }
+            .preview-frame { height: 340px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Global Nav Element (Populated by nav.html) -->
 <nav id="global-nav"></nav>
 
 <script>
@@ -162,11 +182,11 @@
             <div class="role">Sr. Marketing Manager</div>
             <ul>
                 <li><strong>Demand Generation:</strong> Lead the end-to-end demand generation calendar, campaign planning, and channel execution across content, paid media, and events to drive trial starts, demo requests, closed deals, and ARR.</li>
-                <li><strong>Email & Lifecycle Marketing:</strong> Own the full-funnel lifecycle program in HubSpot from onboarding to expansion; architect automated sequences, segmentation models, deliverability monitoring, and list hygiene.</li>
-                <li><strong>Webinars & Events:</strong> Project manage webinars and virtual event promotion, registration funnels, attendance optimization, and post-event nurture workflows.</li>
-                <li><strong>Social Media:</strong> Direct TextExpander's multi-channel social presence across LinkedIn, X, Meta, and Reddit with targeted product and category content.</li>
+                <li><strong>Email & Lifecycle Architecture:</strong> Own the full-funnel reverse-trial and freemium lifecycle program in HubSpot from Day 1 onboarding to Day 60+ expansion; architect persona-based swimlanes, dynamic entry routing, deliverability monitoring, and CASL compliance.</li>
+                <li><strong>Webinars, Video & Creator Programs:</strong> Project manage webinars, virtual event funnels, product demo videos, and influencer/UGC marketing initiatives to accelerate mid-funnel conversion.</li>
+                <li><strong>Social Media:</strong> Direct multi-channel social presence across LinkedIn, X, Meta, and Reddit with targeted product and category content.</li>
                 <li><strong>Reporting & Optimization:</strong> Build lifecycle and demand gen dashboards tracking pipeline metrics, ARR, and conversion funnels while driving structured A/B testing programs.</li>
-                <li><strong>Cross-Functional Alignment:</strong> Partner with Product Marketing on messaging tests, Search Experience on content amplification, and RevOps on HubSpot lifecycle tracking and data integrity.</li>
+                <li><strong>Cross-Functional Alignment:</strong> Partner with Product Marketing on messaging tests, Search Experience on content amplification, and RevOps on CRM lifecycle routing and data integrity.</li>
             </ul>
         </div>
 
@@ -213,6 +233,42 @@
                 <li><strong>Retention:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
                 <li><strong>Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
             </ul>
+        </div>
+    </section>
+
+    <section id="work-samples">
+        <h2>Lifecycle Architecture & Journey Samples</h2>
+
+        <div class="card">
+            <div class="company">Sample 01 • Multi-Persona Onboarding Architecture</div>
+            <div class="role" style="max-width: 100%;">60-Day Reverse Trial & Freemium Onboarding Map</div>
+            <p style="margin-top: 0.8rem;">End-to-end lifecycle map spanning Day 1 activation, Day 30 reverse-trial downgrade transition, and Day 60 upsell across five distinct user personas (Solo Users, Team Admins, Invited Members, Freemium Users, and Enterprise Accounts). Designed to eliminate duplicate sequence enrollment and align messaging with account billing states.</p>
+            <div class="tag-row">
+                <span class="skill-pill">Reverse Trial Logic</span>
+                <span class="skill-pill">Persona Segmentation</span>
+                <span class="skill-pill">PLG & Sales-Assist</span>
+                <span class="skill-pill">A/B Testing</span>
+            </div>
+            <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
+            <div style="text-align: right;">
+                <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Interactive Map Full Screen ↗</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="company">Sample 02 • CRM Entry & Branching Logic</div>
+            <div class="role" style="max-width: 100%;">Dynamic Contact Routing & Enrollment Flowchart</div>
+            <p style="margin-top: 0.8rem;">Decision-tree architecture governing how new signups, invited collaborators, and inbound demo requests enter and transition between lifecycle tracks based on signup intent, domain enrichment (company size), seat count, and mid-trial team expansion triggers.</p>
+            <div class="tag-row">
+                <span class="skill-pill">Lead Enrichment Routing</span>
+                <span class="skill-pill">Dynamic State Transitions</span>
+                <span class="skill-pill">PLG-to-Sales Handoff</span>
+                <span class="skill-pill">RevOps Alignment</span>
+            </div>
+            <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
+            <div style="text-align: right;">
+                <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Flowchart Full Screen ↗</a>
+            </div>
         </div>
     </section>
 
@@ -311,7 +367,7 @@
 </div>
 
 <footer>
-    <p>&copy; <span id="current-year"></span> Lucas Leung</p>
+    <p>© <span id="current-year"></span> Lucas Leung</p>
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
