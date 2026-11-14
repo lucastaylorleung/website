@@ -25,7 +25,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work Examples &amp; Architecture | Lucas Leung</title>
-    <meta name="description" content="Lifecycle marketing work examples by Lucas Leung: multi-persona onboarding architecture, CRM contact routing, lifecycle emails, and product demo videos.">
+    <meta name="description" content="Lifecycle marketing work examples by Lucas Leung: multi-persona onboarding architecture, CRM contact routing, Next Best Action segmentation, lifecycle emails, and product demo videos.">
     <link rel="canonical" href="https://lucasleung.me/samples.html">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -249,6 +249,7 @@
         }
         .sample-tabs {
             display: inline-flex;
+            flex-wrap: wrap;
             gap: 0.25rem;
             background: var(--surface-subtle);
             padding: 0.25rem;
@@ -261,9 +262,9 @@
             border: none;
             color: var(--text-muted);
             font-family: inherit;
-            font-size: 0.78rem;
+            font-size: 0.76rem;
             font-weight: 600;
-            padding: 0.36rem 0.75rem;
+            padding: 0.36rem 0.7rem;
             border-radius: 7px;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -296,7 +297,7 @@
             max-width: 100%;
         }
 
-        /* DEMO VIDEO GRID (STACKED COMPACTLY INSIDE HALF-WIDTH CARD) */
+        /* DEMO VIDEO GRID */
         .video-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -407,33 +408,41 @@
 
 <header>
     <h1>Work Examples &amp; Architecture</h1>
-    <p>Selected lifecycle systems, CRM routing trees, conversion emails, and product enablement demos.</p>
+    <p>Selected lifecycle systems, CRM routing trees, Next Best Action segmentation, conversion emails, and product enablement demos.</p>
 </header>
 
 <div class="container">
     <section id="work-samples">
         <div class="samples-grid">
 
-            <!-- SAMPLE 01: BUNDLED LIFECYCLE & ROUTING ARCHITECTURE -->
+            <!-- SAMPLE 01: BUNDLED LIFECYCLE, ROUTING & NBA ARCHITECTURE -->
             <div class="card">
-                <div class="company">Sample 01 • Lifecycle &amp; CRM Architecture</div>
-                <div class="role">60-Day Onboarding Swimlanes &amp; Contact Routing</div>
-                <p class="card-desc">Bundled architecture pairing a 5-persona reverse-trial journey map (Day 1 to Day 60+) with the CRM decision-tree logic governing signup enrichment, seat thresholds, and PLG-to-sales transitions.</p>
+                <div class="company">Sample 01 • Lifecycle, CRM &amp; Revenue Architecture</div>
+                <div class="role">Onboarding Swimlanes, Routing &amp; Next Best Action Map</div>
+                <p class="card-desc">Bundled lifecycle architecture spanning multi-persona onboarding, CRM decision-tree routing, and a data-driven Next Best Action model pairing firmographics, product usage telemetry, and campaign response with ARR KPIs.</p>
                 <div class="tag-row">
+                    <span class="skill-pill">Next Best Action (NBA)</span>
+                    <span class="skill-pill">Revenue &amp; ARR Attribution</span>
                     <span class="skill-pill">Reverse Trial Logic</span>
-                    <span class="skill-pill">Persona Segmentation</span>
-                    <span class="skill-pill">Lead Enrichment Routing</span>
-                    <span class="skill-pill">RevOps Alignment</span>
+                    <span class="skill-pill">Telemetry Segmentation</span>
                 </div>
 
                 <div>
                     <div class="sample-tabs" role="tablist" aria-label="Architecture Views">
-                        <button type="button" class="sample-tab active" data-arch="swimlanes">1. Persona Swimlanes</button>
-                        <button type="button" class="sample-tab" data-arch="routing">2. Contact Routing Tree</button>
+                        <button type="button" class="sample-tab active" data-arch="nba">1. Next Best Action Map</button>
+                        <button type="button" class="sample-tab" data-arch="swimlanes">2. Persona Swimlanes</button>
+                        <button type="button" class="sample-tab" data-arch="routing">3. Contact Routing</button>
                     </div>
                 </div>
 
-                <div class="sample-pane active" id="arch-swimlanes">
+                <div class="sample-pane active" id="arch-nba">
+                    <iframe src="journey-nba-segmentation.html" class="preview-frame" title="Next Best Action Segmentation & Revenue Map"></iframe>
+                    <div class="card-footer">
+                        <a href="journey-nba-segmentation.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open NBA Map')">Open Next Best Action Map Full Screen ↗</a>
+                    </div>
+                </div>
+
+                <div class="sample-pane" id="arch-swimlanes">
                     <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
                     <div class="card-footer">
                         <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Swimlane Map Full Screen ↗</a>
