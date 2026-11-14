@@ -3,258 +3,372 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lifecycle Entry &amp; Contact Routing Architecture</title>
+<title>B2B SaaS Reverse-Trial Onboarding Journey, by Persona</title>
 <style>
   :root {
-    --bg: #FAFAFB; --card: #FFFFFF; --ink: #1A1B25; --muted: #6B6F7B; --border: #D9DBE3;
-    --blue: #4263EB; --blue-bg: #ECEFFD;
-    --purple: #9C36B5; --purple-bg: #F5EBF8;
-    --orange: #E8590C; --orange-bg: #FDEEE7;
-    --pink: #E64980; --pink-bg: #FCEDF2;
-    --gray-bg: #F1F2F5; --note-bg: #EFF6FF; --note-border: #BFDBFE; --note-ink: #1E3A8A;
-    --link: #3B5BDB;
+    --bg: #FAFAFB;
+    --card-bg: #FFFFFF;
+    --ink: #1A1B25;
+    --muted: #6B6F7B;
+    --border: #E7E8ED;
   }
   * { box-sizing: border-box; }
   body {
-    margin: 0; padding: 28px 32px 56px; background: var(--bg); color: var(--ink);
+    margin: 0;
+    padding: 28px 32px 48px;
+    background: var(--bg);
+    color: var(--ink);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
-  .wrap { max-width: 1200px; margin: 0 auto; }
   h1 { font-size: 22px; margin: 0 0 4px; }
-  h2 { font-size: 16px; margin: 32px 0 12px; }
-  .subtitle { color: var(--muted); font-size: 13.5px; margin: 0 0 20px; max-width: 780px; line-height: 1.5; }
-  .diagram { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; overflow-x: auto; }
-  .diagram svg { display: block; width: 100%; min-width: 880px; height: auto; font-family: inherit; }
-  .callout {
-    background: var(--note-bg); border: 1px solid var(--note-border); color: var(--note-ink);
-    border-radius: 10px; padding: 12px 16px; font-size: 12.5px; line-height: 1.5; margin-top: 16px;
+  .subtitle { color: var(--muted); font-size: 13.5px; margin: 0 0 18px; }
+  .legend {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #1E3A8A;
+    margin-bottom: 26px;
+    line-height: 1.55;
   }
-  table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13px; }
-  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: var(--gray-bg); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
-  tr:last-child td { border-bottom: none; }
-  .hint { font-size: 12px; color: var(--muted); margin: 8px 2px 0; }
-
-  /* SVG */
-  .node rect, .node polygon { stroke-width: 1.5; }
-  .node text { fill: var(--ink); font-size: 13px; text-anchor: middle; font-weight: 500; }
-  .node .sub { font-size: 11px; fill: var(--muted); font-weight: 400; }
-  .node.start rect { fill: var(--gray-bg); stroke: var(--border); }
-  .node.ind rect, .node.ind polygon { fill: var(--blue-bg); stroke: var(--blue); }
-  .node.org rect, .node.org polygon { fill: var(--purple-bg); stroke: var(--purple); }
-  .node.demo rect, .node.demo polygon { fill: var(--orange-bg); stroke: var(--orange); }
-  .node.scale rect { fill: var(--pink-bg); stroke: var(--pink); stroke-dasharray: 5 4; }
-  .node.event rect { fill: var(--card); stroke: var(--muted); stroke-dasharray: 4 3; }
-  .node.decision polygon { fill: var(--card); stroke: var(--ink); }
-  .edge { fill: none; stroke: var(--muted); stroke-width: 1.6; }
-  .edge.dash { stroke-dasharray: 5 4; }
-  .elabel { font-size: 11.5px; fill: var(--muted); font-weight: 600; text-anchor: middle; }
-  .elabel-bg { fill: var(--card); }
-  .band { fill: var(--gray-bg); }
-  .bandtext { font-size: 11px; font-weight: 700; fill: var(--muted); letter-spacing: 0.04em; }
+  .legend b { display: block; margin-bottom: 4px; }
+  .lane { margin-bottom: 30px; }
+  .lane-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 12px;
+  }
+  .lane-icon { font-size: 18px; }
+  .lane-name { font-weight: 700; font-size: 15px; color: var(--accent); }
+  .lane-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+    border-radius: 999px;
+    padding: 2px 8px;
+  }
+  .lane-desc { font-size: 12px; color: var(--muted); }
+  .track {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+  .card {
+    flex: 0 0 168px;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 11px;
+    min-height: 92px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(26,27,37,0.08);
+    transform: translateY(-2px);
+  }
+  .card.placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1.5px dashed var(--accent);
+    border-top: 1.5px dashed var(--accent);
+    opacity: 0.65;
+  }
+  .card.placeholder .plus {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .card .day {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .card .title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    line-height: 1.25;
+  }
+  .card .blurb {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.35;
+  }
+  .arrow {
+    flex: 0 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border);
+    font-size: 15px;
+  }
+  .phase-divider {
+    flex: 0 0 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 6px;
+  }
+  .phase-divider::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 2px dashed var(--border);
+  }
+  .phase-divider .phase-label {
+    position: relative;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 9.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--muted);
+    background: var(--bg);
+    padding: 6px 2px;
+    white-space: nowrap;
+  }
+  .entry { font-size: 12px; color: var(--muted); line-height: 1.45; margin: 0 0 12px 4px; max-width: 900px; }
+  .entry b { color: var(--ink); }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <h1>Lifecycle Entry &amp; Contact Routing Architecture</h1>
-  <p class="subtitle">Decision-tree logic determining how new signups, invited collaborators, and inbound demo requests enter and transition across onboarding tracks based on intent, enrichment, and billing state.</p>
+  <h1>B2B SaaS Onboarding Journey, by Persona</h1>
+  <p class="subtitle">Day 1 to Day 60 reverse-trial lifecycle architecture, structured to scale into post-60-day retention &amp; expansion. (Scroll horizontally per lane &rarr;)</p>
 
-  <div class="diagram">
-  <svg viewBox="0 0 1200 780" role="img" aria-label="Flowchart of how new signups and demo requests enter the onboarding sequences">
-    <defs>
-      <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M0 0 L10 5 L0 10 z" fill="#6B6F7B"/>
-      </marker>
-    </defs>
-
-    <!-- Start -->
-    <g class="node start">
-      <rect x="400" y="18" width="320" height="52" rx="10"/>
-      <text x="560" y="41">New Product Signup</text>
-      <text x="560" y="58" class="sub">30-day reverse trial initiates</text>
-    </g>
-    <path class="edge" d="M560 70 V90" marker-end="url(#arrow)"/>
-
-    <!-- Signup intent -->
-    <g class="node decision">
-      <polygon points="460,125 560,90 660,125 560,160"/>
-      <text x="560" y="130">Signup Intent</text>
-    </g>
-
-    <!-- B -> C, B -> F -->
-    <path class="edge" d="M460 125 H240 V200" marker-end="url(#arrow)"/>
-    <rect class="elabel-bg" x="318" y="112" width="52" height="18" rx="4"/>
-    <text class="elabel" x="344" y="125">Just me</text>
-    <path class="edge" d="M660 125 H900 V222" marker-end="url(#arrow)"/>
-    <rect class="elabel-bg" x="740" y="112" width="106" height="18" rx="4"/>
-    <text class="elabel" x="793" y="125">Me and my team</text>
-
-    <!-- C decision -->
-    <g class="node decision">
-      <polygon points="90,250 240,200 390,250 240,300"/>
-      <text x="240" y="246">Corporate domain &amp;</text>
-      <text x="240" y="263">1–9 employees (enriched)?</text>
-    </g>
-    <path class="edge" d="M240 300 V330 H130 V370" marker-end="url(#arrow)"/>
-    <path class="edge" d="M240 300 V330 H350 V370" marker-end="url(#arrow)"/>
-    <rect class="elabel-bg" x="154" y="321" width="30" height="18" rx="4"/>
-    <text class="elabel" x="169" y="334">Yes</text>
-    <rect class="elabel-bg" x="296" y="321" width="26" height="18" rx="4"/>
-    <text class="elabel" x="309" y="334">No</text>
-
-    <!-- D Individual SMB -->
-    <g class="node ind">
-      <rect x="30" y="370" width="200" height="58" rx="10"/>
-      <text x="130" y="395">SMB Solo Track</text>
-      <text x="130" y="413" class="sub">Day 4 prompts team invite</text>
-    </g>
-
-    <!-- E Standard individual -->
-    <g class="node ind">
-      <rect x="250" y="370" width="200" height="58" rx="10"/>
-      <text x="350" y="395">Standard Individual</text>
-      <text x="350" y="413" class="sub">60-day solo trial track</text>
-    </g>
-
-    <!-- Adds a teammate event -->
-    <g class="node event">
-      <rect x="250" y="475" width="300" height="40" rx="20"/>
-      <text x="400" y="500">Invites a teammate during 30-day trial</text>
-    </g>
-    <path class="edge dash" d="M130 428 V495 H250" marker-end="url(#arrow)"/>
-    <path class="edge dash" d="M350 428 V475" marker-end="url(#arrow)"/>
-    <path class="edge dash" d="M550 495 H620 V250 H780" marker-end="url(#arrow)"/>
-
-    <!-- F Org creator -->
-    <g class="node org">
-      <rect x="780" y="222" width="240" height="58" rx="10"/>
-      <text x="900" y="247">Org / Team Admin Track</text>
-      <text x="900" y="265" class="sub">Active trial or standard billing state</text>
-    </g>
-
-    <!-- F -> G, H, I -->
-    <path class="edge" d="M840 280 V318 H770 V358" marker-end="url(#arrow)"/>
-    <path class="edge" d="M960 280 V318 H1030 V358" marker-end="url(#arrow)"/>
-    <path class="edge" d="M1020 251 H1170 V495 H1030" marker-end="url(#arrow)"/>
-
-    <!-- G Admin -->
-    <g class="node org">
-      <rect x="670" y="358" width="200" height="60" rx="10"/>
-      <text x="770" y="384">Secondary Admin Added</text>
-      <text x="770" y="402" class="sub">Enters Co-Admin Track</text>
-    </g>
-
-    <!-- H Member -->
-    <g class="node org">
-      <rect x="930" y="358" width="200" height="60" rx="10"/>
-      <text x="1030" y="384">Team Member Invited</text>
-      <text x="1030" y="402" class="sub">Enters End-User Champion Track</text>
-    </g>
-
-    <!-- I Day 30 -->
-    <g class="node org">
-      <rect x="770" y="465" width="260" height="60" rx="10"/>
-      <text x="900" y="491">Day 30 State Branching</text>
-      <text x="900" y="509" class="sub">Routes to Paid or Free Tier sequences</text>
-    </g>
-
-    <!-- Divider -->
-    <rect class="band" x="20" y="565" width="1160" height="24" rx="6"/>
-    <text class="bandtext" x="36" y="581">INBOUND DEMO &amp; ENTERPRISE PATHS</text>
-
-    <!-- Demo request -->
-    <g class="node demo">
-      <rect x="40" y="635" width="190" height="52" rx="10"/>
-      <text x="135" y="666">Inbound Demo Form</text>
-    </g>
-    <path class="edge" d="M230 661 H310" marker-end="url(#arrow)"/>
-    <g class="node decision">
-      <polygon points="310,661 440,611 570,661 440,711"/>
-      <text x="440" y="657">Requested Seats &amp;</text>
-      <text x="440" y="674">Company Headcount</text>
-    </g>
-    <path class="edge" d="M570 661 H620 V625 H650" marker-end="url(#arrow)"/>
-    <path class="edge" d="M570 661 H620 V725 H650" marker-end="url(#arrow)"/>
-
-    <g class="node demo">
-      <rect x="650" y="597" width="320" height="56" rx="10"/>
-      <text x="810" y="621">Low-ASP Automated Demo Track</text>
-      <text x="810" y="639" class="sub">&lt;10 seats • Automated PLG sequence</text>
-    </g>
-
-    <g class="node demo">
-      <rect x="650" y="697" width="320" height="56" rx="10"/>
-      <text x="810" y="721">Direct Sales Routing (AE)</text>
-      <text x="810" y="739" class="sub">10+ employees or 3+ unenriched seats</text>
-    </g>
-
-    <!-- Scale admin -->
-    <g class="node scale">
-      <rect x="1000" y="635" width="180" height="82" rx="10"/>
-      <text x="1090" y="663">Enterprise Admin Track</text>
-      <text x="1090" y="681" class="sub">High-touch AE-assisted</text>
-      <text x="1090" y="697" class="sub">onboarding &amp; security flow</text>
-    </g>
-  </svg>
-  </div>
-  <p class="hint">Solid arrows indicate initial enrollment paths. Dashed arrows indicate behavioral state transitions (e.g., a solo user inviting a teammate mid-trial).</p>
-
-  <div class="callout">
-    <b>System Design Highlight:</b> Separating initial signup intent from real-time behavioral triggers prevents single-user messaging from firing after a workspace becomes collaborative, ensuring seat expansion nudges align with actual workspace state.
+  <div class="legend">
+    <b>Architecture Notes (Sanitized Portfolio Sample)</b>
+    &bull; Consolidates overlapping legacy onboarding workflows into five mutually exclusive persona tracks based on signup intent, account role, and billing tier.<br>
+    &bull; Incorporates a 30-day reverse-trial model: users receive full premium access for 30 days before transitioning to a perpetual free tier with targeted Day 45 and Day 60 conversion touchpoints.<br>
+    &bull; High-fit enterprise accounts branch dynamically at Day 60 based on seat count and firmographic enrichment.
   </div>
 
-  <h2>Lifecycle Sequence Matrix</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Lifecycle Segment</th>
-        <th>Trigger &amp; Qualification Logic</th>
-        <th>Primary Conversion Goal</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>SMB Solo Track</strong></td>
-        <td>Selected "Just me" + enriched corporate domain with 1–9 employees</td>
-        <td>Multi-seat team expansion via Day 4 invite prompt</td>
-      </tr>
-      <tr>
-        <td><strong>Standard Individual Track</strong></td>
-        <td>Selected "Just me" + personal email domain or 10+ employees</td>
-        <td>Self-serve Individual Pro plan upgrade</td>
-      </tr>
-      <tr>
-        <td><strong>Org / Team Admin Track</strong></td>
-        <td>Selected "Me and my team" OR invited a collaborator during 30-day trial</td>
-        <td>Multi-seat Team plan conversion prior to or after Day 30</td>
-      </tr>
-      <tr>
-        <td><strong>Secondary Admin / Member Tracks</strong></td>
-        <td>Invited to an active trial workspace by creator or admin</td>
-        <td>Rapid activation &amp; internal champion advocacy</td>
-      </tr>
-      <tr>
-        <td><strong>Post-Day 30 Free vs. Paid Tracks</strong></td>
-        <td>Subscription status check at end of 30-day reverse trial</td>
-        <td>Retention/seat expansion (Paid) vs. paywall conversion (Free)</td>
-      </tr>
-      <tr>
-        <td><strong>Reactivated User Track</strong></td>
-        <td>Dormant free-tier user logging back in after 30+ days of inactivity</td>
-        <td>Re-activation &amp; feature discovery</td>
-      </tr>
-      <tr>
-        <td><strong>Enterprise Admin Track</strong></td>
-        <td>High-fit firmographic profile routed to Sales-Assist</td>
-        <td>Enterprise security/SSO adoption &amp; custom contract close</td>
-      </tr>
-      <tr>
-        <td><strong>Low-ASP Demo Sequence</strong></td>
-        <td>Inbound demo request under 10 seats</td>
-        <td>Automated self-serve conversion without AE overhead</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+  <!-- LANE 1: INDIVIDUAL -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#4263EB; background:#ECEFFD">
+      <span class="lane-icon">&#128187;</span>
+      <span class="lane-name">Individual User</span>
+      <span class="lane-tag" style="background:#E1E6FC">Solo signup</span>
+      <span class="lane-desc">Single-seat workspace without team collaboration features.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Selected "Just me" at signup, or remains a single-user workspace throughout the 30-day trial. Enriched domains with 1–9 employees receive a team-invitation variant on Day 4.</div>
+    <div class="track">
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Core value prop &amp; quickstart</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create first reusable template</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Driving the initial "Aha!" moment</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">A/B test: manual search vs. AI recall</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize workflows at scale</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Reinforcing daily usage habits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Previewing reverse-trial transition</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Final urgency nudge to upgrade</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Premium trial ends; core work retained</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 45</div><div class="title">Friction check-in</div><div class="blurb">Objection handling &amp; feedback loop</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 60</div><div class="title">Plan upsell</div><div class="blurb">Targeted Individual Pro plan pitch</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#4263EB"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Usage-triggered expansion</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 2: ORG / TEAM ADMIN -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#9C36B5; background:#F5EBF8">
+      <span class="lane-icon">&#128081;</span>
+      <span class="lane-name">Org / Team Admin</span>
+      <span class="lane-tag" style="background:#EFDFF3">Trial account owner</span>
+      <span class="lane-desc">Provisions the workspace and manages multi-seat team rollout.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Selected "Me and my team" at signup, or invites a teammate at any point during the 30-day reverse trial.</div>
+    <div class="track">
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Workspace setup &amp; team time savings</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create &amp; test first workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 4</div><div class="title">Shared library</div><div class="blurb">Standardize messaging across team</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 5</div><div class="title">Team adoption</div><div class="blurb">Playbook for driving seat activation</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Custom fields per team member</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 11</div><div class="title">Approval workflows</div><div class="blurb">Review &amp; publish team submissions</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Reinforcing multi-seat habits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 17</div><div class="title">Version history</div><div class="blurb">Audit edits &amp; governance controls</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Impact of downgrade on shared folders</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Full team access ends tomorrow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Summary of downgraded permissions</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 45</div><div class="title">Friction check-in</div><div class="blurb">Procurement &amp; rollout support</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 60</div><div class="title">Team upsell</div><div class="blurb">Pitches the multi-seat Team plan</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#9C36B5"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Seat expansion triggers</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 3: TEAM MEMBER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#0CA678; background:#E7F6F2">
+      <span class="lane-icon">&#128587;</span>
+      <span class="lane-name">Invited Team Member</span>
+      <span class="lane-tag" style="background:#D8F1E9">End-user contributor</span>
+      <span class="lane-desc">Joins an existing active trial workspace via admin invite.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Invited by an organization creator or admin during the 30-day trial window (focuses on bottom-up adoption and internal advocacy).</div>
+    <div class="track">
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 1</div><div class="title">Welcome to team</div><div class="blurb">Quickstart inside shared workspace</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create personal workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Using team-shared templates</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Integrating into daily tools</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize shared templates</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 11</div><div class="title">Suggest content</div><div class="blurb">Submit new template ideas to admin</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Time-saved recap</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Champion prompt: nudge your admin</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Final champion upgrade reminder</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Personal assets remain accessible</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 45</div><div class="title">Checking in</div><div class="blurb">Re-engagement &amp; use-case tips</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 60</div><div class="title">Solo fallback</div><div class="blurb">Pitches Individual plan if org churned</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#0CA678"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Feature adoption tips</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 4: FREEMIUM MEMBER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#E8590C; background:#FDEEE7">
+      <span class="lane-icon">&#127379;</span>
+      <span class="lane-name">Member (Freemium Org)</span>
+      <span class="lane-tag" style="background:#FBE4D8">Post-trial invitee</span>
+      <span class="lane-desc">Teammate invited onto an account already on the free tier.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Added after Day 30 to an organization operating on the perpetual free tier without an active subscription.</div>
+    <div class="track">
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Quickstart for free workspace</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create first personal workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Driving initial value</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Building daily usage</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize workflows</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 11</div><div class="title">Collaboration</div><div class="blurb">Unlocking shared libraries on paid</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Productivity recap</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 25</div><div class="title">Team unlock</div><div class="blurb">How paid tiers remove seat limits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 29</div><div class="title">Admin nudge</div><div class="blurb">Request upgrade from workspace owner</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 30</div><div class="title">30-day recap</div><div class="blurb">Summary of free tier capabilities</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 45</div><div class="title">Checking in</div><div class="blurb">Use-case inspiration</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 60</div><div class="title">Plan upsell</div><div class="blurb">Pitches Individual or Team upgrade</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#E8590C"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Paywall trigger nurture</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 5: ENTERPRISE / SALES-ASSIST -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#E64980; background:#FCEDF2">
+      <span class="lane-icon">&#128640;</span>
+      <span class="lane-name">Enterprise / High-Intent Admin</span>
+      <span class="lane-tag" style="background:#FBE2EB">Sales-assist track</span>
+      <span class="lane-desc">High-fit accounts routed to account executive touchpoints; Day 60 branches by company size.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Qualified via firmographic enrichment (headcount/domain) or inbound high-seat request; blends automated onboarding with AE-sent outreach.</div>
+    <div class="track">
+      <div class="card" style="--accent:#E64980"><div class="day">Day 1</div><div class="title">Executive welcome</div><div class="blurb">3-step rollout guide from AE</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Deployment options for teams</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create pilot workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 4</div><div class="title">Shared library</div><div class="blurb">AE tip: centralizing team knowledge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Inline workflow recall</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 9</div><div class="title">Admin &amp; security</div><div class="blurb">SSO, role permissions &amp; audit logs</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Pilot adoption check-in</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 17</div><div class="title">Governance</div><div class="blurb">Streamlining team content approvals</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 25</div><div class="title">5 days remaining</div><div class="blurb">Trial expiration &amp; procurement prep</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">AE outreach: lock in team access</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Summary of paused enterprise features</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 45</div><div class="title">Executive check-in</div><div class="blurb">Custom demo / security review offer</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 60a</div><div class="title">Upsell: Team</div><div class="blurb">Self-serve Team plan (mid-market)</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 60b</div><div class="title">Upsell: Enterprise</div><div class="blurb">Custom Enterprise plan (10+ seats)</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#E64980"><div class="plus">+</div><div class="title">Account Expansion</div><div class="blurb">ABM &amp; QBR nurture</div></div>
+    </div>
+  </section>
 </body>
 </html>
