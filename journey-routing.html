@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>How contacts enter the journey</title>
+<title>Lifecycle Entry &amp; Contact Routing Architecture</title>
 <style>
   :root {
     --bg: #FAFAFB; --card: #FFFFFF; --ink: #1A1B25; --muted: #6B6F7B; --border: #D9DBE3;
@@ -11,19 +11,8 @@
     --purple: #9C36B5; --purple-bg: #F5EBF8;
     --orange: #E8590C; --orange-bg: #FDEEE7;
     --pink: #E64980; --pink-bg: #FCEDF2;
-    --gray-bg: #F1F2F5; --note-bg: #FFF9DB; --note-border: #F5E39B; --note-ink: #6B5A00;
+    --gray-bg: #F1F2F5; --note-bg: #EFF6FF; --note-border: #BFDBFE; --note-ink: #1E3A8A;
     --link: #3B5BDB;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #14151C; --card: #1C1E28; --ink: #ECEDF3; --muted: #A0A4B3; --border: #3A3D4D;
-      --blue: #8DA2FF; --blue-bg: #232A4A;
-      --purple: #D08AE6; --purple-bg: #382244;
-      --orange: #FF9A66; --orange-bg: #43271A;
-      --pink: #FF8FB3; --pink-bg: #442033;
-      --gray-bg: #252836; --note-bg: #3A3414; --note-border: #6B5A00; --note-ink: #F1DE87;
-      --link: #9DB0FF;
-    }
   }
   * { box-sizing: border-box; }
   body {
@@ -32,25 +21,24 @@
   }
   .wrap { max-width: 1200px; margin: 0 auto; }
   h1 { font-size: 22px; margin: 0 0 4px; }
-  h2 { font-size: 15px; margin: 32px 0 10px; }
-  .subtitle { color: var(--muted); font-size: 13.5px; margin: 0 0 20px; max-width: 760px; line-height: 1.5; }
-  .diagram { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px; overflow-x: auto; }
+  h2 { font-size: 16px; margin: 32px 0 12px; }
+  .subtitle { color: var(--muted); font-size: 13.5px; margin: 0 0 20px; max-width: 780px; line-height: 1.5; }
+  .diagram { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; overflow-x: auto; }
   .diagram svg { display: block; width: 100%; min-width: 880px; height: auto; font-family: inherit; }
   .callout {
     background: var(--note-bg); border: 1px solid var(--note-border); color: var(--note-ink);
     border-radius: 10px; padding: 12px 16px; font-size: 12.5px; line-height: 1.5; margin-top: 16px;
   }
   table { border-collapse: collapse; width: 100%; background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; font-size: 13px; }
-  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-  th { background: var(--gray-bg); font-size: 12px; color: var(--muted); }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { background: var(--gray-bg); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.03em; }
   tr:last-child td { border-bottom: none; }
-  a { color: var(--link); }
   .hint { font-size: 12px; color: var(--muted); margin: 8px 2px 0; }
 
   /* SVG */
   .node rect, .node polygon { stroke-width: 1.5; }
-  .node text { fill: var(--ink); font-size: 13px; text-anchor: middle; }
-  .node .sub { font-size: 11px; fill: var(--muted); }
+  .node text { fill: var(--ink); font-size: 13px; text-anchor: middle; font-weight: 500; }
+  .node .sub { font-size: 11px; fill: var(--muted); font-weight: 400; }
   .node.start rect { fill: var(--gray-bg); stroke: var(--border); }
   .node.ind rect, .node.ind polygon { fill: var(--blue-bg); stroke: var(--blue); }
   .node.org rect, .node.org polygon { fill: var(--purple-bg); stroke: var(--purple); }
@@ -58,43 +46,39 @@
   .node.scale rect { fill: var(--pink-bg); stroke: var(--pink); stroke-dasharray: 5 4; }
   .node.event rect { fill: var(--card); stroke: var(--muted); stroke-dasharray: 4 3; }
   .node.decision polygon { fill: var(--card); stroke: var(--ink); }
-  a.node-link { cursor: pointer; }
-  a.node-link:hover rect { stroke-width: 2.5; }
-  a.node-link .open { font-size: 10.5px; font-weight: 700; text-anchor: middle; fill: var(--link); }
   .edge { fill: none; stroke: var(--muted); stroke-width: 1.6; }
   .edge.dash { stroke-dasharray: 5 4; }
   .elabel { font-size: 11.5px; fill: var(--muted); font-weight: 600; text-anchor: middle; }
   .elabel-bg { fill: var(--card); }
   .band { fill: var(--gray-bg); }
   .bandtext { font-size: 11px; font-weight: 700; fill: var(--muted); letter-spacing: 0.04em; }
-  #arrow path { fill: var(--muted); }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>How contacts enter the journey</h1>
-  <p class="subtitle">Which onboarding sequence a new contact lands in, by signup intent and trial type. Click a solid box to open that sequence's email copy.</p>
+  <h1>Lifecycle Entry &amp; Contact Routing Architecture</h1>
+  <p class="subtitle">Decision-tree logic determining how new signups, invited collaborators, and inbound demo requests enter and transition across onboarding tracks based on intent, enrichment, and billing state.</p>
 
   <div class="diagram">
-  <svg viewBox="0 0 1200 800" role="img" aria-label="Flowchart of how new signups and demo requests enter the onboarding sequences">
+  <svg viewBox="0 0 1200 780" role="img" aria-label="Flowchart of how new signups and demo requests enter the onboarding sequences">
     <defs>
       <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-        <path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="fill:var(--muted)"/>
+        <path d="M0 0 L10 5 L0 10 z" fill="#6B6F7B"/>
       </marker>
     </defs>
 
     <!-- Start -->
     <g class="node start">
       <rect x="400" y="18" width="320" height="52" rx="10"/>
-      <text x="560" y="41">New signup</text>
-      <text x="560" y="58" class="sub">30 days of premium access starts</text>
+      <text x="560" y="41">New Product Signup</text>
+      <text x="560" y="58" class="sub">30-day reverse trial initiates</text>
     </g>
     <path class="edge" d="M560 70 V90" marker-end="url(#arrow)"/>
 
     <!-- Signup intent -->
     <g class="node decision">
       <polygon points="460,125 560,90 660,125 560,160"/>
-      <text x="560" y="130">Signup intent</text>
+      <text x="560" y="130">Signup Intent</text>
     </g>
 
     <!-- B -> C, B -> F -->
@@ -108,8 +92,8 @@
     <!-- C decision -->
     <g class="node decision">
       <polygon points="90,250 240,200 390,250 240,300"/>
-      <text x="240" y="246">Private domain and</text>
-      <text x="240" y="263">0-9 employees (enriched)?</text>
+      <text x="240" y="246">Corporate domain &amp;</text>
+      <text x="240" y="263">1–9 employees (enriched)?</text>
     </g>
     <path class="edge" d="M240 300 V330 H130 V370" marker-end="url(#arrow)"/>
     <path class="edge" d="M240 300 V330 H350 V370" marker-end="url(#arrow)"/>
@@ -118,138 +102,157 @@
     <rect class="elabel-bg" x="296" y="321" width="26" height="18" rx="4"/>
     <text class="elabel" x="309" y="334">No</text>
 
-    <!-- D Individual TED -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.x525rv2iqt1o" target="_blank" rel="noopener">
-      <g class="node ind">
-        <rect x="30" y="370" width="200" height="62" rx="10"/>
-        <text x="130" y="392">Individual TED sequence</text>
-        <text x="130" y="408" class="sub">Day 4 invites a team</text>
-        <text x="130" y="424" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <!-- D Individual SMB -->
+    <g class="node ind">
+      <rect x="30" y="370" width="200" height="58" rx="10"/>
+      <text x="130" y="395">SMB Solo Track</text>
+      <text x="130" y="413" class="sub">Day 4 prompts team invite</text>
+    </g>
+
     <!-- E Standard individual -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0" target="_blank" rel="noopener">
-      <g class="node ind">
-        <rect x="250" y="370" width="200" height="62" rx="10"/>
-        <text x="350" y="392">Standard individual</text>
-        <text x="350" y="408">trial sequence</text>
-        <text x="350" y="424" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <g class="node ind">
+      <rect x="250" y="370" width="200" height="58" rx="10"/>
+      <text x="350" y="395">Standard Individual</text>
+      <text x="350" y="413" class="sub">60-day solo trial track</text>
+    </g>
 
     <!-- Adds a teammate event -->
     <g class="node event">
-      <rect x="250" y="480" width="300" height="40" rx="20"/>
-      <text x="400" y="505">Adds a teammate during the 30 days</text>
+      <rect x="250" y="475" width="300" height="40" rx="20"/>
+      <text x="400" y="500">Invites a teammate during 30-day trial</text>
     </g>
-    <path class="edge dash" d="M130 432 V500 H250" marker-end="url(#arrow)"/>
-    <path class="edge dash" d="M350 432 V480" marker-end="url(#arrow)"/>
-    <path class="edge dash" d="M550 500 H620 V250 H780" marker-end="url(#arrow)"/>
+    <path class="edge dash" d="M130 428 V495 H250" marker-end="url(#arrow)"/>
+    <path class="edge dash" d="M350 428 V475" marker-end="url(#arrow)"/>
+    <path class="edge dash" d="M550 495 H620 V250 H780" marker-end="url(#arrow)"/>
 
     <!-- F Org creator -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk" target="_blank" rel="noopener">
-      <g class="node org">
-        <rect x="780" y="222" width="240" height="62" rx="10"/>
-        <text x="900" y="246">Org creator sequence</text>
-        <text x="900" y="262" class="sub">Org in a demo or normal billing state</text>
-        <text x="900" y="276" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <g class="node org">
+      <rect x="780" y="222" width="240" height="58" rx="10"/>
+      <text x="900" y="247">Org / Team Admin Track</text>
+      <text x="900" y="265" class="sub">Active trial or standard billing state</text>
+    </g>
 
     <!-- F -> G, H, I -->
-    <path class="edge" d="M840 284 V318 H770 V358" marker-end="url(#arrow)"/>
-    <path class="edge" d="M960 284 V318 H1030 V358" marker-end="url(#arrow)"/>
-    <path class="edge" d="M1020 253 H1170 V500 H1030" marker-end="url(#arrow)"/>
+    <path class="edge" d="M840 280 V318 H770 V358" marker-end="url(#arrow)"/>
+    <path class="edge" d="M960 280 V318 H1030 V358" marker-end="url(#arrow)"/>
+    <path class="edge" d="M1020 251 H1170 V495 H1030" marker-end="url(#arrow)"/>
 
     <!-- G Admin -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.7xx6a2mkp1my" target="_blank" rel="noopener">
-      <g class="node org">
-        <rect x="670" y="358" width="200" height="66" rx="10"/>
-        <text x="770" y="381">Org creator adds an admin</text>
-        <text x="770" y="397">Admin sequence</text>
-        <text x="770" y="415" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <g class="node org">
+      <rect x="670" y="358" width="200" height="60" rx="10"/>
+      <text x="770" y="384">Secondary Admin Added</text>
+      <text x="770" y="402" class="sub">Enters Co-Admin Track</text>
+    </g>
+
     <!-- H Member -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg" target="_blank" rel="noopener">
-      <g class="node org">
-        <rect x="930" y="358" width="200" height="66" rx="10"/>
-        <text x="1030" y="378">Creator or admin adds</text>
-        <text x="1030" y="394">a member: Member sequence</text>
-        <text x="1030" y="415" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <g class="node org">
+      <rect x="930" y="358" width="200" height="60" rx="10"/>
+      <text x="1030" y="384">Team Member Invited</text>
+      <text x="1030" y="402" class="sub">Enters End-User Champion Track</text>
+    </g>
+
     <!-- I Day 30 -->
     <g class="node org">
-      <rect x="770" y="470" width="260" height="62" rx="10"/>
-      <text x="900" y="494">Day 30: free tier or</text>
-      <text x="900" y="511">paid tier sequences</text>
+      <rect x="770" y="465" width="260" height="60" rx="10"/>
+      <text x="900" y="491">Day 30 State Branching</text>
+      <text x="900" y="509" class="sub">Routes to Paid or Free Tier sequences</text>
     </g>
-    <text x="900" y="550" style="font-size:11.5px; text-anchor:middle; fill:var(--muted)">Copy for each: see the table below</text>
 
     <!-- Divider -->
-    <rect class="band" x="20" y="580" width="1160" height="24" rx="6"/>
-    <text class="bandtext" x="36" y="596">SEPARATE PATHS</text>
+    <rect class="band" x="20" y="565" width="1160" height="24" rx="6"/>
+    <text class="bandtext" x="36" y="581">INBOUND DEMO &amp; ENTERPRISE PATHS</text>
 
     <!-- Demo request -->
     <g class="node demo">
-      <rect x="40" y="650" width="190" height="52" rx="10"/>
-      <text x="135" y="681">Demo request form</text>
+      <rect x="40" y="635" width="190" height="52" rx="10"/>
+      <text x="135" y="666">Inbound Demo Form</text>
     </g>
-    <path class="edge" d="M230 676 H310" marker-end="url(#arrow)"/>
+    <path class="edge" d="M230 661 H310" marker-end="url(#arrow)"/>
     <g class="node decision">
-      <polygon points="310,676 440,626 570,676 440,726"/>
-      <text x="440" y="672">Seats and</text>
-      <text x="440" y="689">employee count</text>
+      <polygon points="310,661 440,611 570,661 440,711"/>
+      <text x="440" y="657">Requested Seats &amp;</text>
+      <text x="440" y="674">Company Headcount</text>
     </g>
-    <path class="edge" d="M570 676 H620 V640 H650" marker-end="url(#arrow)"/>
-    <path class="edge" d="M570 676 H620 V740 H650" marker-end="url(#arrow)"/>
-    <a class="node-link" href="https://docs.google.com/document/d/11yB2jHfaEMyl7Z30u5cjXZ2K5Wxk21tOS_X-GzaGSYQ/edit?tab=t.0" target="_blank" rel="noopener">
-      <g class="node demo">
-        <rect x="650" y="612" width="320" height="56" rx="10"/>
-        <text x="810" y="633">Under 10 Demo Sequence</text>
-        <text x="810" y="649" class="sub">Under 10 seats. Sent from Lucas's sequence</text>
-        <text x="810" y="662" class="open">View copy (confirm it is the live version) &#8599;</text>
-      </g>
-    </a>
+    <path class="edge" d="M570 661 H620 V625 H650" marker-end="url(#arrow)"/>
+    <path class="edge" d="M570 661 H620 V725 H650" marker-end="url(#arrow)"/>
+
     <g class="node demo">
-      <rect x="650" y="712" width="320" height="56" rx="10"/>
-      <text x="810" y="736">Routed to sales</text>
-      <text x="810" y="753" class="sub">10+ employees, or 3+ seats if not enriched</text>
+      <rect x="650" y="597" width="320" height="56" rx="10"/>
+      <text x="810" y="621">Low-ASP Automated Demo Track</text>
+      <text x="810" y="639" class="sub">&lt;10 seats • Automated PLG sequence</text>
+    </g>
+
+    <g class="node demo">
+      <rect x="650" y="697" width="320" height="56" rx="10"/>
+      <text x="810" y="721">Direct Sales Routing (AE)</text>
+      <text x="810" y="739" class="sub">10+ employees or 3+ unenriched seats</text>
     </g>
 
     <!-- Scale admin -->
-    <a class="node-link" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h" target="_blank" rel="noopener">
-      <g class="node scale">
-        <rect x="1000" y="650" width="180" height="82" rx="10"/>
-        <text x="1090" y="676">Scale admin TED</text>
-        <text x="1090" y="692" class="sub">Entry rule to confirm</text>
-        <text x="1090" y="708" class="sub">Not connected to a path</text>
-        <text x="1090" y="724" class="open">View copy &#8599;</text>
-      </g>
-    </a>
+    <g class="node scale">
+      <rect x="1000" y="635" width="180" height="82" rx="10"/>
+      <text x="1090" y="663">Enterprise Admin Track</text>
+      <text x="1090" y="681" class="sub">High-touch AE-assisted</text>
+      <text x="1090" y="697" class="sub">onboarding &amp; security flow</text>
+    </g>
   </svg>
   </div>
-  <p class="hint">Solid arrows are signup paths. Dashed arrows show a teammate being added during the 30 days, which moves the contact to the org creator path.</p>
+  <p class="hint">Solid arrows indicate initial enrollment paths. Dashed arrows indicate behavioral state transitions (e.g., a solo user inviting a teammate mid-trial).</p>
 
   <div class="callout">
-    Entry rules are summarized from the TED entry criteria doc (HubSpot segments, sequence copy, and #rev-ops threads). The live workflow triggers have not been validated yet.
+    <b>System Design Highlight:</b> Separating initial signup intent from real-time behavioral triggers prevents single-user messaging from firing after a workspace becomes collaborative, ensuring seat expansion nudges align with actual workspace state.
   </div>
 
-  <h2>Copy for each step</h2>
+  <h2>Lifecycle Sequence Matrix</h2>
   <table>
-    <thead><tr><th>Step in the diagram</th><th>Email copy</th></tr></thead>
+    <thead>
+      <tr>
+        <th>Lifecycle Segment</th>
+        <th>Trigger &amp; Qualification Logic</th>
+        <th>Primary Conversion Goal</th>
+      </tr>
+    </thead>
     <tbody>
-      <tr><td>Individual TED sequence</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.x525rv2iqt1o">Individual TED</a></td></tr>
-      <tr><td>Standard individual trial sequence</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0">Individual Trial</a></td></tr>
-      <tr><td>Org creator sequence</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk">Org Creator Trial</a></td></tr>
-      <tr><td>Admin added during the 30 days</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.7xx6a2mkp1my">Admin Trial</a></td></tr>
-      <tr><td>Member added during the 30 days</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg">Member Trial</a></td></tr>
-      <tr><td>Day 30: admin on paid or free tier</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.iqyp1jw8pken">Admin Paid Tier</a>, <a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s">Admin Free Tier</a></td></tr>
-      <tr><td>Day 30: member on paid or free tier</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.dh7djwl89luq">Member Paid Tier</a>, <a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko">Member Free Tier</a></td></tr>
-      <tr><td>Reactivated user on free tier</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.ptnzojh5en7g">Reactivated User</a></td></tr>
-      <tr><td>Scale admin TED</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h">Scale admin TED</a></td></tr>
-      <tr><td>Under 10 Demo Sequence</td><td><a target="_blank" rel="noopener" href="https://docs.google.com/document/d/11yB2jHfaEMyl7Z30u5cjXZ2K5Wxk21tOS_X-GzaGSYQ/edit?tab=t.0">Low-ASP demo request sequence</a>, shared in #rev-ops while TED 2.0 was paused. Confirm it is the version in use.</td></tr>
+      <tr>
+        <td><strong>SMB Solo Track</strong></td>
+        <td>Selected "Just me" + enriched corporate domain with 1–9 employees</td>
+        <td>Multi-seat team expansion via Day 4 invite prompt</td>
+      </tr>
+      <tr>
+        <td><strong>Standard Individual Track</strong></td>
+        <td>Selected "Just me" + personal email domain or 10+ employees</td>
+        <td>Self-serve Individual Pro plan upgrade</td>
+      </tr>
+      <tr>
+        <td><strong>Org / Team Admin Track</strong></td>
+        <td>Selected "Me and my team" OR invited a collaborator during 30-day trial</td>
+        <td>Multi-seat Team plan conversion prior to or after Day 30</td>
+      </tr>
+      <tr>
+        <td><strong>Secondary Admin / Member Tracks</strong></td>
+        <td>Invited to an active trial workspace by creator or admin</td>
+        <td>Rapid activation &amp; internal champion advocacy</td>
+      </tr>
+      <tr>
+        <td><strong>Post-Day 30 Free vs. Paid Tracks</strong></td>
+        <td>Subscription status check at end of 30-day reverse trial</td>
+        <td>Retention/seat expansion (Paid) vs. paywall conversion (Free)</td>
+      </tr>
+      <tr>
+        <td><strong>Reactivated User Track</strong></td>
+        <td>Dormant free-tier user logging back in after 30+ days of inactivity</td>
+        <td>Re-activation &amp; feature discovery</td>
+      </tr>
+      <tr>
+        <td><strong>Enterprise Admin Track</strong></td>
+        <td>High-fit firmographic profile routed to Sales-Assist</td>
+        <td>Enterprise security/SSO adoption &amp; custom contract close</td>
+      </tr>
+      <tr>
+        <td><strong>Low-ASP Demo Sequence</strong></td>
+        <td>Inbound demo request under 10 seats</td>
+        <td>Automated self-serve conversion without AE overhead</td>
+      </tr>
     </tbody>
   </table>
 </div>
