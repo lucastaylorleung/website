@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Next Best Action (NBA) Segmentation &amp; Revenue Attribution Architecture</title>
+<style>
+  :root {
+    --bg: #FAFAFB;
+    --card-bg: #FFFFFF;
+    --ink: #1A1B25;
+    --muted: #64748B;
+    --border: #E2E8F0;
+    --primary: #2563EB;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 28px 32px 48px;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  h1 { font-size: 22px; margin: 0 0 4px; }
+  .subtitle { color: var(--muted); font-size: 13.5px; margin: 0 0 18px; }
+
+  .legend {
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 12.5px;
+    color: #1E3A8A;
+    margin-bottom: 24px;
+    line-height: 1.55;
+  }
+  .legend b { display: block; margin-bottom: 4px; }
+
+  /* STAGE 1: 3-PILLAR DATA INGESTION */
+  .stage-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .stage-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .pillar {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-top: 4px solid var(--accent);
+    border-radius: 12px;
+    padding: 14px 16px;
+  }
+  .pillar-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .pillar-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 999px;
+    color: var(--accent);
+    background: var(--tint);
+    margin-left: auto;
+  }
+  .pillar ul {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .pillar li { margin-bottom: 4px; }
+  .pillar li b { color: var(--ink); }
+
+  /* FUNNEL CONNECTOR */
+  .funnel-bar {
+    background: #0F172A;
+    color: #F8FAFC;
+    border-radius: 10px;
+    padding: 11px 16px;
+    margin: 16px 0 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12.5px;
+  }
+  .funnel-bar strong { color: #60A5FA; }
+  .funnel-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+  .funnel-pill {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.18);
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  /* STAGE 2: DECISION MATRIX SWIMLANES */
+  .cohort-lane {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--accent);
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: 230px 1fr 220px;
+    gap: 16px;
+    align-items: center;
+  }
+  .cohort-id .tag {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    background: var(--tint);
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin-bottom: 5px;
+  }
+  .cohort-id .name {
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .cohort-id .profile {
+    font-size: 11.5px;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .signals-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .signal-chip {
+    background: #F8FAFC;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 11.5px;
+    line-height: 1.35;
+  }
+  .signal-chip span {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 2px;
+  }
+  .signal-chip strong { color: var(--ink); }
+
+  .nba-box {
+    background: var(--tint);
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .nba-box .nba-label {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    margin-bottom: 3px;
+  }
+  .nba-box .nba-action {
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+  .nba-box .kpi-tie {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    background: #0F172A;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 960px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+    .cohort-lane { grid-template-columns: 1fr; }
+    .signals-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <h1>Next Best Action (NBA) Segmentation &amp; Revenue Map</h1>
+  <p class="subtitle">How historical cohort telemetry, firmographics, and campaign engagement signals are synthesized into revenue-tied lifecycle plays.</p>
+
+  <div class="legend">
+    <b>Methodology &amp; Revenue Attribution Thesis (Sanitized Portfolio Sample)</b>
+    &bull; Built by analyzing historical customer expansion and churn cohorts to identify which combination of <b>account capacity</b> (size/revenue), <b>current product adoption</b>, and <b>channel responsiveness</b> predicts conversion.<br>
+    &bull; Every lifecycle branch maps to a single commercial KPI (Net New ARR, Seat Expansion ARR, Plan Upgrade MRR, or Gross Retention) rather than vanity open/click metrics.
+  </div>
+
+  <!-- STAGE 1: DATA INPUT PILLARS -->
+  <div class="stage-label">Stage 1 • Multi-Dimensional Customer Scoring Inputs</div>
+  <div class="pillars-grid">
+    <div class="pillar" style="--accent:#2563EB; --tint:#EFF6FF;">
+      <div class="pillar-head">
+        <span>&#127970; Firmographics &amp; Capacity</span>
+        <span class="pillar-badge">CRM / Enriched</span>
+      </div>
+      <ul>
+        <li><b>Company Size:</b> Solo (1), SMB (2–49), Mid-Market (50–249), Enterprise (250+).</li>
+        <li><b>Annual Revenue &amp; ARR Potential:</b> Total addressable seat ceiling vs. current ACV.</li>
+        <li><b>Department / Role:</b> Individual contributor vs. functional team lead or ops buyer.</li>
+      </ul>
+    </div>
+
+    <div class="pillar" style="--accent:#0CA678; --tint:#E7F6F2;">
+      <div class="pillar-head">
+        <span>&#128202; Product Usage Telemetry</span>
+        <span class="pillar-badge">Warehouse / BI</span>
+      </div>
+      <ul>
+        <li><b>Current Feature Mix:</b> Core free utility vs. collaborative/shared workflows vs. governance tools.</li>
+        <li><b>Usage Velocity &amp; Depth:</b> Weekly active days, asset volume, and paywall limit hits.</li>
+        <li><b>Cohort Benchmarks:</b> Comparing current usage against historical converters at Day 14/30/60.</li>
+      </ul>
+    </div>
+
+    <div class="pillar" style="--accent:#9C36B5; --tint:#F5EBF8;">
+      <div class="pillar-head">
+        <span>&#128232; Campaign &amp; Channel Signals</span>
+        <span class="pillar-badge">MAP / Engagement</span>
+      </div>
+      <ul>
+        <li><b>Email &amp; Nurture Response:</b> Click intent on feature vs. pricing/ROI themes; fatigue thresholds.</li>
+        <li><b>Event &amp; Content Intent:</b> Webinar attendance, demo video completion, or help-doc visits.</li>
+        <li><b>Channel Suppression:</b> Auto-pausing low-response email tracks in favor of in-app or AE outreach.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="funnel-bar">
+    <div><strong>Decision Engine:</strong> Cohort propensity model evaluates all 3 dimensions daily to assign 1 mutually exclusive Next Best Action.</div>
+    <div class="funnel-pills">
+      <span class="funnel-pill">No Overlapping Campaigns</span>
+      <span class="funnel-pill">Holdout Control Groups (10%)</span>
+      <span class="funnel-pill">Pipeline &amp; ARR Attribution</span>
+    </div>
+  </div>
+
+  <!-- STAGE 2: COHORT ROUTING & REVENUE KPIS -->
+  <div class="stage-label">Stage 2 • Cohort Segmentation Matrix &rarr; Next Best Action &amp; Revenue KPI</div>
+
+  <!-- COHORT 1 -->
+  <div class="cohort-lane" style="--accent:#E64980; --tint:#FCEDF2;">
+    <div class="cohort-id">
+      <span class="tag">Cohort A • High Ceiling + High Usage</span>
+      <div class="name">Enterprise Land-and-Expand</div>
+      <div class="profile">Mid-market/Enterprise accounts hitting multi-user collaboration thresholds on trial or starter tiers.</div>
+    </div>
+    <div class="signals-row">
+      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>100+ emp &bull; $20M+ Rev</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Shared folders + 3+ active invites</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>High webinar / pricing click intent</strong></div>
+    </div>
+    <div class="nba-box">
+      <div class="nba-label">Next Best Action</div>
+      <div class="nba-action">Route to AE Sales-Assist + Custom Security &amp; ROI Case Study Sequence</div>
+      <span class="kpi-tie">KPI: Net-New Enterprise ARR</span>
+    </div>
+  </div>
+
+  <!-- COHORT 2 -->
+  <div class="cohort-lane" style="--accent:#9C36B5; --tint:#F5EBF8;">
+    <div class="cohort-id">
+      <span class="tag">Cohort B • Multi-Seat Expansion</span>
+      <div class="name">Team Champion &amp; Seat Growth</div>
+      <div class="profile">Existing SMB accounts where organic seat utilization exceeds 85% or uninvited domain signups spike.</div>
+    </div>
+    <div class="signals-row">
+      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>10–99 emp &bull; $2M–$20M Rev</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>High daily DAU; 1–2 power features unused</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>Opens product tips; ignores generic promos</strong></div>
+    </div>
+    <div class="nba-box">
+      <div class="nba-label">Next Best Action</div>
+      <div class="nba-action">Trigger Admin Seat-Consolidation Play + Peer Workflow Adoption Guide</div>
+      <span class="kpi-tie">KPI: Expansion ARR / NRR Lift</span>
+    </div>
+  </div>
+
+  <!-- COHORT 3 -->
+  <div class="cohort-lane" style="--accent:#2563EB; --tint:#EFF6FF;">
+    <div class="cohort-id">
+      <span class="tag">Cohort C • Self-Serve Upgrade</span>
+      <div class="name">High-Intent Solo / Pro Converter</div>
+      <div class="profile">Power users on free/downgraded tiers repeatedly hitting active-asset or automation paywalls.</div>
+    </div>
+    <div class="signals-row">
+      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>1–9 emp &bull; &lt;$2M Rev</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Maxed free limits; high weekly frequency</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>Engaged with feature emails or abandoned cart</strong></div>
+    </div>
+    <div class="nba-box">
+      <div class="nba-label">Next Best Action</div>
+      <div class="nba-action">Deliver Time-Bound Intro Offer (25% Off 3 Mo) + In-App Paywall Prompt</div>
+      <span class="kpi-tie">KPI: Self-Serve Upgrade MRR</span>
+    </div>
+  </div>
+
+  <!-- COHORT 4 -->
+  <div class="cohort-lane" style="--accent:#0CA678; --tint:#E7F6F2;">
+    <div class="cohort-id">
+      <span class="tag">Cohort D • Channel Pivot</span>
+      <div class="name">Email-Fatigued Active Users</div>
+      <div class="profile">Healthy product usage and expansion fit, but zero email opens/clicks over the last 45 days.</div>
+    </div>
+    <div class="signals-row">
+      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>SMB / Mid-Market fit</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Active core usage; zero cross-feature adoption</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>0 email clicks (45d); unengaged in MAP</strong></div>
+    </div>
+    <div class="nba-box">
+      <div class="nba-label">Next Best Action</div>
+      <div class="nba-action">Suppress Email Cadence &rarr; Trigger In-App Tooltip + Paid Retargeting</div>
+      <span class="kpi-tie">KPI: Feature Adoption &rarr; Paid Conv.</span>
+    </div>
+  </div>
+
+  <!-- COHORT 5 -->
+  <div class="cohort-lane" style="--accent:#E8590C; --tint:#FDEEE7;">
+    <div class="cohort-id">
+      <span class="tag">Cohort E • Churn Intervention</span>
+      <div class="name">At-Risk Paid Accounts</div>
+      <div class="profile">Paid subscribers whose 30-day usage dropped &gt;40% ahead of renewal, regardless of email engagement.</div>
+    </div>
+    <div class="signals-row">
+      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>All paid tiers (prioritized by ACV)</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Sharp WAU decline; low seat activation</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>Low nurture response or support friction</strong></div>
+    </div>
+    <div class="nba-box">
+      <div class="nba-label">Next Best Action</div>
+      <div class="nba-action">Suppress Upsells &rarr; Launch 1-Click Template Setup + CS Health Check</div>
+      <span class="kpi-tie">KPI: Gross Dollar Retention (GRR)</span>
+    </div>
+  </div>
+
+</body>
+</html>
