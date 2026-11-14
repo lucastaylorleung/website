@@ -26,7 +26,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Work Examples &amp; Architecture | Lucas Leung</title>
     <meta name="description" content="Lifecycle marketing work examples by Lucas Leung: multi-persona onboarding architecture, CRM contact routing, Next Best Action segmentation, lifecycle emails, and product demo videos.">
-    <link rel="canonical" href="https://lucasleung.me/samples.html">
+    <link rel="canonical" href="https://lucasleung.me/samples">
+    <script>
+      if (window.location.pathname.endsWith('.html')) {
+        window.history.replaceState(
+          null,
+          '',
+          window.location.pathname.replace(/\.html$/, '') + window.location.search + window.location.hash
+        );
+      }
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -385,7 +394,7 @@
         <a href="/#experience" onclick="trackClick('Nav: Experience')">Experience</a>
         <a href="/#skills" onclick="trackClick('Nav: Skills')">Skills</a>
         <a href="/#talents" onclick="trackClick('Nav: Strengths')">Strengths</a>
-        <a href="samples.html" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
+        <a href="/samples" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
         <a href="/#contact" onclick="trackClick('Nav: Contact')">Contact</a>
     </nav>
 </div>
@@ -438,21 +447,21 @@
                 <div class="sample-pane active" id="arch-nba">
                     <iframe src="journey-nba-segmentation.html" class="preview-frame" title="Next Best Action Segmentation & Revenue Map"></iframe>
                     <div class="card-footer">
-                        <a href="journey-nba-segmentation.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open NBA Map')">Open Next Best Action Map Full Screen ↗</a>
+                        <a href="/journey-nba-segmentation" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open NBA Map')">Open Next Best Action Map Full Screen ↗</a>
                     </div>
                 </div>
 
                 <div class="sample-pane" id="arch-swimlanes">
                     <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
                     <div class="card-footer">
-                        <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Swimlane Map Full Screen ↗</a>
+                        <a href="/journey-swimlanes" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Swimlane Map Full Screen ↗</a>
                     </div>
                 </div>
 
                 <div class="sample-pane" id="arch-routing">
                     <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
                     <div class="card-footer">
-                        <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Routing Flowchart Full Screen ↗</a>
+                        <a href="/journey-routing" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Routing Flowchart Full Screen ↗</a>
                     </div>
                 </div>
             </div>
@@ -481,7 +490,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a href="email-cart-abandon-org-admin.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Email Full Screen')">Open Email Full Screen ↗</a>
+                    <a href="/email-cart-abandon-org-admin" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Email Full Screen')">Open Email Full Screen ↗</a>
                 </div>
             </div>
 
