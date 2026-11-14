@@ -247,6 +247,33 @@
             background: var(--primary);
             color: #ffffff;
         }
+        .sample-tabs {
+            display: inline-flex;
+            gap: 0.25rem;
+            background: var(--surface-subtle);
+            padding: 0.25rem;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+        .sample-tab {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 0.36rem 0.75rem;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .sample-tab.active {
+            background: var(--primary);
+            color: #ffffff;
+        }
+        .sample-pane { display: none; }
+        .sample-pane.active { display: block; }
         .email-stage {
             display: flex;
             justify-content: center;
@@ -387,43 +414,43 @@
     <section id="work-samples">
         <div class="samples-grid">
 
-            <!-- SAMPLE 01: JOURNEY SWIMLANES -->
+            <!-- SAMPLE 01: BUNDLED LIFECYCLE & ROUTING ARCHITECTURE -->
             <div class="card">
-                <div class="company">Sample 01 • Multi-Persona Onboarding Architecture</div>
-                <div class="role">60-Day Reverse Trial &amp; Freemium Onboarding Map</div>
-                <p class="card-desc">End-to-end lifecycle map spanning Day 1 activation, Day 30 reverse-trial downgrade transition, and Day 60 upsell across five distinct user personas (Solo Users, Team Admins, Invited Members, Freemium Users, and Enterprise Accounts).</p>
+                <div class="company">Sample 01 • Lifecycle &amp; CRM Architecture</div>
+                <div class="role">60-Day Onboarding Swimlanes &amp; Contact Routing</div>
+                <p class="card-desc">Bundled architecture pairing a 5-persona reverse-trial journey map (Day 1 to Day 60+) with the CRM decision-tree logic governing signup enrichment, seat thresholds, and PLG-to-sales transitions.</p>
                 <div class="tag-row">
                     <span class="skill-pill">Reverse Trial Logic</span>
                     <span class="skill-pill">Persona Segmentation</span>
-                    <span class="skill-pill">PLG &amp; Sales-Assist</span>
-                    <span class="skill-pill">A/B Testing</span>
-                </div>
-                <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
-                <div class="card-footer">
-                    <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Interactive Map Full Screen ↗</a>
-                </div>
-            </div>
-
-            <!-- SAMPLE 02: CONTACT ROUTING -->
-            <div class="card">
-                <div class="company">Sample 02 • CRM Entry &amp; Branching Logic</div>
-                <div class="role">Dynamic Contact Routing &amp; Enrollment Flowchart</div>
-                <p class="card-desc">Decision-tree architecture governing how new signups, invited collaborators, and inbound demo requests enter and transition between lifecycle tracks based on signup intent, domain enrichment, seat count, and mid-trial expansion triggers.</p>
-                <div class="tag-row">
                     <span class="skill-pill">Lead Enrichment Routing</span>
-                    <span class="skill-pill">Dynamic State Transitions</span>
-                    <span class="skill-pill">PLG-to-Sales Handoff</span>
                     <span class="skill-pill">RevOps Alignment</span>
                 </div>
-                <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
-                <div class="card-footer">
-                    <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Flowchart Full Screen ↗</a>
+
+                <div>
+                    <div class="sample-tabs" role="tablist" aria-label="Architecture Views">
+                        <button type="button" class="sample-tab active" data-arch="swimlanes">1. Persona Swimlanes</button>
+                        <button type="button" class="sample-tab" data-arch="routing">2. Contact Routing Tree</button>
+                    </div>
+                </div>
+
+                <div class="sample-pane active" id="arch-swimlanes">
+                    <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
+                    <div class="card-footer">
+                        <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Swimlane Map Full Screen ↗</a>
+                    </div>
+                </div>
+
+                <div class="sample-pane" id="arch-routing">
+                    <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
+                    <div class="card-footer">
+                        <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Routing Flowchart Full Screen ↗</a>
+                    </div>
                 </div>
             </div>
 
-            <!-- SAMPLE 03: LIFECYCLE EMAIL EXECUTION -->
+            <!-- SAMPLE 02: LIFECYCLE EMAIL EXECUTION -->
             <div class="card" id="email-sample">
-                <div class="company">Sample 03 • Lifecycle Conversion &amp; Promotional Email</div>
+                <div class="company">Sample 02 • Lifecycle Conversion &amp; Promotional Email</div>
                 <div class="role">Cart Abandonment Touch 2 — Org Admin Upgrade Offer</div>
                 <p class="card-desc">Responsive, dark-mode-compatible lifecycle email (anonymized for portfolio display) triggered for Organization Admins who initiated checkout without completing an upgrade, pairing feature value reinforcement with a time-bound 25% offer.</p>
                 <div class="tag-row">
@@ -449,9 +476,9 @@
                 </div>
             </div>
 
-            <!-- SAMPLE 04: PRODUCT DEMO VIDEOS -->
+            <!-- SAMPLE 03: PRODUCT DEMO VIDEOS -->
             <div class="card" id="demo-videos">
-                <div class="company">Sample 04 • Product Marketing &amp; Video Enablement</div>
+                <div class="company">Sample 03 • Desktop &amp; Persona Video Enablement</div>
                 <div class="role">Product Demo Videos &amp; Persona Walkthroughs</div>
                 <p class="card-desc">Scripted, recorded, and produced product walkthroughs embedded into lifecycle onboarding tracks to accelerate Day 1–3 activation, showcase dynamic features, and tailor value propositions to specific buyer personas.</p>
                 <div class="tag-row">
@@ -484,6 +511,31 @@
                 </div>
             </div>
 
+            <!-- SAMPLE 04: MOBILE APP VOICEOVER VIDEOS -->
+            <div class="card" id="mobile-videos">
+                <div class="company">Sample 04 • Mobile Product Marketing &amp; Voiceover</div>
+                <div class="role">Android App Voiceover &amp; Feature Walkthroughs</div>
+                <p class="card-desc">Scripted, voiced, and edited mobile product walkthroughs highlighting cross-device workflows, on-the-go productivity, and core Android app activation moments.</p>
+                <div class="tag-row">
+                    <span class="skill-pill">Voiceover Scripting</span>
+                    <span class="skill-pill">Mobile App GTM</span>
+                    <span class="skill-pill">Cross-Platform Activation</span>
+                    <span class="skill-pill">Video Production</span>
+                </div>
+
+                <div class="video-grid">
+                    <div class="video-item" style="grid-template-columns: 1fr;">
+                        <div class="video-wrapper">
+                            <iframe src="https://drive.google.com/file/d/1iLqtP2bC0RsrQqJTjO3EDkNSuCQbiqCP/preview" title="Android App Voiceover Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                        </div>
+                        <div>
+                            <div class="video-title">Android App Experience — Voiceover Walkthrough</div>
+                            <p class="video-desc">Guided mobile walkthrough showcasing setup, intuitive gesture/keyboard workflows, and seamless cross-device sync for Android users.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 </div>
@@ -494,6 +546,18 @@
 
 <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.sample-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.arch;
+            document.querySelectorAll('.sample-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.sample-pane').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            const pane = document.getElementById('arch-' + target);
+            if (pane) pane.classList.add('active');
+            trackClick('Architecture Tab: ' + target);
+        });
+    });
 
     const emailFrame = document.getElementById('email-preview-frame');
     document.querySelectorAll('.vp-btn').forEach(btn => {
