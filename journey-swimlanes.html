@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TextExpander Onboarding Journey</title>
+<title>B2B SaaS Reverse-Trial Onboarding Journey, by Persona</title>
 <style>
   :root {
     --bg: #FAFAFB;
@@ -30,14 +30,14 @@
     margin: 0 0 18px;
   }
   .legend {
-    background: #FFF9DB;
-    border: 1px solid #F5E39B;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
     border-radius: 10px;
     padding: 12px 16px;
     font-size: 12.5px;
-    color: #6B5A00;
+    color: #1E3A8A;
     margin-bottom: 26px;
-    line-height: 1.5;
+    line-height: 1.55;
   }
   .legend b { display: block; margin-bottom: 4px; }
   .lane { margin-bottom: 30px; }
@@ -75,11 +75,12 @@
     border-top: 3px solid var(--accent);
     border-radius: 10px;
     padding: 10px 11px;
-    min-height: 96px;
+    min-height: 92px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
-  .card.draft {
-    border-style: dashed;
-    opacity: 0.55;
+  .card:hover {
+    box-shadow: 0 4px 12px rgba(26,27,37,0.08);
+    transform: translateY(-2px);
   }
   .card.placeholder {
     display: flex;
@@ -89,7 +90,7 @@
     text-align: center;
     border: 1.5px dashed var(--accent);
     border-top: 1.5px dashed var(--accent);
-    opacity: 0.6;
+    opacity: 0.65;
   }
   .card.placeholder .plus {
     font-size: 20px;
@@ -119,16 +120,6 @@
     font-size: 11px;
     color: var(--muted);
     line-height: 1.35;
-  }
-  .card .badge {
-    display: inline-block;
-    margin-top: 6px;
-    font-size: 9.5px;
-    font-weight: 600;
-    color: #A15C00;
-    background: #FFF1DB;
-    border-radius: 999px;
-    padding: 1px 6px;
   }
   .arrow {
     flex: 0 0 22px;
@@ -167,797 +158,269 @@
     padding: 6px 2px;
     white-space: nowrap;
   }
-  a.card { text-decoration: none; color: inherit; display: block; }
-  a.card:hover { box-shadow: 0 2px 10px rgba(26,27,37,0.12); transform: translateY(-1px); }
-  .card .link { margin-top: 6px; font-size: 10.5px; font-weight: 700; color: var(--accent); }
   .entry { font-size: 12px; color: var(--muted); line-height: 1.45; margin: 0 0 12px 4px; max-width: 900px; }
   .entry b { color: var(--ink); }
-  .entry a, .legend a { color: var(--accent, #4263EB); }
 </style>
 </head>
 <body>
-  <h1>TextExpander Onboarding Journey, by Persona</h1>
-  <p class="subtitle">Day 1 to Day 60 today, built to extend into the post-60-day lifecycle. Source: Master Onboarding Email List (HubSpot).</p>
+  <h1>B2B SaaS Onboarding Journey, by Persona</h1>
+  <p class="subtitle">Day 1 to Day 60 reverse-trial lifecycle architecture, structured to scale into post-60-day retention &amp; expansion. (Scroll horizontally per lane &rarr;)</p>
+
   <div class="legend">
-    <b>Notes</b>
-    "Org Onboarding" and "Admin Onboarding" are two live, near-duplicate HubSpot sequences, merged into one Org / Team Admin lane below.
-    A short 2-email "Individual Onboarding owned by Ted" variant (Day 3 to 4) also runs for some individual signups.
-    All emails shown below are live. Each lane ends with a Post-60 Lifecycle placeholder, ready for that sequence as it gets built.
-<br>    Click any card to open that email's copy in the <a href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit" target="_blank" rel="noopener">Onboarding Emails for Reverse Trial</a> doc. Cards marked "Open sequence copy" have no separate section there and open the sequence tab.
-<br>    Entry rules come from HubSpot segments, the copy doc, and #rev-ops threads. They have not been validated against the live workflows.
-<br>    Demo requests under 10 seats are not on this board. They go to the Under 10 Demo Sequence, sent from Lucas's sequence.
+    <b>Architecture Notes (Sanitized Portfolio Sample)</b>
+    &bull; Consolidates overlapping legacy onboarding workflows into mutually exclusive persona tracks based on signup intent, workspace role, and billing tier.<br>
+    &bull; Incorporates a 30-day reverse-trial model: users receive full premium access for 30 days before transitioning to a perpetual free tier with targeted Day 45 and Day 60 conversion touchpoints.<br>
+    &bull; High-fit enterprise accounts branch dynamically at Day 60 based on seat count and firmographic enrichment, while inbound demo requests under 10 seats route to a dedicated sales-assist cadence.
   </div>
+
+  <!-- LANE 1: INDIVIDUAL -->
   <section class="lane">
-  <div class="lane-header" style="--accent:#4263EB; background:#ECEFFD">
-    <span class="lane-icon">🧑‍💻</span>
-    <span class="lane-name">Individual</span>
-    <span class="lane-tag" style="background:#E1E6FC">Solo signup</span>
-    <span class="lane-desc">Works alone, no team features.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Chose "Just me" at signup, or is an org of one that never adds members. A private domain with 0 to 9 employees (per enrichment) gets the <a href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.x525rv2iqt1o" target="_blank" rel="noopener">Individual TED version</a>, where Day 4 invites a team.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.ts5tkm9bck65" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">Save hours this week</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.nit70231f994" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.zckb2jnuvegz" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 4</div>
-  <div class="title">Expand it</div>
-  <div class="blurb">The first payoff moment</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">A/B test: standard search vs. AI Chrome recall</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.nj9biatoymt6" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 9</div>
-  <div class="title">Fill-ins</div>
-  <div class="blurb">Personalize Snippets without rewriting</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.asw6qvjg3ya9" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.9xri3dl47by8" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 17</div>
-  <div class="title">Date math</div>
-  <div class="blurb">Never type a date again</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.dr76247by3y4" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 25</div>
-  <div class="title">5 days left</div>
-  <div class="blurb">What happens when access ends</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.hva60um8uyso" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">Final nudge to upgrade</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.d1w5yitn6kl2" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">30-day premium access ends, everything built stays</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0#heading=h.bmwplyejd0gw" target="_blank" rel="noopener" style="--accent:#4263EB">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.0" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#4263EB">
-  <div class="day">Day 60</div>
-  <div class="title">Upsell</div>
-  <div class="blurb">Pitches the Individual plan</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#4263EB">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
-<section class="lane">
-  <div class="lane-header" style="--accent:#9C36B5; background:#F5EBF8">
-    <span class="lane-icon">👑</span>
-    <span class="lane-name">Org / Team Admin</span>
-    <span class="lane-tag" style="background:#EFDFF3">Trial account owner</span>
-    <span class="lane-desc">Sets up the team. Merges the near-duplicate &#x27;Org Onboarding&#x27; + &#x27;Admin Onboarding&#x27; HubSpot sequences.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Chose "Me and my team" at signup, or adds a teammate at any point in the 30 days. The org must be in a demo or normal billing state. Org creators with no owner are routed to Ted.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.ts5tkm9bck65" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">Save hours this week</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.nit70231f994" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create and expand your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.cfc0bzis35v3" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 4</div>
-  <div class="title">Shared library</div>
-  <div class="blurb">Save time, stay consistent as a team</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">Get the whole team using it</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.nj9biatoymt6" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 9</div>
-  <div class="title">Fill-ins</div>
-  <div class="blurb">Personalized per teammate</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.aghbpjdcrdox" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 11</div>
-  <div class="title">Requests</div>
-  <div class="blurb">Approve team Snippet requests in a click</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.asw6qvjg3ya9" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.9xri3dl47by8" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 17</div>
-  <div class="title">Snippet Activity</div>
-  <div class="blurb">Track every edit, undo if needed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.dr76247by3y4" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 25</div>
-  <div class="title">5 days left</div>
-  <div class="blurb">What happens when access ends</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.hva60um8uyso" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">Full access ends tomorrow</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.d1w5yitn6kl2" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">Here&#x27;s what&#x27;s changed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.qnxds4qfr29h" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.9amy81rc4fwk#heading=h.tjm9e56xqaeg" target="_blank" rel="noopener" style="--accent:#9C36B5">
-  <div class="day">Day 60</div>
-  <div class="title">Upsell</div>
-  <div class="blurb">Pitches the Business plan</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#9C36B5">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
-<section class="lane">
-  <div class="lane-header" style="--accent:#0CA678; background:#E7F6F2">
-    <span class="lane-icon">🙋</span>
-    <span class="lane-name">Team Member</span>
-    <span class="lane-tag" style="background:#D8F1E9">Invited teammate</span>
-    <span class="lane-desc">Joins an existing trial account.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Added by the org creator or an admin at any point in the 30 days. Admins added during the trial have their own <a href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.7xx6a2mkp1my" target="_blank" rel="noopener">Admin Trial copy</a>.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.ts5tkm9bck65" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">Save hours this week</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.nit70231f994" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.zckb2jnuvegz" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 4</div>
-  <div class="title">Expand it</div>
-  <div class="blurb">The first payoff moment</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">Building the daily habit</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.nj9biatoymt6" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 9</div>
-  <div class="title">Fill-ins</div>
-  <div class="blurb">Personalize Snippets without rewriting</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.aghbpjdcrdox" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 11</div>
-  <div class="title">Requests</div>
-  <div class="blurb">Submit a Snippet idea to your admin</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#0CA678">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.9xri3dl47by8" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 17</div>
-  <div class="title">Date math</div>
-  <div class="blurb">Never type a date again</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.asw6qvjg3ya9" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 25</div>
-  <div class="title">5 days left</div>
-  <div class="blurb">Now&#x27;s the time to tell your admin</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#0CA678">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">Final nudge to upgrade</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg#heading=h.d1w5yitn6kl2" target="_blank" rel="noopener" style="--accent:#0CA678">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">Everything built is still here</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#0CA678">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.nh7e869hqctg" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#0CA678">
-  <div class="day">Day 60</div>
-  <div class="title">Upsell</div>
-  <div class="blurb">Pitches the Individual plan</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#0CA678">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
-<section class="lane">
-  <div class="lane-header" style="--accent:#E8590C; background:#FDEEE7">
-    <span class="lane-icon">🆓</span>
-    <span class="lane-name">Member (Freemium)</span>
-    <span class="lane-tag" style="background:#FBE4D8">No card on file</span>
-    <span class="lane-desc">Teammate on a free-tier team.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Added after Day 30 to an account that is on the free tier.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko#heading=h.ts5tkm9bck65" target="_blank" rel="noopener" style="--accent:#E8590C">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">Save hours this week</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko#heading=h.nit70231f994" target="_blank" rel="noopener" style="--accent:#E8590C">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#E8590C">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko#heading=h.zckb2jnuvegz" target="_blank" rel="noopener" style="--accent:#E8590C">
-  <div class="day">Day 4</div>
-  <div class="title">Expand it</div>
-  <div class="blurb">The first payoff moment</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#E8590C">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">Building the daily habit</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 9</div>
-  <div class="title">Fill-ins</div>
-  <div class="blurb">Personalize Snippets without rewriting</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 11</div>
-  <div class="title">Requests</div>
-  <div class="blurb">Submit a Snippet idea to your admin</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 17</div>
-  <div class="title">Date math</div>
-  <div class="blurb">Never type a date again</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 25</div>
-  <div class="title">5 days left</div>
-  <div class="blurb">Now&#x27;s the time to tell your admin</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">Final nudge to upgrade</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">Everything built is still here</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.du4adm6cooko" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E8590C">
-  <div class="day">Day 60</div>
-  <div class="title">Upsell</div>
-  <div class="blurb">Pitches the Individual plan</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#E8590C">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
-<section class="lane">
-  <div class="lane-header" style="--accent:#F08C00; background:#FEF4E6">
-    <span class="lane-icon">🛠️</span>
-    <span class="lane-name">Admin (Freemium)</span>
-    <span class="lane-tag" style="background:#FDEDD6">No card on file</span>
-    <span class="lane-desc">Team admin on a free-tier team.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Added as an admin after Day 30 to an account that is on the free tier.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.ts5tkm9bck65" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">Save hours this week</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.nit70231f994" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create and expand your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.wxtv73g7yab5" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 4</div>
-  <div class="title">Shared library</div>
-  <div class="blurb">Save time, stay consistent as a team</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">Get the whole team using it</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.nj9biatoymt6" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 9</div>
-  <div class="title">Fill-ins</div>
-  <div class="blurb">Personalized per teammate</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 11</div>
-  <div class="title">Requests</div>
-  <div class="blurb">Approve team Snippet requests in a click</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s#heading=h.cldeunpnyi6l" target="_blank" rel="noopener" style="--accent:#F08C00">
-  <div class="day">Day 17</div>
-  <div class="title">Org Statistics</div>
-  <div class="blurb">Who&#x27;s active, who needs a nudge, time saved</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 25</div>
-  <div class="title">5 days left</div>
-  <div class="blurb">What happens when access ends</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">Full access ends tomorrow</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">Here&#x27;s what&#x27;s changed</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.tb03214uhi6s" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#F08C00">
-  <div class="day">Day 60</div>
-  <div class="title">Upsell</div>
-  <div class="blurb">Pitches the Business plan</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#F08C00">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
-<section class="lane">
-  <div class="lane-header" style="--accent:#E64980; background:#FCEDF2">
-    <span class="lane-icon">🚀</span>
-    <span class="lane-name">Scale Admin (Ted-led)</span>
-    <span class="lane-tag" style="background:#FBE2EB">Enterprise-track</span>
-    <span class="lane-desc">Sent partly from Ted at TextExpander instead of Jamie. Day 60 branches by plan size.</span>
-  </div>
-  <div class="entry"><b>How they enter:</b> Entry rule not confirmed yet. Check the live HubSpot workflow with RevOps before relying on this lane.</div>
-  <div class="track">
-    <a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.k1hc1okqv9du" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 1</div>
-  <div class="title">Get set up</div>
-  <div class="blurb">3 easy steps, from Ted</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.6hqxdn81wwt0" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 2</div>
-  <div class="title">Download the app</div>
-  <div class="blurb">Only works once it&#x27;s installed</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.dlarwtxok4r8" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 3</div>
-  <div class="title">First Snippet</div>
-  <div class="blurb">Create and expand your first Snippet</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.cfc0bzis35v3" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 4</div>
-  <div class="title">Shared library</div>
-  <div class="blurb">From Ted: save time, stay consistent</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.mlrf23oxhgjv" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 5</div>
-  <div class="title">Make it a habit</div>
-  <div class="blurb">Inline Search variant</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.nj9biatoymt6" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 9</div>
-  <div class="title">Admin tools</div>
-  <div class="blurb">From Ted: SSO, permissions, Snippet history</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.asw6qvjg3ya9" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 15</div>
-  <div class="title">Halfway point</div>
-  <div class="blurb">The habit starts to stick</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E64980">
-  <div class="day">Day 17</div>
-  <div class="title">Requests</div>
-  <div class="blurb">From Ted: approve requests in a click</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.dr76247by3y4" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 25</div>
-  <div class="title">5 days remaining</div>
-  <div class="blurb">Countdown to end of access</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E64980">
-  <div class="day">Day 29</div>
-  <div class="title">Last day</div>
-  <div class="blurb">From Ted: full access ends tomorrow</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h" target="_blank" rel="noopener" title="No separate section for this email in the copy doc. Opens the sequence tab." style="--accent:#E64980">
-  <div class="day">Day 30</div>
-  <div class="title">Welcome to the free tier</div>
-  <div class="blurb">From Ted: here&#x27;s what&#x27;s changed</div>
-  
-  <div class="link">Open sequence copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.qnxds4qfr29h" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 45</div>
-  <div class="title">Checking in</div>
-  <div class="blurb">What&#x27;s holding you back?</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.tjm9e56xqaeg" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 60a</div>
-  <div class="title">Upsell: Business</div>
-  <div class="blurb">Pitches the Business plan</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="arrow">&#8594;</div>
-<a class="card" href="https://docs.google.com/document/d/1WG4A0nVKX_gqILvEL6NAncmmNYx5zNZVEo7qtQgW7eQ/edit?tab=t.o7wevgclsd2h#heading=h.x1ga6iwiy0w7" target="_blank" rel="noopener" style="--accent:#E64980">
-  <div class="day">Day 60b</div>
-  <div class="title">Upsell: Enterprise</div>
-  <div class="blurb">Pitches the Enterprise plan</div>
-  
-  <div class="link">View copy &#8599;</div>
-</a>
-<div class="phase-divider">
-  <span class="phase-label">Post-60 Lifecycle</span>
-</div>
-<div class="card placeholder" style="--accent:#E64980">
-  <div class="plus">+</div>
-  <div class="title">Post-60 Lifecycle</div>
-  <div class="blurb">Coming soon</div>
-</div>
-  </div>
-</section>
+    <div class="lane-header" style="--accent:#4263EB; background:#ECEFFD">
+      <span class="lane-icon">&#128187;</span>
+      <span class="lane-name">Individual User</span>
+      <span class="lane-tag" style="background:#E1E6FC">Solo signup</span>
+      <span class="lane-desc">Single-seat workspace without team collaboration features.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Selected "Just me" at signup, or remains a single-user workspace throughout the 30-day trial. Enriched domains with 1–9 employees receive a team-invitation variant on Day 4.</div>
+    <div class="track">
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Core value prop &amp; quickstart</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create first reusable template</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Driving the initial "Aha!" moment</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">A/B test: manual search vs. AI recall</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize workflows at scale</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Reinforcing daily usage habits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Previewing reverse-trial transition</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Final urgency nudge to upgrade</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Premium trial ends; core work retained</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 45</div><div class="title">Friction check-in</div><div class="blurb">Objection handling &amp; feedback loop</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#4263EB"><div class="day">Day 60</div><div class="title">Plan upsell</div><div class="blurb">Targeted Individual Pro plan pitch</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#4263EB"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Usage-triggered expansion</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 2: ORG / WORKSPACE OWNER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#9C36B5; background:#F5EBF8">
+      <span class="lane-icon">&#128081;</span>
+      <span class="lane-name">Org / Workspace Owner</span>
+      <span class="lane-tag" style="background:#EFDFF3">Trial account creator</span>
+      <span class="lane-desc">Provisions the workspace and manages multi-seat team rollout.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Selected "Me and my team" at signup, or invites a teammate at any point during the 30-day reverse trial on an active demo or standard billing state.</div>
+    <div class="track">
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Workspace setup &amp; team time savings</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create &amp; test first workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 4</div><div class="title">Shared library</div><div class="blurb">Standardize messaging across team</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 5</div><div class="title">Team adoption</div><div class="blurb">Playbook for driving seat activation</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Custom fields per team member</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 11</div><div class="title">Approval workflows</div><div class="blurb">Review &amp; publish team submissions</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Reinforcing multi-seat habits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 17</div><div class="title">Version history</div><div class="blurb">Audit edits &amp; governance controls</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Impact of downgrade on shared folders</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Full team access ends tomorrow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Summary of downgraded permissions</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 45</div><div class="title">Friction check-in</div><div class="blurb">Procurement &amp; rollout support</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#9C36B5"><div class="day">Day 60</div><div class="title">Team upsell</div><div class="blurb">Pitches the multi-seat Business plan</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#9C36B5"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Seat expansion triggers</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 3: INVITED TEAM MEMBER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#0CA678; background:#E7F6F2">
+      <span class="lane-icon">&#128587;</span>
+      <span class="lane-name">Invited Team Member</span>
+      <span class="lane-tag" style="background:#D8F1E9">End-user contributor</span>
+      <span class="lane-desc">Joins an existing active trial workspace via owner invite.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Invited by an organization creator or co-owner during the 30-day trial window (focuses on bottom-up adoption and internal advocacy).</div>
+    <div class="track">
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 1</div><div class="title">Welcome to team</div><div class="blurb">Quickstart inside shared workspace</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create personal workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Using team-shared templates</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Integrating into daily tools</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize shared templates</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 11</div><div class="title">Suggest content</div><div class="blurb">Submit new template ideas to owner</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Time-saved recap</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Champion prompt: nudge workspace owner</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">Final champion upgrade reminder</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Personal assets remain accessible</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 45</div><div class="title">Checking in</div><div class="blurb">Re-engagement &amp; use-case tips</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#0CA678"><div class="day">Day 60</div><div class="title">Solo fallback</div><div class="blurb">Pitches Individual plan if org churned</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#0CA678"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Feature adoption tips</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 4: FREEMIUM MEMBER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#E8590C; background:#FDEEE7">
+      <span class="lane-icon">&#127379;</span>
+      <span class="lane-name">Member (Freemium Org)</span>
+      <span class="lane-tag" style="background:#FBE4D8">Post-trial invitee</span>
+      <span class="lane-desc">Teammate invited onto an account already on the free tier.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Added after Day 30 to an organization operating on the perpetual free tier without an active subscription.</div>
+    <div class="track">
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Quickstart for free workspace</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create first personal workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 4</div><div class="title">First workflow</div><div class="blurb">Driving initial value</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Building daily usage</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalize workflows</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 11</div><div class="title">Collaboration</div><div class="blurb">Unlocking shared libraries on paid</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Productivity recap</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 17</div><div class="title">Power feature</div><div class="blurb">Automated formatting &amp; shortcuts</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 25</div><div class="title">Team unlock</div><div class="blurb">How paid tiers remove seat limits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 29</div><div class="title">Owner nudge</div><div class="blurb">Request upgrade from workspace owner</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 30</div><div class="title">30-day recap</div><div class="blurb">Summary of free tier capabilities</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 45</div><div class="title">Checking in</div><div class="blurb">Use-case inspiration</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E8590C"><div class="day">Day 60</div><div class="title">Plan upsell</div><div class="blurb">Pitches Individual or Business upgrade</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#E8590C"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Paywall trigger nurture</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 5: FREEMIUM WORKSPACE CO-OWNER -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#F08C00; background:#FEF4E6">
+      <span class="lane-icon">&#128736;</span>
+      <span class="lane-name">Co-Owner (Freemium Org)</span>
+      <span class="lane-tag" style="background:#FDEDD6">Post-trial manager</span>
+      <span class="lane-desc">Elevated workspace manager on a free-tier organization.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Promoted to workspace manager after Day 30 on an organization operating on the perpetual free tier.</div>
+    <div class="track">
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 1</div><div class="title">Get set up</div><div class="blurb">Manager quickstart &amp; workspace overview</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Desktop/browser activation nudge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create &amp; test first workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 4</div><div class="title">Shared library</div><div class="blurb">Organizing team templates</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 5</div><div class="title">Team adoption</div><div class="blurb">Driving adoption across seats</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 9</div><div class="title">Dynamic variables</div><div class="blurb">Personalized per teammate</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 11</div><div class="title">Approval workflows</div><div class="blurb">Approve team content requests</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Team productivity check-in</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 17</div><div class="title">Org analytics</div><div class="blurb">Seat activity &amp; time-saved reporting</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 25</div><div class="title">5 days left</div><div class="blurb">Unlocking full team permissions</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 29</div><div class="title">Upgrade reminder</div><div class="blurb">Consolidate seats under paid billing</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 30</div><div class="title">Free tier summary</div><div class="blurb">Overview of free vs. paid limits</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 45</div><div class="title">Checking in</div><div class="blurb">Rollout &amp; billing Q&amp;A</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#F08C00"><div class="day">Day 60</div><div class="title">Business upsell</div><div class="blurb">Pitches the multi-seat Business plan</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#F08C00"><div class="plus">+</div><div class="title">Evergreen Nurture</div><div class="blurb">Seat expansion triggers</div></div>
+    </div>
+  </section>
+
+  <!-- LANE 6: ENTERPRISE / SALES-ASSIST -->
+  <section class="lane">
+    <div class="lane-header" style="--accent:#E64980; background:#FCEDF2">
+      <span class="lane-icon">&#128640;</span>
+      <span class="lane-name">Scale / Enterprise Track</span>
+      <span class="lane-tag" style="background:#FBE2EB">Sales-assist track</span>
+      <span class="lane-desc">High-fit accounts routed to account executive touchpoints; Day 60 branches by company size.</span>
+    </div>
+    <div class="entry"><b>Entry Criteria:</b> Qualified via firmographic enrichment (headcount/domain) or inbound high-seat request; blends automated onboarding with AE-sent outreach.</div>
+    <div class="track">
+      <div class="card" style="--accent:#E64980"><div class="day">Day 1</div><div class="title">Executive welcome</div><div class="blurb">3-step rollout guide from AE</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 2</div><div class="title">Install client</div><div class="blurb">Deployment options for teams</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 3</div><div class="title">First asset</div><div class="blurb">Create pilot workflow</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 4</div><div class="title">Shared library</div><div class="blurb">AE tip: centralizing team knowledge</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 5</div><div class="title">Habit formation</div><div class="blurb">Inline workflow recall</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 9</div><div class="title">Security &amp; governance</div><div class="blurb">SSO, role permissions &amp; audit logs</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 15</div><div class="title">Halfway milestone</div><div class="blurb">Pilot adoption check-in</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 17</div><div class="title">Approval workflows</div><div class="blurb">Streamlining team content reviews</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 25</div><div class="title">5 days remaining</div><div class="blurb">Trial expiration &amp; procurement prep</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 29</div><div class="title">Last day</div><div class="blurb">AE outreach: lock in team access</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 30</div><div class="title">Free tier transition</div><div class="blurb">Summary of paused enterprise features</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 45</div><div class="title">Executive check-in</div><div class="blurb">Custom demo / security review offer</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 60a</div><div class="title">Upsell: Business</div><div class="blurb">Self-serve Business plan (mid-market)</div></div>
+      <div class="arrow">&#8594;</div>
+      <div class="card" style="--accent:#E64980"><div class="day">Day 60b</div><div class="title">Upsell: Enterprise</div><div class="blurb">Custom Enterprise plan (10+ seats)</div></div>
+      <div class="phase-divider"><span class="phase-label">Post-60 Lifecycle</span></div>
+      <div class="card placeholder" style="--accent:#E64980"><div class="plus">+</div><div class="title">Account Expansion</div><div class="blurb">ABM &amp; QBR nurture</div></div>
+    </div>
+  </section>
 </body>
 </html>
