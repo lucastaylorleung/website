@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QKH2WFG8WC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -12,423 +13,717 @@
       });
 
       function trackClick(label) {
-        gtag('event', 'click', {
-          'event_category': 'Engagement',
-          'event_label': label
-        });
+        if (typeof gtag === 'function') {
+          gtag('event', 'click', {
+            'event_category': 'Engagement',
+            'event_label': label
+          });
+        }
       }
     </script>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lucas Leung | Marketing Leader Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Lucas Leung | Lifecycle &amp; Expansion Marketing Leader</title>
+    <meta name="description" content="Lifecycle and expansion marketing leader with 10+ years driving B2B SaaS revenue growth, onboarding architecture, and retention at TextExpander, FreshBooks, Geotab, and TELUS.">
+
+    <!-- Open Graph & Social Preview Metadata -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://lucasleung.me/">
+    <meta property="og:title" content="Lucas Leung | Lifecycle &amp; Expansion Marketing Leader">
+    <meta property="og:description" content="10+ years driving B2B SaaS revenue growth (+490% webinar lead growth, 130% revenue target attainment) through full-funnel lifecycle architecture and demand generation.">
+    <meta property="og:image" content="https://lucasleung.me/lucasleung-headshot.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Lucas Leung | Lifecycle &amp; Expansion Marketing Leader">
+    <meta name="twitter:description" content="Lifecycle and expansion marketing leader driving B2B SaaS pipeline, activation, and ARR.">
+    <meta name="twitter:image" content="https://lucasleung.me/lucasleung-headshot.png">
+
+    <!-- Canonical URL & Clean /index.html Strip -->
+    <link rel="canonical" href="https://lucasleung.me/">
+    <script>
+      if (window.location.pathname.endsWith('/index.html')) {
+        window.history.replaceState(
+          null,
+          '',
+          window.location.pathname.replace(/index\.html$/, '') + window.location.search + window.location.hash
+        );
+      }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #2563eb;
+            --primary-hover: #1d4ed8;
             --dark: #0f172a;
-            --light: #f8fafc;
-            --white: #ffffff;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-subtle: #f1f5f9;
+            --text-main: #334155;
+            --text-heading: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --nav-bg: rgba(255, 255, 255, 0.92);
+            --pill-bg: #eff6ff;
+            --pill-text: #1d4ed8;
+            --pill-border: #dbeafe;
             --accent: #60a5fa;
             --plum: #6366f1;
-        }
-        
-        body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #334155; margin: 0; background: var(--light); scroll-behavior: smooth; }
-
-        header { background: var(--dark); color: white; padding: 5rem 2rem; text-align: center; }
-        
-        .profile-img {
-            width: 160px; height: 160px; border-radius: 50%; object-fit: cover;
-            border: 4px solid var(--primary); margin-bottom: 1.5rem;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3); background: #fff;
+            --shadow-card: 0 12px 24px rgba(15, 23, 42, 0.07);
         }
 
-        nav { 
-            background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid #e2e8f0; 
-            position: sticky; top: 0; z-index: 1000; text-align: center; padding: 1rem; 
-            backdrop-filter: blur(8px);
+        [data-theme="dark"] {
+            --primary: #3b82f6;
+            --primary-hover: #60a5fa;
+            --bg: #090d16;
+            --surface: #111827;
+            --surface-subtle: #1e293b;
+            --text-main: #cbd5e1;
+            --text-heading: #f8fafc;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --nav-bg: rgba(15, 23, 42, 0.9);
+            --pill-bg: rgba(59, 130, 246, 0.14);
+            --pill-text: #93c5fd;
+            --pill-border: rgba(59, 130, 246, 0.3);
+            --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.35);
         }
-        nav a { margin: 0 15px; text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            margin: 0;
+            background: var(--bg);
+            scroll-behavior: smooth;
+            transition: background-color 0.25s ease, color 0.25s ease;
+        }
+
+        /* STICKY NAV BAR & THEME TOGGLE */
+        .nav-shell {
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+        }
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.25rem 1.15rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: var(--text-heading);
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 0.35rem 0.2rem;
+            transition: color 0.2s ease;
+        }
         nav a:hover { color: var(--primary); }
 
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
+        .theme-toggle {
+            background: var(--surface-subtle);
+            color: var(--text-heading);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.38rem 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            font-family: inherit;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+        .theme-toggle:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
 
-        section { padding: 4rem 0; }
-        h2 { color: var(--dark); font-size: 1.8rem; margin-bottom: 2rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
-
-        .card { 
-            background: var(--white); padding: 2.2rem; border-radius: 16px; 
-            border: 1px solid #e2e8f0; margin-bottom: 2rem; position: relative;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        /* HERO SECTION WITH RADIAL GRADIENT & ABOVE-THE-FOLD KPIs */
+        header {
+            background:
+                radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.28) 0%, rgba(99, 102, 241, 0.12) 38%, rgba(15, 23, 42, 0) 72%),
+                linear-gradient(180deg, #0f172a 0%, #0b1120 100%);
+            color: #ffffff;
+            padding: 3.75rem 1.5rem 3.25rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .hero-inner {
+            max-width: 900px;
+            margin: 0 auto;
         }
         
+        .profile-img {
+            width: 136px; height: 136px; border-radius: 50%; object-fit: cover;
+            border: 3px solid var(--primary); margin-bottom: 1.1rem;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, 0.32); background: #fff;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.35rem;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .hero-subtitle {
+            font-size: 1.08rem;
+            color: #cbd5e1;
+            margin: 0.65rem auto 0;
+            max-width: 640px;
+        }
+
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--primary);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.72rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.35);
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(255, 255, 255, 0.08);
+            color: #f8fafc;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            padding: 0.72rem 1.4rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            backdrop-filter: blur(6px);
+            transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: rgba(255, 255, 255, 0.38);
+            transform: translateY(-2px);
+        }
+
+        /* COMPACT ABOVE-THE-FOLD KPI STRIP */
+        .hero-kpi-strip {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.85rem;
+            margin-top: 2.15rem;
+            text-align: center;
+        }
+        .hero-kpi {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.11);
+            border-radius: 12px;
+            padding: 0.95rem 0.75rem;
+            backdrop-filter: blur(6px);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+        .hero-kpi:hover {
+            transform: translateY(-3px);
+            border-color: rgba(96, 165, 250, 0.45);
+        }
+        .hero-kpi strong {
+            display: block;
+            font-size: 1.55rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+        .hero-kpi span {
+            display: block;
+            font-size: 0.78rem;
+            color: #cbd5e1;
+            margin-top: 0.25rem;
+        }
+
+        .container { max-width: 900px; margin: auto; padding: 1.25rem 1.5rem 2.5rem; }
+
+        /* SECTION RHYTHM */
+        section { padding: 2.75rem 0; }
+        h2 {
+            color: var(--text-heading);
+            font-size: 1.65rem;
+            margin: 0 0 1.5rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 0.95rem;
+        }
+
+        .card { 
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px; 
+            border: 1px solid var(--border);
+            margin-bottom: 1.35rem;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.25s ease, border-color 0.25s ease;
+        }
         .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.08);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-card);
         }
         
         .date-tag { 
-            position: absolute; top: 2.2rem; right: 2.2rem; 
-            font-weight: 600; font-size: 0.85rem; color: var(--primary);
-            background: #eff6ff; padding: 4px 12px; border-radius: 6px;
+            position: absolute; top: 2rem; right: 2rem; 
+            font-weight: 600; font-size: 0.82rem; color: var(--pill-text);
+            background: var(--pill-bg); border: 1px solid var(--pill-border);
+            padding: 4px 12px; border-radius: 999px;
         }
 
-        .company { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; margin-bottom: 4px; }
+        .company { color: var(--primary); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; font-size: 0.78rem; margin-bottom: 4px; }
         .company a { color: inherit; text-decoration: none; }
         .company a:hover { text-decoration: underline; }
-        .role { font-size: 1.4rem; margin: 0; color: var(--dark); font-weight: 700; max-width: 70%; }
+        .role { font-size: 1.35rem; margin: 0; color: var(--text-heading); font-weight: 700; max-width: 72%; }
         
-        ul { margin-top: 1.5rem; padding-left: 1.2rem; }
-        li { margin-bottom: 0.8rem; }
+        ul { margin-top: 1.25rem; padding-left: 1.2rem; margin-bottom: 0; }
+        li { margin-bottom: 0.65rem; }
+        li:last-child { margin-bottom: 0; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
-        
-        .stat-card { 
-            background: var(--dark); color: white; padding: 1.5rem; border-radius: 12px; text-align: center; 
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        /* EXPERIENCE TABS */
+        .exp-tabs-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.75rem 0 1.15rem;
         }
-        
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        .exp-tabs-label {
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
         }
-        
-        .stat-card strong { font-size: 2rem; display: block; color: var(--accent); }
-        .stat-card span { font-size: 0.8rem; opacity: 0.8; }
+        .exp-tabs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+            background: var(--surface-subtle);
+            padding: 0.35rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        .exp-tab {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-family: inherit;
+            font-size: 0.86rem;
+            font-weight: 600;
+            padding: 0.48rem 0.95rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .exp-tab:hover {
+            color: var(--text-heading);
+        }
+        .exp-tab.active {
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+        }
+        .exp-panel {
+            display: none;
+            animation: fadeIn 0.22s ease;
+        }
+        .exp-panel.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; }
+
+        /* INTERACTIVE SKILL PILLS */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .skill-group-title {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.85rem;
+            display: block;
+        }
+        .pill-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        .skill-pill {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.83rem;
+            font-weight: 600;
+            background: var(--pill-bg);
+            color: var(--pill-text);
+            border: 1px solid var(--pill-border);
+            padding: 0.38rem 0.82rem;
+            border-radius: 999px;
+            transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+            cursor: default;
+        }
+        .skill-pill:hover {
+            transform: translateY(-2px);
+            background: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+        }
+
+        /* PLUM TALENT SUBCARDS */
+        .talent-box {
+            background: var(--surface-subtle);
+            padding: 1.2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--plum);
+        }
+        .talent-box strong {
+            color: var(--text-heading);
+            display: block;
+            margin-bottom: 4px;
+        }
 
         .btn {
             display: inline-block;
             background: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: 8px;
+            padding: 0.65rem 1.3rem;
+            border-radius: 10px;
             font-weight: 600;
             font-size: 0.9rem;
-            margin-top: 1rem;
-            transition: background 0.2s ease;
+            transition: background 0.2s ease, transform 0.2s ease;
         }
         .btn:hover {
-            background: #1d4ed8;
+            background: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
-        /* PORTFOLIO WORK SAMPLE PREVIEW FRAME */
-        .preview-frame {
-            width: 100%;
-            height: 440px;
-            border: 1px solid #cbd5e1;
-            border-radius: 10px;
-            margin-top: 1.2rem;
-            background: #fafafb;
-        }
-
-        /* DEMO VIDEO SHOWCASE GRID & 16:9 WRAPPER */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 1.5rem;
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
             margin-top: 1.5rem;
         }
-        .video-item {
-            background: var(--light);
-            border: 1px solid #e2e8f0;
+        .contact-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-heading);
+            text-decoration: none;
+            padding: 0.7rem 1.25rem;
             border-radius: 12px;
-            padding: 1rem;
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            border-radius: 8px;
-            background: var(--dark);
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-        .video-title {
-            font-weight: 700;
-            color: var(--dark);
-            font-size: 1rem;
-            margin: 0.85rem 0 0.25rem;
-        }
-        .video-desc {
-            font-size: 0.88rem;
-            color: #475569;
-            margin: 0;
-            line-height: 1.45;
-        }
-
-        .tag-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 0.8rem;
-        }
-        .skill-pill {
-            font-size: 0.78rem;
             font-weight: 600;
-            background: #eff6ff;
+            font-size: 0.92rem;
+            transition: all 0.2s ease;
+        }
+        .contact-chip:hover {
+            border-color: var(--primary);
             color: var(--primary);
-            padding: 4px 10px;
-            border-radius: 999px;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
         }
 
-        footer { text-align: center; padding: 4rem; background: var(--dark); color: #94a3b8; font-size: 0.9rem; }
+        footer { text-align: center; padding: 2.75rem 1.5rem; background: #0f172a; color: #94a3b8; font-size: 0.88rem; }
         
         @media (max-width: 768px) {
             .date-tag { position: static; display: inline-block; margin-top: 10px; }
             .role { max-width: 100%; }
-            .preview-frame { height: 340px; }
-            .video-grid { grid-template-columns: 1fr; }
+            .hero-kpi-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            header h1 { font-size: 1.95rem; }
         }
     </style>
 </head>
 <body>
 
-<nav id="global-nav"></nav>
+<div class="nav-shell">
+    <nav id="global-nav">
+        <a href="/#summary" onclick="trackClick('Nav: Summary')">Summary</a>
+        <a href="/#experience" onclick="trackClick('Nav: Experience')">Experience</a>
+        <a href="/#skills" onclick="trackClick('Nav: Skills')">Skills</a>
+        <a href="/#talents" onclick="trackClick('Nav: Strengths')">Strengths</a>
+        <a href="samples.html" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
+        <a href="/#contact" onclick="trackClick('Nav: Contact')">Contact</a>
+    </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme">
+        <span id="theme-icon">🌙</span>
+        <span id="theme-label">Dark</span>
+    </button>
+</div>
 
 <script>
-    fetch('nav.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('global-nav').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading navigation:', error));
+    if (window.location.protocol.startsWith('http')) {
+        fetch('nav.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Navigation file not found');
+                return response.text();
+            })
+            .then(data => {
+                if (data.trim()) {
+                    document.getElementById('global-nav').innerHTML = data;
+                }
+            })
+            .catch(() => {});
+    }
+
+    (function initTheme() {
+        const root = document.documentElement;
+        const btn = document.getElementById('theme-toggle');
+        const icon = document.getElementById('theme-icon');
+        const label = document.getElementById('theme-label');
+        const saved = localStorage.getItem('portfolio-theme');
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const initial = saved || (prefersDark ? 'dark' : 'light');
+
+        function applyTheme(mode) {
+            if (mode === 'dark') {
+                root.setAttribute('data-theme', 'dark');
+                icon.textContent = '☀️';
+                label.textContent = 'Light';
+            } else {
+                root.removeAttribute('data-theme');
+                icon.textContent = '🌙';
+                label.textContent = 'Dark';
+            }
+        }
+
+        applyTheme(initial);
+
+        btn.addEventListener('click', () => {
+            const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            localStorage.setItem('portfolio-theme', next);
+            applyTheme(next);
+            trackClick('Theme: ' + next);
+        });
+    })();
 </script>
 
-<header>
-    <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img">
-    <h1>Lucas Leung</h1>
-    <p style="font-size: 1.1rem; opacity: 0.9; margin-top: 10px;">Lifecycle & Expansion Marketing Leader | Vancouver, BC</p>
+<header id="impact">
+    <div class="hero-inner">
+        <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img" onerror="this.src='https://placehold.co/272x272/1e293b/60a5fa?text=LL'">
+        <h1>Lucas Leung</h1>
+        <p class="hero-subtitle">Lifecycle &amp; Expansion Marketing Leader | Vancouver, BC</p>
+
+        <div class="hero-actions">
+            <a href="samples.html" class="btn-primary" onclick="trackClick('Hero: View Work Examples')">View Work Examples →</a>
+            <a href="#contact" class="btn-secondary" onclick="trackClick('Hero: Lets Connect')">Let's Connect</a>
+        </div>
+
+        <div class="hero-kpi-strip" aria-label="Key Performance Metrics">
+            <div class="hero-kpi">
+                <strong>+490%</strong>
+                <span>Lead Growth (Webinars)</span>
+            </div>
+            <div class="hero-kpi">
+                <strong>130%</strong>
+                <span>Revenue Target Attainment</span>
+            </div>
+            <div class="hero-kpi">
+                <strong>+250%</strong>
+                <span>Closed-Won Opportunities</span>
+            </div>
+            <div class="hero-kpi">
+                <strong>120%</strong>
+                <span>Sales Performance (GTM)</span>
+            </div>
+        </div>
+    </div>
 </header>
 
 <div class="container">
     <section id="summary">
         <h2>Professional Summary</h2>
         <div class="card">
-            <p style="font-size: 1.05rem; line-height: 1.8; margin: 0;">Lifecycle and expansion marketer with 10+ years driving revenue growth in B2B SaaS and tech. I've led customer retention, trial conversion, and upsell programs at companies like FreshBooks, Geotab, and TELUS — consistently hitting or exceeding targets through sharp segmentation, lifecycle automation, and cross-functional execution. I'm most in my element building scalable systems that turn customer data into pipeline, whether that's a webinar program that 4x'd leads or a retention campaign that moved the needle on churn.</p>
+            <p style="font-size: 1.03rem; line-height: 1.75; margin: 0;">Lifecycle and expansion marketer with 10+ years driving revenue growth in B2B SaaS and tech. I've led customer retention, trial conversion, and upsell programs at companies like FreshBooks, Geotab, and TELUS — consistently hitting or exceeding targets through sharp segmentation, lifecycle automation, and cross-functional execution. I'm most in my element building scalable systems that turn customer data into pipeline, whether that's a webinar program that 4x'd leads or a retention campaign that moved the needle on churn.</p>
         </div>
     </section>
 
     <section id="experience">
         <h2>Professional Experience</h2>
         
+        <!-- CURRENT ROLE: EXPANDED BY DEFAULT -->
         <div class="card">
             <span class="date-tag">2026 — Present</span>
             <div class="company"><a href="https://www.textexpander.com" target="_blank" rel="noopener" onclick="trackClick('Company: TextExpander')">TextExpander</a></div>
             <div class="role">Sr. Marketing Manager</div>
             <ul>
                 <li><strong>Demand Generation:</strong> Lead the end-to-end demand generation calendar, campaign planning, and channel execution across content, paid media, and events to drive trial starts, demo requests, closed deals, and ARR.</li>
-                <li><strong>Email & Lifecycle Architecture:</strong> Own the full-funnel reverse-trial and freemium lifecycle program in HubSpot from Day 1 onboarding to Day 60+ expansion; architect persona-based swimlanes, dynamic entry routing, deliverability monitoring, and CASL compliance.</li>
-                <li><strong>Webinars, Video & Creator Programs:</strong> Project manage webinars, virtual event funnels, product demo videos, and influencer/UGC marketing initiatives to accelerate mid-funnel conversion.</li>
+                <li><strong>Email &amp; Lifecycle Architecture:</strong> Own the full-funnel reverse-trial and freemium lifecycle program in HubSpot from Day 1 onboarding to Day 60+ expansion; architect persona-based swimlanes, dynamic entry routing, deliverability monitoring, and CASL compliance.</li>
+                <li><strong>Webinars, Video &amp; Creator Programs:</strong> Project manage webinars, virtual event funnels, product demo videos, and influencer/UGC marketing initiatives to accelerate mid-funnel conversion.</li>
                 <li><strong>Social Media:</strong> Direct multi-channel social presence across LinkedIn, X, Meta, and Reddit with targeted product and category content.</li>
-                <li><strong>Reporting & Optimization:</strong> Build lifecycle and demand gen dashboards tracking pipeline metrics, ARR, and conversion funnels while driving structured A/B testing programs.</li>
+                <li><strong>Reporting &amp; Optimization:</strong> Build lifecycle and demand gen dashboards tracking pipeline metrics, ARR, and conversion funnels while driving structured A/B testing programs.</li>
                 <li><strong>Cross-Functional Alignment:</strong> Partner with Product Marketing on messaging tests, Search Experience on content amplification, and RevOps on CRM lifecycle routing and data integrity.</li>
             </ul>
         </div>
 
-        <div class="card">
-            <span class="date-tag">2026 — 2026</span>
-            <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
-            <div class="role">Sr. Manager, Expansion Marketing</div>
-            <ul>
-                <li>Strategic lead for global expansion activities focusing on bookkeeping and plan upgrades.</li>
-                <li>Partnered with Marketing Ops to decrease deployment bottlenecks, improving deliverability.</li>
-                <li>Established a prioritized customer base calendar to optimize communication frequency and relevance.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <span class="date-tag">2025 — 2026</span>
-            <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
-            <div class="role">Marketing Manager, Base Management</div>
-            <ul>
-                <li>Managed customer retention strategies to minimize downgrades and churn.</li>
-                <li>Achieved 490% increase in leads and 250% increase in closed-won opportunities via targeted webinars.</li>
-                <li>Standardized reporting via post-campaign playbooks, improving efficiency by 50%.</li>
-                <li>Drove 30% incremental increase in leads through revamped email and in-app targeting.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <span class="date-tag">2024 — 2025</span>
-            <div class="company"><a href="https://www.altitude.geotab.com" target="_blank" rel="noopener" onclick="trackClick('Company: Geotab')">Geotab</a></div>
-            <div class="role">Segment Campaign Manager</div>
-            <ul>
-                <li>Exceeded revenue targets by 30%+ through demand generation for the Altitude SaaS segment.</li>
-                <li>Scaled lead growth by 250% YoY through strategic multi-channel campaigns.</li>
-                <li>Improved CRM data integrity by 20% through Salesforce structural updates.</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <span class="date-tag">2016 — 2024</span>
-            <div class="company"><a href="https://www.telus.com" target="_blank" rel="noopener" onclick="trackClick('Company: TELUS')">TELUS</a></div>
-            <div class="role">Team Management and Marketing</div>
-            <ul>
-                <li><strong>GTM Acquisition:</strong> Hit 120% of sales targets for SmartHome Security.</li>
-                <li><strong>Retention:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
-                <li><strong>Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="work-samples">
-        <h2>Work Samples & Architecture</h2>
-
-        <!-- SAMPLE 01: JOURNEY SWIMLANES -->
-        <div class="card">
-            <div class="company">Sample 01 • Multi-Persona Onboarding Architecture</div>
-            <div class="role" style="max-width: 100%;">60-Day Reverse Trial & Freemium Onboarding Map</div>
-            <p style="margin-top: 0.8rem;">End-to-end lifecycle map spanning Day 1 activation, Day 30 reverse-trial downgrade transition, and Day 60 upsell across five distinct user personas (Solo Users, Team Admins, Invited Members, Freemium Users, and Enterprise Accounts). Designed to eliminate duplicate sequence enrollment and align messaging with account billing states.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Reverse Trial Logic</span>
-                <span class="skill-pill">Persona Segmentation</span>
-                <span class="skill-pill">PLG & Sales-Assist</span>
-                <span class="skill-pill">A/B Testing</span>
-            </div>
-            <iframe src="journey-swimlanes.html" class="preview-frame" title="60-Day Onboarding Journey Swimlanes"></iframe>
-            <div style="text-align: right;">
-                <a href="journey-swimlanes.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Swimlane Map')">Open Interactive Map Full Screen ↗</a>
+        <!-- PREVIOUS ROLES: SCANNABLE COMPANY TABS -->
+        <div class="exp-tabs-bar">
+            <span class="exp-tabs-label">Previous Experience</span>
+            <div class="exp-tabs" role="tablist" aria-label="Previous Companies">
+                <button type="button" class="exp-tab active" role="tab" aria-selected="true" data-tab="freshbooks">FreshBooks (2025–2026)</button>
+                <button type="button" class="exp-tab" role="tab" aria-selected="false" data-tab="geotab">Geotab (2024–2025)</button>
+                <button type="button" class="exp-tab" role="tab" aria-selected="false" data-tab="telus">TELUS (2016–2024)</button>
             </div>
         </div>
 
-        <!-- SAMPLE 02: CONTACT ROUTING -->
-        <div class="card">
-            <div class="company">Sample 02 • CRM Entry & Branching Logic</div>
-            <div class="role" style="max-width: 100%;">Dynamic Contact Routing & Enrollment Flowchart</div>
-            <p style="margin-top: 0.8rem;">Decision-tree architecture governing how new signups, invited collaborators, and inbound demo requests enter and transition between lifecycle tracks based on signup intent, domain enrichment (company size), seat count, and mid-trial team expansion triggers.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Lead Enrichment Routing</span>
-                <span class="skill-pill">Dynamic State Transitions</span>
-                <span class="skill-pill">PLG-to-Sales Handoff</span>
-                <span class="skill-pill">RevOps Alignment</span>
+        <!-- TAB PANEL: FRESHBOOKS -->
+        <div class="exp-panel active" id="panel-freshbooks" role="tabpanel">
+            <div class="card">
+                <span class="date-tag">2026 — 2026</span>
+                <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
+                <div class="role">Sr. Manager, Expansion Marketing</div>
+                <ul>
+                    <li>Strategic lead for global expansion activities focusing on bookkeeping and plan upgrades.</li>
+                    <li>Partnered with Marketing Ops to decrease deployment bottlenecks, improving deliverability.</li>
+                    <li>Established a prioritized customer base calendar to optimize communication frequency and relevance.</li>
+                </ul>
             </div>
-            <iframe src="journey-routing.html" class="preview-frame" title="Contact Routing Flowchart"></iframe>
-            <div style="text-align: right;">
-                <a href="journey-routing.html" target="_blank" rel="noopener" class="btn" onclick="trackClick('Sample: Open Routing Map')">Open Flowchart Full Screen ↗</a>
+
+            <div class="card">
+                <span class="date-tag">2025 — 2026</span>
+                <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
+                <div class="role">Marketing Manager, Base Management</div>
+                <ul>
+                    <li>Managed customer retention strategies to minimize downgrades and churn.</li>
+                    <li>Achieved 490% increase in leads and 250% increase in closed-won opportunities via targeted webinars.</li>
+                    <li>Standardized reporting via post-campaign playbooks, improving efficiency by 50%.</li>
+                    <li>Drove 30% incremental increase in leads through revamped email and in-app targeting.</li>
+                </ul>
             </div>
         </div>
 
-        <!-- SAMPLE 03: PRODUCT DEMO VIDEOS -->
-        <div class="card" id="demo-videos">
-            <div class="company">Sample 03 • Product Marketing & Video Enablement</div>
-            <div class="role" style="max-width: 100%;">Product Demo Videos & Persona Walkthroughs</div>
-            <p style="margin-top: 0.8rem;">Scripted, recorded, and produced product walkthroughs embedded into lifecycle onboarding tracks to accelerate Day 1–3 activation, showcase dynamic features, and tailor value propositions to specific buyer personas.</p>
-            <div class="tag-row">
-                <span class="skill-pill">Product Storytelling</span>
-                <span class="skill-pill">Trial Activation</span>
-                <span class="skill-pill">Persona Messaging</span>
-                <span class="skill-pill">Self-Serve Enablement</span>
-            </div>
-
-            <div class="video-grid">
-                <!-- VIDEO 1: FULL PRODUCT WALKTHROUGH -->
-                <div class="video-item">
-                    <div class="video-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1mbOLiHgTDMhVGAzCjBP9RDXmUBwH-QxX/preview" title="Full Product & Team Onboarding Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-title">End-to-End Product & Team Setup Walkthrough</div>
-                    <p class="video-desc">Full onboarding tour covering workspace setup, dynamic fill-in fields, inline search recall, bulk spreadsheet imports, and team member role provisioning.</p>
-                </div>
-
-                <!-- VIDEO 2: RECRUITING PERSONA DEMO -->
-                <div class="video-item">
-                    <div class="video-wrapper">
-                        <iframe src="https://drive.google.com/file/d/1n7arNYq-6KWR_JfKElr1sUoLkEJAaNJ_/preview" title="Recruiting Persona Onboarding Demo" allow="autoplay; fullscreen" allowfullscreen></iframe>
-                    </div>
-                    <div class="video-title">Persona-Tailored Onboarding: Recruiting Workflows</div>
-                    <p class="video-desc">Role-specific activation video demonstrating personalized candidate outreach, calendar slot formatting, conditional logic, and shared team libraries.</p>
-                </div>
+        <!-- TAB PANEL: GEOTAB -->
+        <div class="exp-panel" id="panel-geotab" role="tabpanel">
+            <div class="card">
+                <span class="date-tag">2024 — 2025</span>
+                <div class="company"><a href="https://www.altitude.geotab.com" target="_blank" rel="noopener" onclick="trackClick('Company: Geotab')">Geotab</a></div>
+                <div class="role">Segment Campaign Manager</div>
+                <ul>
+                    <li>Exceeded revenue targets by 30%+ through demand generation for the Altitude SaaS segment.</li>
+                    <li>Scaled lead growth by 250% YoY through strategic multi-channel campaigns.</li>
+                    <li>Improved CRM data integrity by 20% through Salesforce structural updates.</li>
+                </ul>
             </div>
         </div>
-    </section>
 
-    <section id="impact">
-        <h2>Key Performance Metrics</h2>
-        <div class="grid">
-            <div class="stat-card">
-                <strong>+490%</strong>
-                <span>Lead Growth (Webinars)</span>
-            </div>
-            <div class="stat-card">
-                <strong>130%</strong>
-                <span>Revenue Target Attainment</span>
-            </div>
-            <div class="stat-card">
-                <strong>+250%</strong>
-                <span>Closed-Won Opportunities</span>
-            </div>
-            <div class="stat-card">
-                <strong>120%</strong>
-                <span>Sales Performance (GTM)</span>
+        <!-- TAB PANEL: TELUS -->
+        <div class="exp-panel" id="panel-telus" role="tabpanel">
+            <div class="card">
+                <span class="date-tag">2016 — 2024</span>
+                <div class="company"><a href="https://www.telus.com" target="_blank" rel="noopener" onclick="trackClick('Company: TELUS')">TELUS</a></div>
+                <div class="role">Team Management and Marketing</div>
+                <ul>
+                    <li><strong>GTM Acquisition:</strong> Hit 120% of sales targets for SmartHome Security.</li>
+                    <li><strong>Retention:</strong> Optimized wireless customer journeys, increasing retention conversion by 10%.</li>
+                    <li><strong>Leadership:</strong> Managed a team of 17, coaching them to a 10% lift in customer save rates.</li>
+                </ul>
             </div>
         </div>
     </section>
     
     <section id="skills">
-        <h2>Strategic & Technical Skills</h2>
-        <div class="card" style="padding-bottom: 1rem;">
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); text-align: left; color: var(--dark);">
+        <h2>Strategic &amp; Technical Skills</h2>
+        <div class="card">
+            <div class="skills-grid">
                 <div>
-                    <strong style="font-size: 1rem; color: var(--primary); margin-bottom: 0.5rem; display: block;">Platforms</strong>
-                    <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
-                        <li>Salesforce Marketing Cloud</li>
-                        <li>Salesforce Lightning</li>
-                        <li>HubSpot</li>
-                        <li>WordPress</li>
-                        <li>Looker</li>
-                    </ul>
+                    <span class="skill-group-title">Platforms &amp; MarTech</span>
+                    <div class="pill-cloud">
+                        <span class="skill-pill">HubSpot</span>
+                        <span class="skill-pill">Salesforce Marketing Cloud</span>
+                        <span class="skill-pill">Salesforce Lightning</span>
+                        <span class="skill-pill">Clay</span>
+                        <span class="skill-pill">Influ2</span>
+                        <span class="skill-pill">GA4</span>
+                        <span class="skill-pill">Looker</span>
+                        <span class="skill-pill">WordPress</span>
+                    </div>
                 </div>
                 <div>
-                    <strong style="font-size: 1rem; color: var(--primary); margin-bottom: 0.5rem; display: block;">Marketing Ops</strong>
-                    <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
-                        <li>Lifecycle Automation</li>
-                        <li>A/B Testing & Experimentation</li>
-                        <li>Lead Forecasting</li>
-                        <li>Lead Gen & Nurture</li>
-                        <li>Performance Retargeting</li>
-                    </ul>
+                    <span class="skill-group-title">Marketing Ops</span>
+                    <div class="pill-cloud">
+                        <span class="skill-pill">Lifecycle Automation</span>
+                        <span class="skill-pill">A/B Testing &amp; Experimentation</span>
+                        <span class="skill-pill">Lead Routing &amp; Scoring</span>
+                        <span class="skill-pill">Lead Forecasting</span>
+                        <span class="skill-pill">Lead Gen &amp; Nurture</span>
+                        <span class="skill-pill">Performance Retargeting</span>
+                        <span class="skill-pill">CASL &amp; Deliverability</span>
+                    </div>
                 </div>
                 <div>
-                    <strong style="font-size: 1rem; color: var(--primary); margin-bottom: 0.5rem; display: block;">Data & Strategy</strong>
-                    <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
-                        <li>GTM Strategy</li>
-                        <li>Data Visualization (WBR,QBR)</li>
-                        <li>Cohort Analysis</li>
-                        <li>Content Strategy</li>
-                        <li>Project Management</li>
-                    </ul>
+                    <span class="skill-group-title">Data &amp; Strategy</span>
+                    <div class="pill-cloud">
+                        <span class="skill-pill">GTM Strategy</span>
+                        <span class="skill-pill">SQL</span>
+                        <span class="skill-pill">Data Visualization (WBR, QBR)</span>
+                        <span class="skill-pill">Cohort Analysis</span>
+                        <span class="skill-pill">Reverse-Trial Architecture</span>
+                        <span class="skill-pill">Content &amp; Webinar Strategy</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="talents">
-        <h2>Leadership Style & Top Talents</h2>
+        <h2>Leadership Style &amp; Top Talents</h2>
         <div class="card">
             <div class="company" style="color: var(--plum);">Psychometric Insights via Plum</div>
-            <div class="role" style="max-width: 100%; margin-bottom: 1rem;">Core Soft Skills & Workplace Strengths</div>
-            <p>Data-driven marketing relies on cross-functional alignment and human psychology. According to my verified Plum profile, my driving workplace talents center around execution, alignment, and collaborative leadership:</p>
+            <div class="role" style="max-width: 100%; margin-bottom: 0.75rem;">Core Soft Skills &amp; Workplace Strengths</div>
+            <p style="margin-top: 0;">Data-driven marketing relies on cross-functional alignment and human psychology. According to my verified Plum profile, my driving workplace talents center around execution, alignment, and collaborative leadership:</p>
             
-            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.5rem; gap: 1rem;">
-                <div style="background: var(--light); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--plum);">
-                    <strong style="color: var(--dark); display: block; margin-bottom: 4px;">Teamwork</strong>
-                    <span style="font-size: 0.9rem; opacity: 0.85;">Championing collaborative spaces, respecting diverse perspectives, and driving cross-departmental alignment.</span>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 1.25rem; gap: 1rem;">
+                <div class="talent-box">
+                    <strong>Teamwork</strong>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Championing collaborative spaces, respecting diverse perspectives, and driving cross-departmental alignment.</span>
                 </div>
-                <div style="background: var(--light); padding: 1.2rem; border-radius: 8px; border-left: 4px solid var(--plum);">
-                    <strong style="color: var(--dark); display: block; margin-bottom: 4px;">Execution & Speed</strong>
-                    <span style="font-size: 0.9rem; opacity: 0.85;">Setting strict operating rhythms, managing resources dynamically, and prioritizing impact over process.</span>
+                <div class="talent-box">
+                    <strong>Execution &amp; Speed</strong>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Setting strict operating rhythms, managing resources dynamically, and prioritizing impact over process.</span>
                 </div>
             </div>
             
-            <div style="margin-top: 1.5rem; text-align: center;">
+            <div style="margin-top: 1.35rem; text-align: center;">
                 <a href="https://secure.plum.io/en/p/2Ss_ZK7FVRiWw9YOiENRVQ" target="_blank" rel="noopener" class="btn" style="background: var(--plum);" onclick="trackClick('View Plum Profile')">View My Full Plum Profile</a>
             </div>
         </div>
@@ -436,20 +731,38 @@
 
     <section id="contact" style="text-align: center;">
         <h2>Let's Connect</h2>
-        <p>I specialize in building sustainable growth through lifecycle and expansion marketing.</p>
-        <div style="margin-top: 2rem;">
-            <p>Email: <strong><a href="mailto:lucas@lucasleung.me" onclick="trackClick('Contact: Email')" style="color: var(--primary); text-decoration: none;">lucas@lucasleung.me</a></strong></p>
-            <p>LinkedIn: <strong><a href="https://linkedin.com/in/lucasmarkleung" target="_blank" onclick="trackClick('Contact: LinkedIn')" style="color: var(--primary); text-decoration: none;">lucasmarkleung</a></strong></p>
+        <p style="max-width: 540px; margin: 0 auto;">I specialize in building sustainable growth through lifecycle and expansion marketing.</p>
+        <div class="contact-links">
+            <a href="mailto:lucas@lucasleung.me" class="contact-chip" onclick="trackClick('Contact: Email')">✉️ lucas@lucasleung.me</a>
+            <a href="https://www.linkedin.com/in/lucastaylorleung/" target="_blank" rel="noopener" class="contact-chip" onclick="trackClick('Contact: LinkedIn')">in /lucastaylorleung</a>
         </div>
     </section>
 </div>
 
 <footer>
     <p>© <span id="current-year"></span> Lucas Leung</p>
-    <script>
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-    </script>
 </footer>
+
+<script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    document.querySelectorAll('.exp-tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.tab;
+            document.querySelectorAll('.exp-tab').forEach(t => {
+                t.classList.remove('active');
+                t.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+
+            tab.classList.add('active');
+            tab.setAttribute('aria-selected', 'true');
+            const panel = document.getElementById('panel-' + target);
+            if (panel) panel.classList.add('active');
+            trackClick('Experience Tab: ' + target);
+        });
+    });
+</script>
     
 </body>
 </html>
