@@ -47,6 +47,12 @@
           '',
           window.location.pathname.replace(/index\.html$/, '') + window.location.search + window.location.hash
         );
+      } else if (window.location.pathname.endsWith('.html')) {
+        window.history.replaceState(
+          null,
+          '',
+          window.location.pathname.replace(/\.html$/, '') + window.location.search + window.location.hash
+        );
       }
     </script>
 
@@ -461,7 +467,7 @@
         <a href="/#experience" onclick="trackClick('Nav: Experience')">Experience</a>
         <a href="/#skills" onclick="trackClick('Nav: Skills')">Skills</a>
         <a href="/#talents" onclick="trackClick('Nav: Strengths')">Strengths</a>
-        <a href="samples.html" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
+        <a href="/samples" onclick="trackClick('Nav: Work Examples')">Work Examples</a>
         <a href="/#contact" onclick="trackClick('Nav: Contact')">Contact</a>
     </nav>
 </div>
@@ -486,10 +492,10 @@
     <div class="hero-inner">
         <img src="lucasleung-headshot.png" alt="Lucas Leung" class="profile-img" onerror="this.src='https://placehold.co/272x272/1e293b/60a5fa?text=LL'">
         <h1>Lucas Leung</h1>
-        <p class="hero-subtitle"> &amp; Expansion Marketing Leader | Vancouver, BC</p>
+        <p class="hero-subtitle">Lifecycle &amp; Expansion Marketing Leader | Vancouver, BC</p>
 
         <div class="hero-actions">
-            <a href="samples.html" class="btn-primary" onclick="trackClick('Hero: View Work Examples')">View Work Examples →</a>
+            <a href="/samples" class="btn-primary" onclick="trackClick('Hero: View Work Examples')">View Work Examples →</a>
             <a href="#contact" class="btn-secondary" onclick="trackClick('Hero: Lets Connect')">Let's Connect</a>
         </div>
 
@@ -507,8 +513,8 @@
                 <span>Closed-Won Opportunities</span>
             </div>
             <div class="hero-kpi">
-                <strong>120%</strong>
-                <span>Sales Performance (GTM)</span>
+                <strong>110%</strong>
+                <span>Revenue to Target (+25%)</span>
             </div>
         </div>
     </div>
@@ -527,7 +533,7 @@
         
         <!-- CURRENT ROLE: EXPANDED BY DEFAULT -->
         <div class="card">
-            <span class="date-tag">2026 — Present</span>
+            <span class="date-tag">2026 - Present</span>
             <div class="company"><a href="https://www.textexpander.com" target="_blank" rel="noopener" onclick="trackClick('Company: TextExpander')">TextExpander</a></div>
             <div class="role">Sr. Marketing Manager</div>
             <ul>
@@ -553,7 +559,7 @@
         <!-- TAB PANEL: FRESHBOOKS -->
         <div class="exp-panel active" id="panel-freshbooks" role="tabpanel">
             <div class="card">
-                <span class="date-tag">2026 — 2026</span>
+                <span class="date-tag">2026 - 2026</span>
                 <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
                 <div class="role">Sr. Manager, Expansion Marketing</div>
                 <ul>
@@ -564,7 +570,7 @@
             </div>
 
             <div class="card">
-                <span class="date-tag">2025 — 2026</span>
+                <span class="date-tag">2025 - 2026</span>
                 <div class="company"><a href="https://www.freshbooks.com" target="_blank" rel="noopener" onclick="trackClick('Company: FreshBooks')">FreshBooks</a></div>
                 <div class="role">Marketing Manager, Base Management</div>
                 <ul>
@@ -579,7 +585,7 @@
         <!-- TAB PANEL: GEOTAB -->
         <div class="exp-panel" id="panel-geotab" role="tabpanel">
             <div class="card">
-                <span class="date-tag">2024 — 2025</span>
+                <span class="date-tag">2024 - 2025</span>
                 <div class="company"><a href="https://www.altitude.geotab.com" target="_blank" rel="noopener" onclick="trackClick('Company: Geotab')">Geotab</a></div>
                 <div class="role">Segment Campaign Manager</div>
                 <ul>
@@ -593,7 +599,7 @@
         <!-- TAB PANEL: TELUS -->
         <div class="exp-panel" id="panel-telus" role="tabpanel">
             <div class="card">
-                <span class="date-tag">2016 — 2024</span>
+                <span class="date-tag">2016 - 2024</span>
                 <div class="company"><a href="https://www.telus.com" target="_blank" rel="noopener" onclick="trackClick('Company: TELUS')">TELUS</a></div>
                 <div class="role">Team Management and Marketing</div>
                 <ul>
@@ -616,33 +622,37 @@
                         <span class="skill-pill">Salesforce Marketing Cloud</span>
                         <span class="skill-pill">Salesforce Lightning</span>
                         <span class="skill-pill">Clay</span>
+                        <span class="skill-pill">ZoomInfo</span>
                         <span class="skill-pill">Influ2</span>
+                        <span class="skill-pill">In-Product Messaging</span>
                         <span class="skill-pill">GA4</span>
                         <span class="skill-pill">Looker</span>
+                        <span class="skill-pill">Asana</span>
                         <span class="skill-pill">WordPress</span>
                     </div>
                 </div>
                 <div>
-                    <span class="skill-group-title">Marketing Ops</span>
+                    <span class="skill-group-title">Marketing Ops &amp; AI</span>
                     <div class="pill-cloud">
+                        <span class="skill-pill">AI Workflow Automation</span>
                         <span class="skill-pill">Lifecycle Automation</span>
+                        <span class="skill-pill">CQL Scoring &amp; Forecasting</span>
                         <span class="skill-pill">A/B Testing &amp; Experimentation</span>
-                        <span class="skill-pill">Lead Routing &amp; Scoring</span>
-                        <span class="skill-pill">Lead Forecasting</span>
-                        <span class="skill-pill">Lead Gen &amp; Nurture</span>
-                        <span class="skill-pill">Performance Retargeting</span>
+                        <span class="skill-pill">Lead Routing &amp; Enrichment</span>
+                        <span class="skill-pill">Multi-Channel Nurture</span>
                         <span class="skill-pill">CASL &amp; Deliverability</span>
                     </div>
                 </div>
                 <div>
-                    <span class="skill-group-title">Data &amp; Strategy</span>
+                    <span class="skill-group-title">Growth &amp; Revenue Strategy</span>
                     <div class="pill-cloud">
+                        <span class="skill-pill">Cross-Sell &amp; Upsell Programs</span>
+                        <span class="skill-pill">Customer Advocacy</span>
                         <span class="skill-pill">GTM Strategy</span>
                         <span class="skill-pill">SQL</span>
                         <span class="skill-pill">Data Visualization (WBR, QBR)</span>
                         <span class="skill-pill">Cohort Analysis</span>
                         <span class="skill-pill">Reverse-Trial Architecture</span>
-                        <span class="skill-pill">Content &amp; Webinar Strategy</span>
                     </div>
                 </div>
             </div>
