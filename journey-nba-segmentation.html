@@ -140,7 +140,7 @@
     padding: 14px 16px;
     margin-bottom: 14px;
     display: grid;
-    grid-template-columns: 230px 1fr 220px;
+    grid-template-columns: 230px 1fr 225px;
     gap: 16px;
     align-items: center;
   }
@@ -232,26 +232,26 @@
 <body>
 
   <h1>Next Best Action (NBA) Segmentation &amp; Revenue Map</h1>
-  <p class="subtitle">How historical cohort telemetry, firmographics, and campaign engagement signals are synthesized into revenue-tied lifecycle plays.</p>
+  <p class="subtitle">How enriched account growth signals (Clay &amp; ZoomInfo), product telemetry, and campaign engagement are synthesized into CQL and revenue-tied lifecycle plays.</p>
 
   <div class="legend">
     <span class="legend-title">Methodology &amp; Revenue Attribution Thesis (Sanitized Portfolio Sample)</span>
-    &bull; Built by analyzing historical customer expansion and churn cohorts to identify which combination of <b>account capacity</b> (size/revenue), <b>current product adoption</b>, and <b>channel responsiveness</b> predicts conversion.<br>
-    &bull; Every lifecycle branch maps to a single commercial KPI (Net New ARR, Seat Expansion ARR, Plan Upgrade MRR, or Gross Retention) rather than vanity open/click metrics.
+    &bull; Built by analyzing historical customer expansion and churn cohorts to identify which combination of <b>Clay &amp; ZoomInfo account growth enrichment</b> (headcount velocity, firmographic size, revenue), <b>current product adoption</b>, and <b>channel responsiveness</b> predicts conversion.<br>
+    &bull; Every post-purchase and trial lifecycle branch maps directly to a commercial KPI (Customer Qualified Leads [CQLs], Cross-Sell/Expansion ARR, Plan Upgrade MRR, or Gross Retention) rather than vanity open/click metrics.
   </div>
 
   <!-- STAGE 1: DATA INPUT PILLARS -->
-  <div class="stage-label">Stage 1 • Multi-Dimensional Customer Scoring Inputs</div>
+  <div class="stage-label">Stage 1 • Multi-Dimensional Customer Scoring &amp; Enrichment Inputs</div>
   <div class="pillars-grid">
     <div class="pillar" style="--accent:#2563EB; --tint:#EFF6FF;">
       <div class="pillar-head">
-        <span>&#127970; Firmographics &amp; Capacity</span>
-        <span class="pillar-badge">CRM / Enriched</span>
+        <span>&#127970; Clay &amp; ZoomInfo Enrichment</span>
+        <span class="pillar-badge">Account Growth</span>
       </div>
       <ul>
-        <li><b>Company Size:</b> Solo (1), SMB (2–49), Mid-Market (50–249), Enterprise (250+).</li>
-        <li><b>Annual Revenue &amp; ARR Potential:</b> Total addressable seat ceiling vs. current ACV.</li>
-        <li><b>Department / Role:</b> Individual contributor vs. functional team lead or ops buyer.</li>
+        <li><b>Growth &amp; Hiring Velocity:</b> Clay &amp; ZoomInfo waterfall enrichment tracking 6-month headcount growth, new office openings, and department expansion.</li>
+        <li><b>Company Size &amp; Revenue Tier:</b> Solo (1), Small Business (2–49), Mid-Market (50–249), Enterprise (250+) and estimated annual revenue ceiling.</li>
+        <li><b>Technographics &amp; Whitespace:</b> Adjacent tools in stack indicating cross-sell readiness for add-on modules.</li>
       </ul>
     </div>
 
@@ -261,9 +261,9 @@
         <span class="pillar-badge">Warehouse / BI</span>
       </div>
       <ul>
-        <li><b>Current Feature Mix:</b> Core free utility vs. collaborative/shared workflows vs. governance tools.</li>
-        <li><b>Usage Velocity &amp; Depth:</b> Weekly active days, asset volume, and paywall limit hits.</li>
-        <li><b>Cohort Benchmarks:</b> Comparing current usage against historical converters at Day 14/30/60.</li>
+        <li><b>Current Feature &amp; Product Mix:</b> Core base plan usage vs. collaborative workflows, add-on modules, and governance features.</li>
+        <li><b>Usage Velocity &amp; Depth:</b> Weekly active days, asset volume, seat saturation, and paywall limit hits.</li>
+        <li><b>Cohort Benchmarks:</b> Comparing live account telemetry against historical expanders at Day 30/60/90+.</li>
       </ul>
     </div>
 
@@ -274,18 +274,18 @@
       </div>
       <ul>
         <li><b>Email &amp; Nurture Response:</b> Click intent on feature vs. pricing/ROI themes; fatigue thresholds.</li>
-        <li><b>Event &amp; Content Intent:</b> Webinar attendance, demo video completion, or help-doc visits.</li>
-        <li><b>Channel Suppression:</b> Auto-pausing low-response email tracks in favor of in-app or AE outreach.</li>
+        <li><b>Event &amp; Content Intent:</b> Webinar attendance, product demo completion, or help-center visits.</li>
+        <li><b>Channel Suppression:</b> Auto-pausing low-response email tracks in favor of in-product prompts or AE/CSM outreach.</li>
       </ul>
     </div>
   </div>
 
   <div class="funnel-bar">
-    <div><strong>Decision Engine:</strong> Cohort propensity model evaluates all 3 dimensions daily to assign 1 mutually exclusive Next Best Action.</div>
+    <div><strong>AI-Assisted Decision Engine:</strong> Daily enrichment &amp; propensity scoring assigns 1 mutually exclusive Next Best Action per account.</div>
     <div class="funnel-pills">
-      <span class="funnel-pill">No Overlapping Campaigns</span>
+      <span class="funnel-pill">Clay + ZoomInfo Waterfall</span>
+      <span class="funnel-pill">CQL &amp; Pipeline Routing</span>
       <span class="funnel-pill">Holdout Control Groups (10%)</span>
-      <span class="funnel-pill">Pipeline &amp; ARR Attribution</span>
     </div>
   </div>
 
@@ -295,56 +295,56 @@
   <!-- COHORT 1 -->
   <div class="cohort-lane" style="--accent:#E64980; --tint:#FCEDF2;">
     <div class="cohort-id">
-      <span class="tag">Cohort A • High Ceiling + High Usage</span>
-      <div class="name">Enterprise Land-and-Expand</div>
-      <div class="profile">Mid-market/Enterprise accounts hitting multi-user collaboration thresholds on trial or starter tiers.</div>
+      <span class="tag">Cohort A • Rapid Growth + High Ceiling</span>
+      <div class="name">Scaling Multi-Seat Expansion</div>
+      <div class="profile">Accounts showing active headcount growth in Clay/ZoomInfo and hitting collaboration thresholds.</div>
     </div>
     <div class="signals-row">
-      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>100+ emp &bull; $20M+ Rev</strong></div>
+      <div class="signal-chip"><span>Clay &amp; ZoomInfo</span><strong>+20% headcount growth &bull; $10M+ Rev</strong></div>
       <div class="signal-chip"><span>Current Usage</span><strong>Shared folders + 3+ active invites</strong></div>
       <div class="signal-chip"><span>Campaign Response</span><strong>High webinar / pricing click intent</strong></div>
     </div>
     <div class="nba-box">
       <div class="nba-label">Next Best Action</div>
-      <div class="nba-action">Route to AE Sales-Assist + Custom Security &amp; ROI Case Study Sequence</div>
-      <span class="kpi-tie">KPI: Net-New Enterprise ARR</span>
+      <div class="nba-action">Trigger High-Intent CQL to Sales + Executive ROI &amp; Rollout Sequence</div>
+      <span class="kpi-tie">KPI: CQL Pipeline &amp; Expansion ARR</span>
     </div>
   </div>
 
   <!-- COHORT 2 -->
   <div class="cohort-lane" style="--accent:#9C36B5; --tint:#F5EBF8;">
     <div class="cohort-id">
-      <span class="tag">Cohort B • Multi-Seat Expansion</span>
-      <div class="name">Team Champion &amp; Seat Growth</div>
-      <div class="profile">Existing SMB accounts where organic seat utilization exceeds 85% or uninvited domain signups spike.</div>
+      <span class="tag">Cohort B • Multi-Product Cross-Sell</span>
+      <div class="name">Small Business Add-On &amp; Cross-Sell</div>
+      <div class="profile">Growing SMB customers with high core adoption and technographic fit for secondary products.</div>
     </div>
     <div class="signals-row">
-      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>10–99 emp &bull; $2M–$20M Rev</strong></div>
-      <div class="signal-chip"><span>Current Usage</span><strong>High daily DAU; 1–2 power features unused</strong></div>
-      <div class="signal-chip"><span>Campaign Response</span><strong>Opens product tips; ignores generic promos</strong></div>
+      <div class="signal-chip"><span>Clay &amp; ZoomInfo</span><strong>10–49 emp &bull; Active hiring signals</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>High core DAU; 0 add-on modules active</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>Clicks workflow tips &amp; solution guides</strong></div>
     </div>
     <div class="nba-box">
       <div class="nba-label">Next Best Action</div>
-      <div class="nba-action">Trigger Admin Seat-Consolidation Play + Peer Workflow Adoption Guide</div>
-      <span class="kpi-tie">KPI: Expansion ARR / NRR Lift</span>
+      <div class="nba-action">Launch Multi-Channel Cross-Sell Play (Email + In-Product + Webinar)</div>
+      <span class="kpi-tie">KPI: Cross-Sell ARR &amp; Multi-Product Attach</span>
     </div>
   </div>
 
   <!-- COHORT 3 -->
   <div class="cohort-lane" style="--accent:#2563EB; --tint:#EFF6FF;">
     <div class="cohort-id">
-      <span class="tag">Cohort C • Self-Serve Upgrade</span>
-      <div class="name">High-Intent Solo / Pro Converter</div>
-      <div class="profile">Power users on free/downgraded tiers repeatedly hitting active-asset or automation paywalls.</div>
+      <span class="tag">Cohort C • Self-Serve Tier Upgrade</span>
+      <div class="name">High-Intent Solo / Starter Converter</div>
+      <div class="profile">Small firms or solo practitioners repeatedly hitting active-asset or automation paywalls.</div>
     </div>
     <div class="signals-row">
-      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>1–9 emp &bull; &lt;$2M Rev</strong></div>
-      <div class="signal-chip"><span>Current Usage</span><strong>Maxed free limits; high weekly frequency</strong></div>
-      <div class="signal-chip"><span>Campaign Response</span><strong>Engaged with feature emails or abandoned cart</strong></div>
+      <div class="signal-chip"><span>Clay &amp; ZoomInfo</span><strong>1–9 emp &bull; Steady SMB firmographics</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Maxed plan limits; high weekly frequency</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>Engaged with feature emails or checkout</strong></div>
     </div>
     <div class="nba-box">
       <div class="nba-label">Next Best Action</div>
-      <div class="nba-action">Deliver Time-Bound Intro Offer (25% Off 3 Mo) + In-App Paywall Prompt</div>
+      <div class="nba-action">Deliver Time-Bound Upgrade Offer + Contextual In-Product Paywall</div>
       <span class="kpi-tie">KPI: Self-Serve Upgrade MRR</span>
     </div>
   </div>
@@ -353,18 +353,18 @@
   <div class="cohort-lane" style="--accent:#0CA678; --tint:#E7F6F2;">
     <div class="cohort-id">
       <span class="tag">Cohort D • Channel Pivot</span>
-      <div class="name">Email-Fatigued Active Users</div>
-      <div class="profile">Healthy product usage and expansion fit, but zero email opens/clicks over the last 45 days.</div>
+      <div class="name">Email-Fatigued Growing Accounts</div>
+      <div class="profile">ZoomInfo/Clay shows firm growth and expansion fit, but account is unresponsive in email.</div>
     </div>
     <div class="signals-row">
-      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>SMB / Mid-Market fit</strong></div>
-      <div class="signal-chip"><span>Current Usage</span><strong>Active core usage; zero cross-feature adoption</strong></div>
-      <div class="signal-chip"><span>Campaign Response</span><strong>0 email clicks (45d); unengaged in MAP</strong></div>
+      <div class="signal-chip"><span>Clay &amp; ZoomInfo</span><strong>Growing headcount &bull; Expansion fit</strong></div>
+      <div class="signal-chip"><span>Current Usage</span><strong>Active core usage; secondary features unused</strong></div>
+      <div class="signal-chip"><span>Campaign Response</span><strong>0 email clicks (45d); MAP fatigued</strong></div>
     </div>
     <div class="nba-box">
       <div class="nba-label">Next Best Action</div>
-      <div class="nba-action">Suppress Email Cadence &rarr; Trigger In-App Tooltip + Paid Retargeting</div>
-      <span class="kpi-tie">KPI: Feature Adoption &rarr; Paid Conv.</span>
+      <div class="nba-action">Suppress Email Cadence &rarr; Trigger In-Product Guide + Digital Retargeting</div>
+      <span class="kpi-tie">KPI: Feature Adoption &rarr; CQL Conversion</span>
     </div>
   </div>
 
@@ -373,16 +373,16 @@
     <div class="cohort-id">
       <span class="tag">Cohort E • Churn Intervention</span>
       <div class="name">At-Risk Paid Accounts</div>
-      <div class="profile">Paid subscribers whose 30-day usage dropped &gt;40% ahead of renewal, regardless of email engagement.</div>
+      <div class="profile">Paid subscribers whose 30-day usage dropped &gt;40% ahead of renewal, prioritized by enriched ACV ceiling.</div>
     </div>
     <div class="signals-row">
-      <div class="signal-chip"><span>Company Size &amp; Rev</span><strong>All paid tiers (prioritized by ACV)</strong></div>
+      <div class="signal-chip"><span>Clay &amp; ZoomInfo</span><strong>All paid tiers (weighted by growth potential)</strong></div>
       <div class="signal-chip"><span>Current Usage</span><strong>Sharp WAU decline; low seat activation</strong></div>
       <div class="signal-chip"><span>Campaign Response</span><strong>Low nurture response or support friction</strong></div>
     </div>
     <div class="nba-box">
       <div class="nba-label">Next Best Action</div>
-      <div class="nba-action">Suppress Upsells &rarr; Launch 1-Click Template Setup + CS Health Check</div>
+      <div class="nba-action">Suppress Upsells &rarr; Launch 1-Click Quickstart + CS Health Intervention</div>
       <span class="kpi-tie">KPI: Gross Dollar Retention (GRR)</span>
     </div>
   </div>
