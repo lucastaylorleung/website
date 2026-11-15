@@ -469,7 +469,7 @@
             <!-- SAMPLE 02: LIFECYCLE EMAIL EXECUTION -->
             <div class="card" id="email-sample">
                 <div class="company">Sample 02 • Lifecycle Conversion &amp; Promotional Email</div>
-                <div class="role">Cart Abandonment Touch 2 — Org Admin Upgrade Offer</div>
+                <div class="role">Cart Abandonment Touch 2: Org Admin Upgrade Offer</div>
                 <p class="card-desc">Responsive, dark-mode-compatible lifecycle email (anonymized for portfolio display) triggered for Organization Admins who initiated checkout without completing an upgrade, pairing feature value reinforcement with a time-bound 25% offer.</p>
                 <div class="tag-row">
                     <span class="skill-pill">Cart Abandonment Flow</span>
@@ -506,8 +506,15 @@
                     <span class="skill-pill">Self-Serve Enablement</span>
                 </div>
 
-                <div class="video-grid">
-                    <div class="video-item">
+                <div>
+                    <div class="sample-tabs" role="tablist" aria-label="Product Walkthrough Videos">
+                        <button type="button" class="sample-tab active" data-video="setup">1. Full Product &amp; Team Setup</button>
+                        <button type="button" class="sample-tab" data-video="recruiting">2. Recruiting Persona Workflow</button>
+                    </div>
+                </div>
+
+                <div class="sample-pane active" id="video-setup">
+                    <div class="video-item" style="grid-template-columns: 1fr; margin-top: 1.1rem;">
                         <div class="video-wrapper">
                             <iframe src="https://drive.google.com/file/d/1mbOLiHgTDMhVGAzCjBP9RDXmUBwH-QxX/preview" title="Full Product & Team Onboarding Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
                         </div>
@@ -516,8 +523,10 @@
                             <p class="video-desc">Full onboarding tour covering workspace setup, dynamic fill-in fields, inline search recall, bulk imports, and team member role provisioning.</p>
                         </div>
                     </div>
+                </div>
 
-                    <div class="video-item">
+                <div class="sample-pane" id="video-recruiting">
+                    <div class="video-item" style="grid-template-columns: 1fr; margin-top: 1.1rem;">
                         <div class="video-wrapper">
                             <iframe src="https://drive.google.com/file/d/1n7arNYq-6KWR_JfKElr1sUoLkEJAaNJ_/preview" title="Recruiting Persona Onboarding Demo" allow="autoplay; fullscreen" allowfullscreen></iframe>
                         </div>
@@ -547,7 +556,7 @@
                             <iframe src="https://drive.google.com/file/d/1iLqtP2bC0RsrQqJTjO3EDkNSuCQbiqCP/preview" title="Android App Voiceover Walkthrough" allow="autoplay; fullscreen" allowfullscreen></iframe>
                         </div>
                         <div>
-                            <div class="video-title">Android App Experience — Voiceover Walkthrough</div>
+                            <div class="video-title">Android App Experience: Voiceover Walkthrough</div>
                             <p class="video-desc">Guided mobile walkthrough showcasing setup, intuitive gesture/keyboard workflows, and seamless cross-device sync for Android users.</p>
                         </div>
                     </div>
@@ -565,15 +574,27 @@
 <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    document.querySelectorAll('.sample-tab').forEach(tab => {
+    document.querySelectorAll('.sample-tab[data-arch]').forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.dataset.arch;
-            document.querySelectorAll('.sample-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.sample-pane').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.sample-tab[data-arch]').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('#work-samples .card:first-child .sample-pane').forEach(p => p.classList.remove('active'));
             tab.classList.add('active');
             const pane = document.getElementById('arch-' + target);
             if (pane) pane.classList.add('active');
             trackClick('Architecture Tab: ' + target);
+        });
+    });
+
+    document.querySelectorAll('.sample-tab[data-video]').forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.dataset.video;
+            document.querySelectorAll('.sample-tab[data-video]').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('#demo-videos .sample-pane').forEach(p => p.classList.remove('active'));
+            tab.classList.add('active');
+            const pane = document.getElementById('video-' + target);
+            if (pane) pane.classList.add('active');
+            trackClick('Demo Video Tab: ' + target);
         });
     });
 
